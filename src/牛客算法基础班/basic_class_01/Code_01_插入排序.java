@@ -16,6 +16,7 @@ public class Code_01_插入排序 {
 	}
 
 	public static void swap(int[] arr, int i, int j) {
+		//注意！！！这里不要用异或，因为如果i和j相等，异或就出错了。
 		arr[i] = arr[i] ^ arr[j];
 		arr[j] = arr[i] ^ arr[j];
 		arr[i] = arr[i] ^ arr[j];

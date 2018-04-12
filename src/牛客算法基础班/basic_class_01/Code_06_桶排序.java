@@ -2,21 +2,25 @@ package 牛客算法基础班.basic_class_01;
 
 import java.util.Arrays;
 
-public class Code_06_BucketSort {
+public class Code_06_桶排序 {
 
 	// only for 0~200 value
 	public static void bucketSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
 		}
+
+		// 求出数组中的最大值
 		int max = Integer.MIN_VALUE;
 		for (int i = 0; i < arr.length; i++) {
 			max = Math.max(max, arr[i]);
 		}
+		// 新键max+1个桶，把数放入对应的桶中，这里桶只是计数用
 		int[] bucket = new int[max + 1];
 		for (int i = 0; i < arr.length; i++) {
 			bucket[arr[i]]++;
 		}
+		// 将 桶中的数 依次倒出就是排序好的数组
 		int i = 0;
 		for (int j = 0; j < bucket.length; j++) {
 			while (bucket[j]-- > 0) {

@@ -1,10 +1,10 @@
 package Java数据结构和算法.排序.快速排序;
 
-public class ArrayIns {
+public class 快排 {
     private long[] theArray;
     private int nElems;
 
-    public ArrayIns(long[] theArray) {
+    public 快排(long[] theArray) {
         this.theArray = theArray;
         nElems = theArray.length;
     }
@@ -42,10 +42,10 @@ public class ArrayIns {
             while (rightPtr > leftPtr && theArray[--rightPtr] > pivot) {
                 ;
             }
-            if (leftPtr >= rightPtr) {
-                break;
-            } else {
+            if (leftPtr < rightPtr) {
                 swap(leftPtr, rightPtr);
+            } else {
+                break;
             }
         }
         swap(leftPtr, right);
@@ -69,8 +69,8 @@ public class ArrayIns {
 
     public static void main(String[] args) {
         long[] theArray = new long[]{6, 4, 5, 7, 3, 9, 2, 3, 6, 0, 1, 3, 7};
-        ArrayIns arrayIns = new ArrayIns(theArray);
-        arrayIns.quickSort();
-        System.out.println(arrayIns);
+        快排 快排 = new 快排(theArray);
+        快排.quickSort();
+        System.out.println(快排);
     }
 }

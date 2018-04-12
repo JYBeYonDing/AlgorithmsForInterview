@@ -23,6 +23,7 @@ public class Code_03_堆排序 {
 
 	public static void heapInsert(int[] arr, int index) {
 		// -1/2 = 0/2 = 1/2 = 0 所以不会越界 2/2 = 3/2 = 1
+		// 由于-1 的补码为 全1 所以这里不能用 >>1 代替 /2, 否则会越界
 		while (arr[index] > arr[(index - 1) / 2]) {
 			swap(arr, index, (index - 1) / 2);
 			index = (index - 1) / 2;

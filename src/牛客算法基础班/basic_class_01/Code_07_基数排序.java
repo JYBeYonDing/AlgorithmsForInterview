@@ -2,42 +2,58 @@ package 牛客算法基础班.basic_class_01;
 
 import java.util.Arrays;
 
-public class Code_05_MergeSort {
+public class Code_07_基数排序 {
 
-	public static void mergeSort(int[] arr) {
+	// only for no-negative value
+	public static void radixSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
 		}
-		mergeSort(arr, 0, arr.length - 1);
+		radixSort(arr, 0, arr.length - 1, maxbits(arr));
 	}
 
-	public static void mergeSort(int[] arr, int l, int r) {
-		if (l == r) {
-			return;
+	public static int maxbits(int[] arr) {
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < arr.length; i++) {
+			max = Math.max(max, arr[i]);
 		}
-		int mid = l + ((r - l) >> 1);
-		mergeSort(arr, l, mid);
-		mergeSort(arr, mid + 1, r);
-		merge(arr, l, mid, r);
+		int res = 0;
+		while (max != 0) {
+			res++;
+			max /= 10;
+		}
+		return res;
 	}
 
-	public static void merge(int[] arr, int l, int m, int r) {
-		int[] help = new int[r - l + 1];
-		int i = 0;
-		int p1 = l;
-		int p2 = m + 1;
-		while (p1 <= m && p2 <= r) {
-			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
+	public static void radixSort(int[] arr, int begin, int end, int digit) {
+		final int radix = 10;
+		int i = 0, j = 0;
+		int[] count = new int[radix];
+		int[] bucket = new int[end - begin + 1];
+		for (int d = 1; d <= digit; d++) {
+			for (i = 0; i < radix; i++) {
+				count[i] = 0;
+			}
+			for (i = begin; i <= end; i++) {
+				j = getDigit(arr[i], d);
+				count[j]++;
+			}
+			for (i = 1; i < radix; i++) {
+				count[i] = count[i] + count[i - 1];
+			}
+			for (i = end; i >= begin; i--) {
+				j = getDigit(arr[i], d);
+				bucket[count[j] - 1] = arr[i];
+				count[j]--;
+			}
+			for (i = begin, j = 0; i <= end; i++, j++) {
+				arr[i] = bucket[j];
+			}
 		}
-		while (p1 <= m) {
-			help[i++] = arr[p1++];
-		}
-		while (p2 <= r) {
-			help[i++] = arr[p2++];
-		}
-		for (i = 0; i < help.length; i++) {
-			arr[l + i] = help[i];
-		}
+	}
+
+	public static int getDigit(int x, int d) {
+		return ((x / ((int) Math.pow(10, d - 1))) % 10);
 	}
 
 	// for test
@@ -49,7 +65,7 @@ public class Code_05_MergeSort {
 	public static int[] generateRandomArray(int maxSize, int maxValue) {
 		int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
 		for (int i = 0; i < arr.length; i++) {
-			arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+			arr[i] = (int) ((maxValue + 1) * Math.random());
 		}
 		return arr;
 	}
@@ -100,12 +116,12 @@ public class Code_05_MergeSort {
 	public static void main(String[] args) {
 		int testTime = 500000;
 		int maxSize = 100;
-		int maxValue = 100;
+		int maxValue = 100000;
 		boolean succeed = true;
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			mergeSort(arr1);
+			radixSort(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;
@@ -118,7 +134,7 @@ public class Code_05_MergeSort {
 
 		int[] arr = generateRandomArray(maxSize, maxValue);
 		printArray(arr);
-		mergeSort(arr);
+		radixSort(arr);
 		printArray(arr);
 
 	}

@@ -3,7 +3,7 @@ package 牛客算法基础班.basic_class_04;
 import java.util.HashMap;
 import java.util.List;
 
-public class Code_09_UnionFind {
+public class Code_09_并查集 {
 
 	public static class Node {
 		// whatever you like

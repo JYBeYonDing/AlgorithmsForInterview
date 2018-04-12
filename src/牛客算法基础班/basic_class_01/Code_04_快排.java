@@ -2,6 +2,10 @@ package 牛客算法基础班.basic_class_01;
 
 import java.util.Arrays;
 
+/**
+ * 这种快排的partition函数适用于荷兰国旗问题，但感觉会有很多重复交换
+ * 传统的快排还是参照   Java数据结构和算法.排序.快速排序.快排
+ */
 public class Code_04_快排 {
 
 	public static void quickSort(int[] arr) {
@@ -13,7 +17,9 @@ public class Code_04_快排 {
 
 	public static void quickSort(int[] arr, int l, int r) {
 		if (l < r) {
+			// 从l到r中随机取出一个数交换到数组尾部作为pivot，random()取值[0,1)
 			swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+			// 以r位置为pivot进行荷兰国旗划分，[p[0],p[1]]为等于pivot的位置。
 			int[] p = partition(arr, l, r);
 			quickSort(arr, l, p[0] - 1);
 			quickSort(arr, p[1] + 1, r);
@@ -21,8 +27,8 @@ public class Code_04_快排 {
 	}
 
 	public static int[] partition(int[] arr, int l, int r) {
-		int less = l - 1;
-		int more = r;
+		int less = l - 1;// 小于区域的最右边
+		int more = r;// 大于区域的最左边， 因为r为pivot，所以这里不用加1
 		while (l < more) {
 			if (arr[l] < arr[r]) {
 				swap(arr, ++less, l++);

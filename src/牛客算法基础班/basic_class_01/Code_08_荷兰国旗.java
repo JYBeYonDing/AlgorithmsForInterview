@@ -1,6 +1,6 @@
 package 牛客算法基础班.basic_class_01;
 
-public class Code_08_NetherlandsFlag {
+public class Code_08_荷兰国旗 {
 
 	public static int[] partition(int[] arr, int l, int r, int p) {
 		int less = l - 1;

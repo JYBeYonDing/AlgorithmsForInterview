@@ -14,6 +14,10 @@ public class 快排非递归 {
         }
     }
 
+    /**
+     * 快速排序的非递归版本 用虚拟栈实现
+     * @param nums
+     */
     private static void quickSort(int[] nums) {
         ArrayDeque<Integer> stack = new ArrayDeque<>();
         stack.push(0);
