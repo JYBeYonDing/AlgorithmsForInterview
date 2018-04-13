@@ -1,11 +1,21 @@
 package 牛客算法基础班.basic_class_07;
 
-public class Code_07_MinPath {
+public class Code_07_MinPath动态规划 {
 
 	public static int minPath1(int[][] matrix) {
 		return process1(matrix, matrix.length - 1, matrix[0].length - 1);
 	}
 
+	/**
+	 * 暴力递归 会有很多子问题被重复计算
+	 * 可以通过 记忆搜索 缓存的方法记录中间结果，去掉重复计算
+	 * 缓存方法 不关心 依赖状态
+	 * 当关心 依赖关系 时 就是动态规划
+	 * @param matrix
+	 * @param i
+	 * @param j
+	 * @return
+	 */
 	public static int process1(int[][] matrix, int i, int j) {
 		int res = matrix[i][j];
 		if (i == 0 && j == 0) {

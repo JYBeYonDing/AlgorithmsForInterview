@@ -1,6 +1,6 @@
 package 牛客算法基础班.basic_class_07;
 
-public class Code_09_Knapsack {
+public class Code_09_背包问题动态规划 {
 
 	public static int maxValue1(int[] c, int[] p, int bag) {
 		return process1(c, p, 0, 0, bag);
@@ -8,7 +8,7 @@ public class Code_09_Knapsack {
 
 	public static int process1(int[] c, int[] p, int i, int cost, int bag) {
 		if (cost > bag) {
-			return Integer.MIN_VALUE;
+			return Integer.MIN_VALUE;// 无效值
 		}
 		if (i == c.length) {
 			return 0;
@@ -16,6 +16,13 @@ public class Code_09_Knapsack {
 		return Math.max(process1(c, p, i + 1, cost, bag), p[i] + process1(c, p, i + 1, cost + c[i], bag));
 	}
 
+	/**
+	 * 动态规划 空间还可以省一点
+	 * @param c
+	 * @param p
+	 * @param bag
+	 * @return
+	 */
 	public static int maxValue2(int[] c, int[] p, int bag) {
 		int[][] dp = new int[c.length + 1][bag + 1];
 		for (int i = c.length - 1; i >= 0; i--) {

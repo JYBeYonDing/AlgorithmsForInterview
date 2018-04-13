@@ -20,6 +20,10 @@ public class Code_04_Print_All_Permutations {
 		}
 	}
 
+	/**
+	 * 去掉重复
+	 * @param str
+	 */
 	public static void printAllPermutations2(String str) {
 		char[] chs = str.toCharArray();
 		process2(chs, 0);

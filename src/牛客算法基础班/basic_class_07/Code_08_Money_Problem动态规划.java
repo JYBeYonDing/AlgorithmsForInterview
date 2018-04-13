@@ -1,6 +1,6 @@
 package 牛客算法基础班.basic_class_07;
 
-public class Code_08_Money_Problem {
+public class Code_08_Money_Problem动态规划 {
 
 	public static boolean money1(int[] arr, int aim) {
 		return process1(arr, 0, 0, aim);
