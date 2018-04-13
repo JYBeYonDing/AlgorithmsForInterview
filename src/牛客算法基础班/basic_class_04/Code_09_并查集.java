@@ -7,33 +7,44 @@ public class Code_09_并查集 {
 
 	public static class Node {
 		// whatever you like
+		// 任何结构都行
 	}
 
 	public static class DisjointSets {
-		public HashMap<Node, Node> fatherMap;
-		public HashMap<Node, Integer> rankMap;
+		public HashMap<Node, Node> fatherMap;// key的父节点是value
+		public HashMap<Node, Integer> sizeMap; // 代表节点 的 所属集合的大小， 不是代表节点的值无意义
 
 		public DisjointSets() {
 			fatherMap = new HashMap<Node, Node>();
-			rankMap = new HashMap<Node, Integer>();
+			sizeMap = new HashMap<Node, Integer>();
 		}
 
+		/**
+		 * 初始化 并查集
+		 * 把所有节点传入，每个node各自成一个集合
+		 * @param nodes
+		 */
 		public void makeSets(List<Node> nodes) {
 			fatherMap.clear();
-			rankMap.clear();
+			sizeMap.clear();
 			for (Node node : nodes) {
 				fatherMap.put(node, node);
-				rankMap.put(node, 1);
+				sizeMap.put(node, 1);
 			}
 		}
 
 		public Node findFather(Node n) {
 			Node father = fatherMap.get(n);
+			// 递归行为用于将查找过程中的节点直接指向 代表节点
 			if (father != n) {
 				father = findFather(father);
 			}
 			fatherMap.put(n, father);
 			return father;
+		}
+
+		public boolean isSameSet(Node a, Node b) {
+			return findFather(a) == findFather(b);
 		}
 
 		public void union(Node a, Node b) {
@@ -43,14 +54,14 @@ public class Code_09_并查集 {
 			Node aFather = findFather(a);
 			Node bFather = findFather(b);
 			if (aFather != bFather) {
-				int aFrank = rankMap.get(aFather);
-				int bFrank = rankMap.get(bFather);
-				if (aFrank <= bFrank) {
+				int aSetSize = sizeMap.get(aFather);
+				int bSetSize = sizeMap.get(bFather);
+				if (aSetSize <= bSetSize) {
 					fatherMap.put(aFather, bFather);
-					rankMap.put(bFather, aFrank + bFrank);
+					sizeMap.put(bFather, aSetSize + bSetSize);
 				} else {
 					fatherMap.put(bFather, aFather);
-					rankMap.put(aFather, aFrank + bFrank);
+					sizeMap.put(aFather, aSetSize + bSetSize);
 				}
 			}
 		}
