@@ -126,7 +126,7 @@ public class AbstractBinarySearchTree {
 	protected Node delete(Node deleteNode) {
 		if (deleteNode != null) {
 			Node nodeToReturn = null;
-			if (deleteNode != null) {
+			if (deleteNode != null) { // 这里判断重复
 				if (deleteNode.left == null) {
 					nodeToReturn = transplant(deleteNode, deleteNode.right);
 				} else if (deleteNode.right == null) {
@@ -153,7 +153,7 @@ public class AbstractBinarySearchTree {
 
 	/**
 	 * Put one node from tree (newNode) to the place of another (nodeToReplace).
-	 * 
+	 * 两个节点相邻，新节点完全替换一个旧节点的环境
 	 * @param nodeToReplace
 	 *            Node which is replaced by newNode and removed from tree.
 	 * @param newNode

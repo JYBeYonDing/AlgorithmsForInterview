@@ -12,6 +12,10 @@ public class Code_01_MorrisTraversal {
 		}
 	}
 
+	/**
+	 * 中序遍历
+	 * @param head
+	 */
 	public static void morrisIn(Node head) {
 		if (head == null) {
 			return;
@@ -20,24 +24,29 @@ public class Code_01_MorrisTraversal {
 		Node cur2 = null;
 		while (cur1 != null) {
 			cur2 = cur1.left;
-			if (cur2 != null) {
-				while (cur2.right != null && cur2.right != cur1) {
+			if (cur2 != null) {//如果有左子树
+				while (cur2.right != null && cur2.right != cur1) {// 找到左子树最右节点
 					cur2 = cur2.right;
 				}
-				if (cur2.right == null) {
+				// cur2已经变成了左子树上最右节点
+				if (cur2.right == null) { // 说明第一次来到cur1
 					cur2.right = cur1;
 					cur1 = cur1.left;
 					continue;
-				} else {
+				} else { // 说明第二次来到cur1
 					cur2.right = null;
 				}
 			}
-			System.out.print(cur1.value + " ");
+			System.out.print(cur1.value + " ");// 没有左子树直接往右蹿，有左子树也是第二次到达后往右蹿时打印
 			cur1 = cur1.right;
 		}
 		System.out.println();
 	}
 
+	/**
+	 * 先序遍历
+	 * @param head
+	 */
 	public static void morrisPre(Node head) {
 		if (head == null) {
 			return;
@@ -52,20 +61,24 @@ public class Code_01_MorrisTraversal {
 				}
 				if (cur2.right == null) {
 					cur2.right = cur1;
-					System.out.print(cur1.value + " ");
+					System.out.print(cur1.value + " ");// 第一次来到节点 打印
 					cur1 = cur1.left;
 					continue;
 				} else {
 					cur2.right = null;
 				}
 			} else {
-				System.out.print(cur1.value + " ");
+				System.out.print(cur1.value + " ");//没有左子树直接打印当前节点
 			}
 			cur1 = cur1.right;
 		}
 		System.out.println();
 	}
 
+	/**
+	 * 后序遍历
+	 * @param head
+	 */
 	public static void morrisPos(Node head) {
 		if (head == null) {
 			return;
@@ -89,18 +102,18 @@ public class Code_01_MorrisTraversal {
 			}
 			cur1 = cur1.right;
 		}
-		printEdge(head);
+		printEdge(head);//单独打印最后的右边界
 		System.out.println();
 	}
 
 	public static void printEdge(Node head) {
-		Node tail = reverseEdge(head);
+		Node tail = reverseEdge(head);//右边界链表逆序
 		Node cur = tail;
 		while (cur != null) {
 			System.out.print(cur.value + " ");
 			cur = cur.right;
 		}
-		reverseEdge(tail);
+		reverseEdge(tail);//右边界链表调回来
 	}
 
 	public static Node reverseEdge(Node from) {

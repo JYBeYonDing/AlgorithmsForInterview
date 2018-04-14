@@ -31,14 +31,15 @@ public class Code_01_KMP {
 		int[] next = new int[ms.length];
 		next[0] = -1;
 		next[1] = 0;
-		int pos = 2;
-		int cn = 0;
+		int pos = 2;// 当前位置
+		int cn = 0;// 前缀的下一个位置
+		// 下面这个while分析复杂度有点困难，看第九章2.2 6min和22min， 把复杂度绑定到一个标杆上，主要需要评价中间那个分支的复杂度
 		while (pos < next.length) {
 			if (ms[pos - 1] == ms[cn]) {
 				next[pos++] = ++cn;
 			} else if (cn > 0) {
-				cn = next[cn];
-			} else {
+				cn = next[cn];// cn往前跳，跳到cn位置处前缀的下一个字符
+			} else {// cn已经跳到0位置
 				next[pos++] = 0;
 			}
 		}
