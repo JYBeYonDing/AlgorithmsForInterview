@@ -2,6 +2,12 @@ package 牛客算法班.第三期.basic_class_01;
 
 import java.util.Arrays;
 
+/**
+ * 时间复杂度 O(N) 额外空间复杂度O(N)
+ * 桶排序是个大概念
+ * 又可以分为 计数排序 和 基数排序
+ * 可以做到稳定的
+ */
 public class Code_06_桶排序 {
 
 	// only for 0~200 value

@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * 冒泡和选择工程上已经不用了，插入还有用
  * 选择和冒泡是严格的O(N^2)，和数据状况没关
+ * 冒泡排序可以实现成 稳定的
  */
 public class Code_00_冒泡排序 {
 

@@ -1,12 +1,15 @@
 package 牛客算法班.第三期.basic_class_01;
 
 /**
+ * 小和问题
+ * 在一个数组中， 每一个数左边比当前数小的数累加起来， 叫做这个数组的小和。 求一个数组的小和。
+ *
  * 利用 归并排序 merge过程
  * 逆序对问题也可以利用 归并
  * 归并 组内的比较不会被浪费，合并时只需要组间的比较，这是归并的实质！！！！！
- *
+ * 逆序对问题 也是同样的思路
  */
-public class Code_12_小和问题 {
+public class Code_12_小和问题或逆序对问题 {
 
 	public static int smallSum(int[] arr) {
 		if (arr == null || arr.length < 2) {

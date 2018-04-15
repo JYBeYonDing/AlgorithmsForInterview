@@ -3,6 +3,8 @@ package 牛客算法班.第三期.basic_class_01;
 import java.util.Arrays;
 
 /**
+ * 堆排序
+ * 做不到稳定，不稳定的
  * 堆 其实是一个 完全二叉树
  * 用一个 大根堆 和一个 小根堆 可以求数据流的中位数 牛客算法班.第三期.basic_class_04.Code_01_MadianQuick
  */

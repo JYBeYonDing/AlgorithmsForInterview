@@ -8,6 +8,9 @@ import java.util.Arrays;
  * 时间复杂度O(N*logN)
  * 快排的额外空间复杂度的长期期望是O(logN)，浪费在划分点
  * 工程上要使用非递归版本，自己实现栈来保存
+ * 做不到稳定， 不稳定的，因为partition过程做不到稳定
+ * partition过程就相当于根据 0-1标准 将数据分到左右两边，时间复杂度O(N)，空间复杂度O(1)，但无法做到稳定性
+ * （论文级别是可以做到稳定，01 stable sort）
  */
 public class Code_04_快排 {
 

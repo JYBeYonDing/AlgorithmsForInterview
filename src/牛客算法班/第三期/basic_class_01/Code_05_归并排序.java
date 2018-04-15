@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * 额外空间复杂的O(N)
  * 时间复杂度O(N*logN)
+ * 可以做到 稳定的，遇到相等的就拷贝左边的就可以
  */
 public class Code_05_归并排序 {
 

@@ -4,8 +4,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class Code_03_StackAndQueueConvert {
+/**
+ * 如何仅用队列结构实现栈结构？
+ * 如何仅用栈结构实现队列结构？
+ */
+public class Code_03_栈和队列转换 {
 
+	/**
+	 * 栈实现队列
+	 */
 	public static class TwoStacksQueue {
 		private Stack<Integer> stackPush;
 		private Stack<Integer> stackPop;
@@ -42,6 +49,9 @@ public class Code_03_StackAndQueueConvert {
 		}
 	}
 
+	/**
+	 * 队列实现栈
+	 */
 	public static class TwoQueuesStack {
 		private Queue<Integer> queue;
 		private Queue<Integer> help;
@@ -76,7 +86,7 @@ public class Code_03_StackAndQueueConvert {
 				help.add(queue.poll());
 			}
 			int res = queue.poll();
-			swap();
+			swap();// 交换两个引用
 			return res;
 		}
 

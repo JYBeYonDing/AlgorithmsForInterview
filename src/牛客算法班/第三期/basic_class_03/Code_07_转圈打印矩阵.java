@@ -1,6 +1,22 @@
 package 牛客算法班.第三期.basic_class_03;
 
-public class Code_07_PrintMatrixSpiralOrder {
+/**
+ * 转圈打印矩阵
+ 【题目】 给定一个整型矩阵matrix， 请按照转圈的方式打印它。
+ 例如：
+ 1 2 3 4
+ 5 6 7 8
+ 9 10 11 12
+ 13 14 15 16
+ 打印结果为： 1， 2， 3， 4， 8， 12， 16， 15， 14， 13， 9，
+ 5， 6， 7， 11， 10
+ 【要求】 额外空间复杂度为O(1)。
+
+ 思路：锻炼宏观的调度能力
+
+
+ */
+public class Code_07_转圈打印矩阵 {
 
 	public static void spiralOrderPrint(int[][] matrix) {
 		int tR = 0;
@@ -12,6 +28,9 @@ public class Code_07_PrintMatrixSpiralOrder {
 		}
 	}
 
+	/**
+	 * 打印一圈
+	 */
 	public static void printEdge(int[][] m, int tR, int tC, int dR, int dC) {
 		if (tR == dR) { //只有一行
 			for (int i = tC; i <= dC; i++) {
