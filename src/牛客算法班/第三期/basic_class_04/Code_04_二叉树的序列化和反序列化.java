@@ -1,9 +1,14 @@
-package 牛客算法班.第四期.basic_class_04;
+package 牛客算法班.第三期.basic_class_04;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Code_04_SerializeAndReconstructTree {
+/**
+ * 二叉树的序列化和反序列化
+ *
+ * 序列化中 null 也要表示，例如#!，节点之间用 ! 分隔
+ */
+public class Code_04_二叉树的序列化和反序列化 {
 
 	public static class Node {
 		public int value;
@@ -15,6 +20,11 @@ public class Code_04_SerializeAndReconstructTree {
 		}
 	}
 
+	/**
+	 * 先序遍历 序列化
+	 * @param head
+	 * @return
+	 */
 	public static String serialByPre(Node head) {
 		if (head == null) {
 			return "#!";
@@ -25,6 +35,11 @@ public class Code_04_SerializeAndReconstructTree {
 		return res;
 	}
 
+	/**
+	 * 先序遍历 反序列化
+	 * @param preStr
+	 * @return
+	 */
 	public static Node reconByPreString(String preStr) {
 		String[] values = preStr.split("!");
 		Queue<String> queue = new LinkedList<String>();
@@ -45,6 +60,12 @@ public class Code_04_SerializeAndReconstructTree {
 		return head;
 	}
 
+	/**
+	 * 按层序列化
+	 * 按层遍历需要用 队列
+	 * @param head
+	 * @return
+	 */
 	public static String serialByLevel(Node head) {
 		if (head == null) {
 			return "#!";

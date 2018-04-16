@@ -2,7 +2,11 @@ package 牛客算法班.第三期.basic_class_04;
 
 import java.util.Stack;
 
-public class Code_05_PreInPosTraversal {
+/**
+ * 实现二叉树的先序、 中序、 后序遍历， 包括递归方式和非递归方式
+ * 如果忽略打印行为，遍历过程中会多次到达一个节点，打印时机放在不同位置就是先序、中序、后序遍历
+ */
+public class Code_01_二叉树遍历 {
 
 	public static class Node {
 		public int value;
@@ -41,6 +45,10 @@ public class Code_05_PreInPosTraversal {
 		System.out.print(head.value + " ");
 	}
 
+	/**
+	 * 非递归版本，每个节点都只访问两次，无法做到递归版本中每个节点访问三次
+	 * @param head
+	 */
 	public static void preOrderUnRecur(Node head) {
 		System.out.print("pre-order: ");
 		if (head != null) {
@@ -49,10 +57,10 @@ public class Code_05_PreInPosTraversal {
 			while (!stack.isEmpty()) {
 				head = stack.pop();
 				System.out.print(head.value + " ");
-				if (head.right != null) {
+				if (head.right != null) { // 先压入右
 					stack.push(head.right);
 				}
-				if (head.left != null) {
+				if (head.left != null) {// 后压入左
 					stack.push(head.left);
 				}
 			}
@@ -65,10 +73,10 @@ public class Code_05_PreInPosTraversal {
 		if (head != null) {
 			Stack<Node> stack = new Stack<Node>();
 			while (!stack.isEmpty() || head != null) {
-				if (head != null) {
+				if (head != null) {// 当前节点一定会把自己的左边界都压到栈里去
 					stack.push(head);
 					head = head.left;
-				} else {
+				} else {// 当前节点为空，从栈中拿出一个打印
 					head = stack.pop();
 					System.out.print(head.value + " ");
 					head = head.right;
@@ -78,19 +86,25 @@ public class Code_05_PreInPosTraversal {
 		System.out.println();
 	}
 
+	/**
+	 * 由于在递归的实现中，后序遍历是在第三次访问节点的时候打印，
+	 * 然而在非递归实现中只有两次访问，很难做到三个访问，
+	 * 为了简单实现，先仿照先序遍历实现 中右左 ， 把它放到栈里，最后弹出栈打印。
+	 * @param head
+	 */
 	public static void posOrderUnRecur1(Node head) {
 		System.out.print("pos-order: ");
 		if (head != null) {
 			Stack<Node> s1 = new Stack<Node>();
-			Stack<Node> s2 = new Stack<Node>();
+			Stack<Node> s2 = new Stack<Node>();// 存打印结果的栈
 			s1.push(head);
 			while (!s1.isEmpty()) {
 				head = s1.pop();
 				s2.push(head);
-				if (head.left != null) {
+				if (head.left != null) {// 先压左
 					s1.push(head.left);
 				}
-				if (head.right != null) {
+				if (head.right != null) {// 后压右
 					s1.push(head.right);
 				}
 			}
@@ -101,6 +115,10 @@ public class Code_05_PreInPosTraversal {
 		System.out.println();
 	}
 
+	/**
+	 * 只用一个栈 实现后序遍历 书上有讲解
+	 * @param h
+	 */
 	public static void posOrderUnRecur2(Node h) {
 		System.out.print("pos-order: ");
 		if (h != null) {

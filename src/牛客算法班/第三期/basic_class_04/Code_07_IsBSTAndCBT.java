@@ -1,8 +1,12 @@
-package 牛客算法班.第四期.basic_class_04;
+package 牛客算法班.第三期.basic_class_04;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 判断一棵树是否是搜索二叉树、 判断一棵树是否是完全二叉树
+ * 搜索二叉树不出现相同节点，因为没必要，信息可以包含到一个节点中
+ */
 public class Code_07_IsBSTAndCBT {
 
 	public static class Node {
@@ -15,6 +19,12 @@ public class Code_07_IsBSTAndCBT {
 		}
 	}
 
+	/**
+	 * 用的是 Morris遍历方法
+	 * 另外也可以由非递归中序遍历中改，很方便
+	 * @param head
+	 * @return
+	 */
 	public static boolean isBST(Node head) {
 		if (head == null) {
 			return true;

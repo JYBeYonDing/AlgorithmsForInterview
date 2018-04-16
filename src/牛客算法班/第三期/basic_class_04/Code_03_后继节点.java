@@ -1,6 +1,14 @@
-package 牛客算法班.第四期.basic_class_04;
+package 牛客算法班.第三期.basic_class_04;
 
-public class Code_03_SuccessorNode {
+/**
+ * 在二叉树中找到一个节点的后继节点
+ * 该结构比普通二叉树节点结构多了一个指向父节点的parent指针。假
+ 设有一棵Node类型的节点组成的二叉树，树中每个节点的parent指针
+ 都正确地指向自己的父节点，头节点的parent指向null。只给一个在
+ 二叉树中的某个节点 node，请实现返回node的后继节点的函数。
+ 在二叉树的 “中序遍历” 的序列中， node的下一个节点叫作node的后继节点。
+ */
+public class Code_03_后继节点 {
 
 	public static class Node {
 		public int value;
@@ -17,9 +25,9 @@ public class Code_03_SuccessorNode {
 		if (node == null) {
 			return node;
 		}
-		if (node.right != null) {
+		if (node.right != null) {// 如果有右子树，后继一定是右子树上最左的节点
 			return getLeftMost(node.right);
-		} else {
+		} else {// 如果没有右子树，就是找哪一个节点的左子树以该节点结尾
 			Node parent = node.parent;
 			while (parent != null && parent.left != node) {
 				node = parent;

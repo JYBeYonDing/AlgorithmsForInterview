@@ -1,6 +1,6 @@
-package 牛客算法班.第四期.basic_class_04;
+package 牛客算法班.第三期.basic_class_04;
 
-public class Code_02_PrintBinaryTree {
+public class Code_02_打印二叉树结构 {
 
 	public static class Node {
 		public int value;
