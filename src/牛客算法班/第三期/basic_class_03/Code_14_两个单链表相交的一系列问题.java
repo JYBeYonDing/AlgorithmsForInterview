@@ -1,6 +1,19 @@
 package 牛客算法班.第三期.basic_class_03;
 
-public class Code_14_FindFirstIntersectNode {
+/**
+ * 两个单链表相交的一系列问题
+ 【题目】 在本题中， 单链表可能有环， 也可能无环。 给定两个
+ 单链表的头节点 head1和head2， 这两个链表可能相交， 也可能
+ 不相交。 请实现一个函数， 如果两个链表相交， 请返回相交的
+ 第一个节点； 如果不相交， 返回null 即可。 要求： 如果链表1
+ 的长度为N， 链表2的长度为M， 时间复杂度请达到 O(N+M)， 额外
+ 空间复杂度请达到O(1)。
+
+ 问题1：怎么判断单链表又换还是无环（返回第一个入环的节点）
+ 问题2：无环单链表第一个相交的节点
+ 问题3：有环单链表第一个相交的节点
+ */
+public class Code_14_两个单链表相交的一系列问题 {
 
 	public static class Node {
 		public int value;
@@ -17,15 +30,24 @@ public class Code_14_FindFirstIntersectNode {
 		}
 		Node loop1 = getLoopNode(head1);
 		Node loop2 = getLoopNode(head2);
-		if (loop1 == null && loop2 == null) {
+		if (loop1 == null && loop2 == null) {// 两个都无环
 			return noLoop(head1, head2);
 		}
-		if (loop1 != null && loop2 != null) {
+		if (loop1 != null && loop2 != null) {// 两个都有环
 			return bothLoop(head1, loop1, head2, loop2);
 		}
 		return null;
 	}
 
+	/**
+	 * 判断有环无环，有环返回第一个入环的节点，无环返回null
+	 * 可以用hashSet做
+	 * 这里不用hashSet
+	 * 准备一个快指针（一次走两步）和一个慢指针（一次走一步）
+	 * 快指针追上慢指针后，快指针到头节点，变成一次走一步，再和慢指针相遇的点就是第一个入环的节点
+	 * @param head
+	 * @return
+	 */
 	public static Node getLoopNode(Node head) {
 		if (head == null || head.next == null || head.next.next == null) {
 			return null;

@@ -2,7 +2,19 @@ package 牛客算法班.第三期.basic_class_03;
 
 import java.util.Stack;
 
-public class Code_11_IsPalindromeList {
+/**
+ * 判断一个链表是否为回文结构
+ 【题目】 给定一个链表的头节点head， 请判断该链表是否为回
+ 文结构。 例如： 1->2->1， 返回true。 1->2->2->1， 返回true。
+ 15->6->15， 返回true。 1->2->3， 返回false。
+ 进阶： 如果链表长度为N， 时间复杂度达到O(N)， 额外空间复杂
+ 度达到O(1)。
+
+ 链表问题
+ 在笔试的时候，不用考虑空间复杂度，用最快的方式写出答案，只要AC即可。
+ 但是在面试的过程中，在和面试官聊的过程中，就要考虑空间复杂度的问题，把空间复杂度尽量降低。
+ */
+public class Code_11_判断一个链表是否为回文结构 {
 
 	public static class Node {
 		public int value;
@@ -37,7 +49,7 @@ public class Code_11_IsPalindromeList {
 		}
 		Node right = head.next;
 		Node cur = head;
-		while (cur.next != null && cur.next.next != null) {
+		while (cur.next != null && cur.next.next != null) {// 判断快指针能走两步
 			right = right.next;
 			cur = cur.next.next;
 		}
@@ -62,7 +74,7 @@ public class Code_11_IsPalindromeList {
 		}
 		Node n1 = head;
 		Node n2 = head;
-		while (n2.next != null && n2.next.next != null) { // find mid node
+		while (n2.next != null && n2.next.next != null) { // find mid node 奇数时来到中点，偶数时来到前一个中点
 			n1 = n1.next; // n1 -> mid
 			n2 = n2.next.next; // n2 -> end
 		}

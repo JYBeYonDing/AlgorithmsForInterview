@@ -2,7 +2,17 @@ package 牛客算法班.第三期.basic_class_03;
 
 import java.util.HashMap;
 
-public class Code_13_CopyListWithRandom {
+/**
+ * 复制含有随机指针节点的链表
+ * Node类中的value是节点值， next指针和正常单链表中next指针的意义
+ 一样， 都指向下一个节点， rand指针是Node类中新增的指针， 这个指
+ 针可 能指向链表中的任意一个节点， 也可能指向null。 给定一个由
+ Node节点类型组成的无环单链表的头节点head， 请实现一个 函数完成
+ 这个链表中所有结构的复制， 并返回复制的新链表的头节点。 进阶：
+ 不使用额外的数据结构， 只用有限几个变量， 且在时间复杂度为 O(N)
+ 内完成原问题要实现的函数。
+ */
+public class Code_13_复制含有随机指针节点的链表 {
 
 	public static class Node {
 		public int value;
@@ -14,6 +24,11 @@ public class Code_13_CopyListWithRandom {
 		}
 	}
 
+	/**
+	 * 使用hash表
+	 * @param head
+	 * @return
+	 */
 	public static Node copyListWithRand1(Node head) {
 		HashMap<Node, Node> map = new HashMap<Node, Node>();
 		Node cur = head;
@@ -30,6 +45,11 @@ public class Code_13_CopyListWithRandom {
 		return map.get(head);
 	}
 
+	/**
+	 * 不用hash表，空间复杂度O(1)
+	 * @param head
+	 * @return
+	 */
 	public static Node copyListWithRand2(Node head) {
 		if (head == null) {
 			return null;
