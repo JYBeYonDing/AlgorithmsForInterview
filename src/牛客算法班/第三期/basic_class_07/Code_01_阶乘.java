@@ -1,6 +1,6 @@
 package 牛客算法班.第三期.basic_class_07;
 
-public class Code_01_Factorial {
+public class Code_01_阶乘 {
 	public static long getFactorial1(int n) {
 		if (n == 1) {
 			return 1L;

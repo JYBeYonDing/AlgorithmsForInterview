@@ -1,9 +1,30 @@
-package 牛客算法班.第四期.basic_class_07;
+package 牛客算法班.第三期.basic_class_04;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class Code_02_Less_Money {
+/**
+ * 一块金条切成两半， 是需要花费和长度数值一样的铜板的。 比如
+ 长度为20的 金条， 不管切成长度多大的两半， 都要花费20个铜
+ 板。 一群人想整分整块金 条， 怎么分最省铜板？
+ 例如,给定数组{10,20,30}， 代表一共三个人， 整块金条长度为
+ 10+20+30=60. 金条要分成10,20,30三个部分。 如果， 先把长
+ 度60的金条分成10和50， 花费60 再把长度50的金条分成20和30，
+ 花费50 一共花费110铜板。
+ 但是如果， 先把长度60的金条分成30和30， 花费60 再把长度30
+ 金条分成10和20， 花费30 一共花费90铜板。
+ 输入一个数组， 返回分割的最小代价。
+ *
+ * 本质是子节点合并在一起的代价是加起来的和
+ * 所有非叶节点的和就是代价
+ *
+ * 小根堆
+ * 每次从小根堆中拿出两个最小数，结合后扔到小根堆。
+ * 这其实就是一种贪心。
+ *
+ * 决贪心问题 往往用堆，因为不用完全排序，只需要知道最大或最小就可以了。
+ */
+public class Code_02_切金条哈夫曼 {
 
 	public static int lessMoney(int[] arr) {
 		PriorityQueue<Integer> pQ = new PriorityQueue<>();
@@ -24,7 +45,7 @@ public class Code_02_Less_Money {
 
 		@Override
 		public int compare(Integer o1, Integer o2) {
-			return o1 - o2; // < 0  o1 < o2  负数
+			return o1 - o2;
 		}
 
 	}
@@ -33,7 +54,7 @@ public class Code_02_Less_Money {
 
 		@Override
 		public int compare(Integer o1, Integer o2) {
-			return o2 - o1; // <   o2 < o1
+			return o2 - o1;
 		}
 
 	}

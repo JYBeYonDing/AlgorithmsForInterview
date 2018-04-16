@@ -1,10 +1,20 @@
-package 牛客算法班.第四期.basic_class_07;
+package 牛客算法班.第三期.basic_class_08;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Code_05_LowestLexicography {
+/**
+ * 贪心策略的正确性的证明不用证明
+ * 用写 对数器 的方式来验证贪心策略对不对，不要纠结证明
+ *
+ * 字典序就是理解为 进制的数
+ * 长度不等的时候，长度需要补齐
+ */
+public class Code_06_字典序 {
 
+	/**
+	 * 自己定义的比较规则
+	 */
 	public static class MyComparator implements Comparator<String> {
 		@Override
 		public int compare(String a, String b) {
@@ -16,7 +26,6 @@ public class Code_05_LowestLexicography {
 		if (strs == null || strs.length == 0) {
 			return "";
 		}
-		// �����µıȽϷ�ʽ����
 		Arrays.sort(strs, new MyComparator());
 		String res = "";
 		for (int i = 0; i < strs.length; i++) {

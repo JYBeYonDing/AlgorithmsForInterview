@@ -4,22 +4,27 @@ public class Code_01_前缀树 {
 
 	/**
 	 * Node 结构，前缀树的节点结构
+	 * 字母用边来标记，千万不要放在节点上，不然很烦！！！
 	 */
 	public static class TrieNode {
-		public int pass;
-		public int end;
-		public TrieNode[] nexts;
+		//可以通过添加属性进行功能的扩充
+		public int pass;// 有多少数据项经过该节点
+		public int end;// 有多少数据项以该点结尾
+		public TrieNode[] nexts;// 有多少条路，也可以设计成map结构
 //		public HashMap<Integer, TrieNode> nexts;
 
 		public TrieNode() {
 			pass = 0;
 			end = 0;
-			nexts = new TrieNode[26];// 认为都是小写字母，只有26个字母
+			nexts = new TrieNode[26];// 认为都是小写字母，所以只有26个字母，字母用边来标记，千万不要放在节点上，不然很烦。
 		}
 	}
 
+	/**
+	 * 前缀树
+	 */
 	public static class Trie {
-		private TrieNode root;
+		private TrieNode root;// 一定有一个头结点
 
 		public Trie() {
 			root = new TrieNode();
@@ -31,7 +36,7 @@ public class Code_01_前缀树 {
 			}
 			char[] chs = word.toCharArray();
 			TrieNode node = root;
-			int index = 0;
+			int index = 0;// 字符在nexts路中的索引
 			for (int i = 0; i < chs.length; i++) {
 				index = chs[i] - 'a';
 				if (node.nexts[index] == null) {

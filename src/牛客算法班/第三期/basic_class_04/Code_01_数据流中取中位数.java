@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class Code_01_MadianQuick {
+/**
+ * 一个数据流中， 随时可以取得中位数
+ */
+public class Code_01_数据流中取中位数 {
 
 	public static class MedianHolder {
 		private PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(new MaxHeapComparator());
