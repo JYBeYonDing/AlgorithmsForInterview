@@ -7,7 +7,7 @@ import java.util.Queue;
  * 判断一棵树是否是搜索二叉树、 判断一棵树是否是完全二叉树
  * 搜索二叉树不出现相同节点，因为没必要，信息可以包含到一个节点中
  */
-public class Code_07_IsBSTAndCBT {
+public class Code_07_判断是否是搜索二叉树_完全二叉树 {
 
 	public static class Node {
 		public int value;
@@ -20,6 +20,7 @@ public class Code_07_IsBSTAndCBT {
 	}
 
 	/**
+	 * 判断是否是 搜索二叉树
 	 * 用的是 Morris遍历方法
 	 * 另外也可以由非递归中序遍历中改，很方便
 	 * @param head
@@ -56,12 +57,18 @@ public class Code_07_IsBSTAndCBT {
 		return res;
 	}
 
+	/**
+	 * 判断是否是 完全二叉树
+	 * 需要按层遍历
+	 * @param head
+	 * @return
+	 */
 	public static boolean isCBT(Node head) {
 		if (head == null) {
 			return true;
 		}
 		Queue<Node> queue = new LinkedList<Node>();
-		boolean leaf = false;
+		boolean leaf = false;// 表示是否开启一个阶段
 		Node l = null;
 		Node r = null;
 		queue.offer(head);
@@ -69,7 +76,8 @@ public class Code_07_IsBSTAndCBT {
 			head = queue.poll();
 			l = head.left;
 			r = head.right;
-			if ((leaf && (l != null || r != null)) || (l == null && r != null)) {
+			if ((leaf && (l != null || r != null))// 开启了右节点的阶段，如果左右有一个不为空就返回false
+					|| (l == null && r != null)) {//如果左孩子为空右孩子不为空直接返回false
 				return false;
 			}
 			if (l != null) {
@@ -83,6 +91,8 @@ public class Code_07_IsBSTAndCBT {
 		}
 		return true;
 	}
+
+
 
 	// for test -- print tree
 	public static void printTree(Node head) {
