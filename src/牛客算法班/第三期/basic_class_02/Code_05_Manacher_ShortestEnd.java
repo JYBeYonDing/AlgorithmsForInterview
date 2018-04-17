@@ -1,5 +1,10 @@
 package 牛客算法班.第三期.basic_class_02;
 
+/**
+ * 如果只能向字符串的后面添加字符，如何使整个字符串形成回文，要求添加的字符最少。
+ *
+ * 解法：求包含最后一个字符的最长回文串是多少，前面不是的部分逆序添加到字符串尾部。
+ */
 public class Code_05_Manacher_ShortestEnd {
 
 	public static char[] manacherString(String str) {

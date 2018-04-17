@@ -1,6 +1,6 @@
 package 牛客算法班.第三期.basic_class_02;
 
-public class Code_03_KMP_T1SubtreeEqualsT2 {
+public class Code_03_KMP_子树包含 {
 
 	public static class Node {
 		public int value;

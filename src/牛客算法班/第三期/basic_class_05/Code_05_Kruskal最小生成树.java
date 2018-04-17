@@ -7,7 +7,12 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-//undirected graph only 只能是无向图
+/**
+ * Kruskal
+ * 只能是无向图
+ * 依次考察小权重的边，如果没有形成回路就要，否则不要
+ * 使用 并查集
+ */
 public class Code_05_Kruskal最小生成树 {
 
 	public static class EdgeComparator implements Comparator<Edge> {
@@ -26,7 +31,7 @@ public class Code_05_Kruskal最小生成树 {
 	 */
 	public static Set<Edge> kruskalMST(Graph graph) {
 		UnionFind unionFind = new UnionFind();
-		unionFind.makeSets(graph.nodes.values());
+		unionFind.makeSets(graph.nodes.values());//所有的点变成并查集中的小集合
 		// 按 边的权重 组成一个 小根堆
 		PriorityQueue<Edge> priorityQueue = new PriorityQueue<>(new EdgeComparator());
 		for (Edge edge : graph.edges) {

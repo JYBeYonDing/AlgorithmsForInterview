@@ -1,6 +1,9 @@
 package 牛客算法班.第三期.basic_class_02;
 
-public class Code_02_KMP_ShortestHaveTwice {
+/**
+ * 多求一个 前缀和后缀的最长匹配
+ */
+public class Code_02_KMP_大字符串包含两个原始串 {
 
 	public static String answer(String str) {
 		if (str == null || str.length() == 0) {
