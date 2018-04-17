@@ -1,11 +1,26 @@
-package 牛客算法班.第四期.basic_class_08;
+package 牛客算法班.第三期.basic_class_07;
 
-public class Code_07_MinPath {
+/**
+ * 给你一个二维数组， 二维数组中的每个数都是正数， 要求从左上
+ 角走到右下角， 每一步只能向右或者向下。 沿途经过的数字要累
+ 加起来。 返回最小的路径和。
+ */
+public class Code_07_最小路径和动态规划 {
 
 	public static int minPath1(int[][] matrix) {
 		return process1(matrix, matrix.length - 1, matrix[0].length - 1);
 	}
 
+	/**
+	 * 暴力递归 会有很多子问题被重复计算
+	 * 可以通过 记忆搜索 缓存的方法记录中间结果，去掉重复计算
+	 * 缓存方法 不关心 依赖状态
+	 * 当关心 依赖关系 时 就是动态规划
+	 * @param matrix
+	 * @param i
+	 * @param j
+	 * @return
+	 */
 	public static int process1(int[][] matrix, int i, int j) {
 		int res = matrix[i][j];
 		if (i == 0 && j == 0) {

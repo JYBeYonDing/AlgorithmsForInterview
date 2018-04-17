@@ -1,6 +1,16 @@
 package 牛客算法班.第三期.basic_class_07;
 
-public class Code_05_Cow {
+/**
+ * 母牛每年生一只母牛， 新出生的母牛成长三年后也能每年生一只
+ 母牛， 假设不会死。 求N年后， 母牛的数量。
+
+ 思路：写几个初始项
+ 今年的牛 =  去年的牛 + 新生的牛
+ 新生的牛的数量 = 3年前牛的数量
+
+ 有递推式则还存在O(logN)方法，进阶班讲
+ */
+public class Code_05_母牛生母牛 {
 
 	public static int cowNumber1(int n) {
 		if (n < 1) {

@@ -23,7 +23,7 @@ public class 图生成器 {
 
 			Node fromNode = graph.nodes.get(from);
 			Node toNode = graph.nodes.get(to);
-			Edge newEdge = new Edge(weight, fromNode, toNode);
+			Edge newEdge = new Edge(weight, fromNode, toNode);// 建立新的边
 			fromNode.nexts.add(toNode);
 			fromNode.out++;
 			toNode.in++;

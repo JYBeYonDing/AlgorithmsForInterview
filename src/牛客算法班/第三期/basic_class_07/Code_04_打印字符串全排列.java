@@ -1,8 +1,11 @@
-package 牛客算法班.第四期.basic_class_08;
+package 牛客算法班.第三期.basic_class_07;
 
 import java.util.HashSet;
 
-public class Code_04_Print_All_Permutations {
+/**
+ * 打印一个字符串的全部排列
+ */
+public class Code_04_打印字符串全排列 {
 
 	public static void printAllPermutations1(String str) {
 		char[] chs = str.toCharArray();
@@ -16,10 +19,14 @@ public class Code_04_Print_All_Permutations {
 		for (int j = i; j < chs.length; j++) {
 			swap(chs, i, j);
 			process1(chs, i + 1);
-			//swap(chs, i, j);
+			swap(chs, i, j);
 		}
 	}
 
+	/**
+	 * 去掉重复
+	 * @param str
+	 */
 	public static void printAllPermutations2(String str) {
 		char[] chs = str.toCharArray();
 		process2(chs, 0);
@@ -35,7 +42,7 @@ public class Code_04_Print_All_Permutations {
 				set.add(chs[j]);
 				swap(chs, i, j);
 				process2(chs, i + 1);
-				//swap(chs, i, j);
+				swap(chs, i, j);
 			}
 		}
 	}

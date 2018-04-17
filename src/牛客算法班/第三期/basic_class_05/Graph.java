@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Graph {
-	public HashMap<Integer,Node> nodes;
+	public HashMap<Integer,Node> nodes;// 点的编号，实际的node
 	public HashSet<Edge> edges;
 
 	public Graph() {
