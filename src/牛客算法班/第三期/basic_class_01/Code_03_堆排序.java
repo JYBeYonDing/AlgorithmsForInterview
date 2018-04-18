@@ -41,10 +41,10 @@ public class Code_03_堆排序 {
 	}
 
 	/**
-	 * 调整大根堆
+	 * 调整index位置处的数
 	 * 复杂度只有 logN
-	 * @param arr
-	 * @param index
+	 * @param arr 数组
+	 * @param index 调整的开始位置
 	 * @param size 堆的大小
 	 */
 	public static void heapify(int[] arr, int index, int size) {

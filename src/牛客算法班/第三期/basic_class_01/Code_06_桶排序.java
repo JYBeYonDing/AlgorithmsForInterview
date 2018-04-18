@@ -10,7 +10,10 @@ import java.util.Arrays;
  */
 public class Code_06_桶排序 {
 
-	// only for 0~200 value
+	/**
+	 * 0~200 内的数据排序
+	 * @param arr 数组内的值是0~200
+	 */
 	public static void bucketSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -21,7 +24,7 @@ public class Code_06_桶排序 {
 		for (int i = 0; i < arr.length; i++) {
 			max = Math.max(max, arr[i]);
 		}
-		// 新键max+1个桶，把数放入对应的桶中，这里桶只是计数用
+		// 新键max+1个桶，把数放入对应的桶中，这里桶只是计数用，因为有0，所以桶的大小要加1
 		int[] bucket = new int[max + 1];
 		for (int i = 0; i < arr.length; i++) {
 			bucket[arr[i]]++;

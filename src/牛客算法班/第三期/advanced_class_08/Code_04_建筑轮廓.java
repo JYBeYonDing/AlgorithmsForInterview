@@ -24,7 +24,7 @@ import java.util.TreeMap;
  2,4,4
  5,6,1
  */
-public class Code_04_Building_Outline {
+public class Code_04_建筑轮廓 {
 
 	public static class Node {
 		public boolean isUp;// 上or下

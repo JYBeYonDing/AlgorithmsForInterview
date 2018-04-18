@@ -5,8 +5,8 @@ import java.util.Arrays;
 /**
  *
  * 给定一个数组， 求如果排序之后， 相邻两数的最大差值，
- * 要求时间复杂度O(N)， 且要求不能用非基于比较的排序。
- * 利用 桶 的思想
+ * 要求时间复杂度O(N)， 且要求不能用基于非比较的排序。
+ * 利用 桶 的思想，但是不排序
  */
 public class Code_11_MaxGap {
 
@@ -38,8 +38,7 @@ public class Code_11_MaxGap {
 		}
 		int res = 0;// 记录最大差值的结果
 		int lastMax = maxs[0];// 前一个非空桶的最大值，第一个桶肯定有值
-		int i = 1;
-		for (; i <= len; i++) {// 遍历一遍桶，找到每个桶的最小值和前一个非空桶的最大值的差的最大值
+		for (int i = 1; i <= len; i++) {// 遍历一遍桶，找到每个桶的最小值和前一个非空桶的最大值的差的最大值
 			if (hasNum[i]) {
 				res = Math.max(res, mins[i] - lastMax);
 				lastMax = maxs[i];

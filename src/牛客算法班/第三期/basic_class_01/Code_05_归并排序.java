@@ -3,9 +3,9 @@ package 牛客算法班.第三期.basic_class_01;
 import java.util.Arrays;
 
 /**
- * 额外空间复杂的O(N)
+ * 额外空间复杂度为O(N)
  * 时间复杂度O(N*logN)
- * 可以做到 稳定的，遇到相等的就拷贝左边的就可以
+ * 可以做到 稳定的，遇到相等的拷贝左边的就可以
  */
 public class Code_05_归并排序 {
 
@@ -20,7 +20,7 @@ public class Code_05_归并排序 {
 		if (l == r) {
 			return;
 		}
-		int mid = l + ((r - l) >> 1);
+		int mid = l + ((r - l) >> 1);//可以防止数值溢出，位运算更快
 		sortProcess(arr, l, mid); // T(N/2)
 		sortProcess(arr, mid + 1, r);// T(N/2)
 		merge(arr, l, mid, r);// O(N)

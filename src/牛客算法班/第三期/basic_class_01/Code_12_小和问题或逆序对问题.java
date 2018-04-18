@@ -2,7 +2,7 @@ package 牛客算法班.第三期.basic_class_01;
 
 /**
  * 小和问题
- * 在一个数组中， 每一个数左边比当前数小的数累加起来， 叫做这个数组的小和。 求一个数组的小和。
+ * 在一个数组中， 每一个数左边比当前数小的数累加起来， 叫做这个数的小和。 求一个数组中所有的小和之和。
  *
  * 利用 归并排序 merge过程
  * 逆序对问题也可以利用 归并
@@ -20,10 +20,10 @@ public class Code_12_小和问题或逆序对问题 {
 
 	/**
 	 * 返回从l到r位置上产生多少小和
-	 * @param arr
-	 * @param l
-	 * @param r
-	 * @return
+	 * @param arr 数组
+	 * @param l 左边界
+	 * @param r 右边界
+	 * @return 小和之和
 	 */
 	public static int mergeSort(int[] arr, int l, int r) {
 		if (l == r) {
@@ -37,11 +37,11 @@ public class Code_12_小和问题或逆序对问题 {
 
 	/**
 	 * 返回 merge 过程中产生多少小和
-	 * @param arr
-	 * @param l
-	 * @param m
-	 * @param r
-	 * @return
+	 * @param arr 数组
+	 * @param l 左边界
+	 * @param m 中点
+	 * @param r 右边界
+	 * @return merge时产生的小和
 	 */
 	public static int merge(int[] arr, int l, int m, int r) {
 		int[] help = new int[r - l + 1];
@@ -50,9 +50,12 @@ public class Code_12_小和问题或逆序对问题 {
 		int p2 = m + 1;
 		int res = 0;// 收集小和
 		while (p1 <= m && p2 <= r) {
-			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0;//arr[p1]比右边的几个数小*arr[p1]
+			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0;//右边比arr[p1]大的个数*arr[p1]
 			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
 		}
+		/*
+		 * 本来觉得后面这些可以优化，因为觉得对求res没有帮助，其实想错了，这是merge的过程，会进行排序，不能省去
+		 */
 		while (p1 <= m) {
 			help[i++] = arr[p1++];
 		}
