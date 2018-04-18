@@ -3,6 +3,18 @@ package 牛客算法班.第三期.advanced_class_02;
 import java.util.HashMap;
 import java.util.Stack;
 
+/**
+ * 一个数组的MaxTree定义如下。
+ 数组必须没有重复元素。
+ MaxTree是一棵二叉树， 数组的每一个值对应一个二叉树节点。
+ 包括MaxTree树在内且在其中的每一棵子树上， 值最大的节点都是树的头。
+ 给定一个没有重复元素的数组arr， 写出生成这个数组的MaxTree的函数， 要求如果数组长
+ 度为N， 则时间复杂度为O(N)、 额外空间复杂度为O(N)。
+
+
+ 用大根堆的生成方式就可以了，简单直白
+ 也可以用单调栈
+ */
 public class Code_03_MaxTree {
 
 	public static class Node {

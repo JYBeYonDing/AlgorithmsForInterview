@@ -14,7 +14,7 @@ public class Code_03_堆排序 {
 		if (arr == null || arr.length < 2) {
 			return;
 		}
-		//建大根堆 log(1)+log(2)+log(3)+...+log(N) -> N ???怀疑
+		//建大根堆 log(1)+log(2)+log(3)+...+log(N) -> N 网上有证明，但是没看懂
 		for (int i = 0; i < arr.length; i++) {
 			heapInsert(arr, i);//[0,i]变成大根堆
 		}
