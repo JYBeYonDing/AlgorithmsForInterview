@@ -2,7 +2,7 @@ package 牛客算法班.第四期.advanced_class_04;
 
 import java.util.HashMap;
 
-public class Code_05_LongestSumSubArrayLength {
+public class Code_05_最长子数组累加和 {
 
 	public static int maxLength(int[] arr, int k) {
 		if (arr == null || arr.length == 0) {

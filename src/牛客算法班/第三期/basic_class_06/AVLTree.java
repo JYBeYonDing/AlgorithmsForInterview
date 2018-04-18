@@ -3,6 +3,7 @@ package 牛客算法班.第三期.basic_class_06;
 /**
  *
  * 任何一个节点左子树和右子树的高度差不超过1
+ * AVL树有四种调整操作，LL,RR,LR,RL
  *
  * Not implemented by zuochengyun
  * 
