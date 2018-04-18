@@ -1,6 +1,14 @@
 package 牛客算法班.第三期.basic_class_06;
 
 /**
+ * 1）头节点叶节点必为黑
+ * 2）红色节点不能相邻
+ * 3）每条链黑色节点数一样
+ *
+ * 目的就是为了做到任何链的长度不能超过两倍
+ * 所有的平衡树只是在常数级别的调整，时间复杂度都是一样的。
+ * 红黑树慢慢不受欢迎了，开始使用sb树
+ *
  * Not implemented by zuochengyun
  * 
  * Red-Black tree implementation. From Introduction to Algorithms 3rd edition.

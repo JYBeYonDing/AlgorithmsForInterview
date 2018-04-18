@@ -5,6 +5,10 @@ package 牛客算法班.第三期.basic_class_06;
  * 空间复杂度O(1)，利用了二叉树中的空闲空间
  * 时间复杂度O(N)
  *
+ * Morris遍历
+ 利用Morris遍历实现二叉树的先序， 中序， 后续遍历， 时间复
+ 杂度O(N)， 额外空间复杂度O(1)。
+ *
  * 来到的当前节点记为cur
  * 1）如果cur没有左孩子，cur向右移动(cur = cur.right)
  * 2）如果cur有左孩子，找到cur左子树上最右的节点，记为mostRight

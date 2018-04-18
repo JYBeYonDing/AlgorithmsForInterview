@@ -1,6 +1,9 @@
 package 牛客算法班.第三期.basic_class_06;
 
 /**
+ *
+ * 任何一个节点左子树和右子树的高度差不超过1
+ *
  * Not implemented by zuochengyun
  * 
  * AVL tree implementation.
