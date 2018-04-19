@@ -17,6 +17,9 @@ public class Code_07_反转链表 {
 		}
 	}
 
+	/**
+	 * 反转单向链表
+	 */
 	public static Node reverseList(Node head) {
 		Node pre = null;
 		Node next = null;
@@ -39,6 +42,9 @@ public class Code_07_反转链表 {
 		}
 	}
 
+	/**
+	 * 反转双向链表
+	 */
 	public static DoubleNode reverseList(DoubleNode head) {
 		DoubleNode pre = null;
 		DoubleNode next = null;

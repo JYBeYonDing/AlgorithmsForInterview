@@ -24,7 +24,7 @@ public class Code_07_转圈打印矩阵 {
 		int dR = matrix.length - 1;
 		int dC = matrix[0].length - 1;
 		while (tR <= dR && tC <= dC) {
-			printEdge(matrix, tR++, tC++, dR--, dC--);
+			printEdge(matrix, tR++, tC++, dR--, dC--);// 打印一圈
 		}
 	}
 

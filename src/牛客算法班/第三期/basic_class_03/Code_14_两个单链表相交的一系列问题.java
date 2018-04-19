@@ -84,17 +84,19 @@ public class Code_14_两个单链表相交的一系列问题 {
 			n--;
 			cur2 = cur2.next;
 		}
-		if (cur1 != cur2) {
+		if (cur1 != cur2) {// 如果两个尾节点不同，说明不相交
 			return null;
 		}
-		cur1 = n > 0 ? head1 : head2;
-		cur2 = cur1 == head1 ? head2 : head1;
+
+		// 如果尾节点相等，说明相交
+		cur1 = n > 0 ? head1 : head2;// cur1选择为长链
+		cur2 = cur1 == head1 ? head2 : head1;// cur2为另一条链
 		n = Math.abs(n);
 		while (n != 0) {
 			n--;
 			cur1 = cur1.next;
 		}
-		while (cur1 != cur2) {
+		while (cur1 != cur2) {// 不相等则继续向下，直到找到第一个相等的点
 			cur1 = cur1.next;
 			cur2 = cur2.next;
 		}
@@ -104,7 +106,7 @@ public class Code_14_两个单链表相交的一系列问题 {
 	public static Node bothLoop(Node head1, Node loop1, Node head2, Node loop2) {
 		Node cur1 = null;
 		Node cur2 = null;
-		if (loop1 == loop2) {
+		if (loop1 == loop2) {// 如果第一个入环点相同
 			cur1 = head1;
 			cur2 = head2;
 			int n = 0;
@@ -128,9 +130,9 @@ public class Code_14_两个单链表相交的一系列问题 {
 				cur2 = cur2.next;
 			}
 			return cur1;
-		} else {
+		} else {// 如果第一个入环点不同
 			cur1 = loop1.next;
-			while (cur1 != loop1) {
+			while (cur1 != loop1) {// cur1转一圈看看是不是会和loop2重合，如果不重合，说明两个不相交
 				if (cur1 == loop2) {
 					return loop1;
 				}

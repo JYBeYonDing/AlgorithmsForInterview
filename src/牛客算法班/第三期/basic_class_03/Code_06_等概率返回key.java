@@ -13,7 +13,7 @@ import java.util.HashMap;
  需要两个哈希表
 
  */
-public class Code_06_等待率返回key {
+public class Code_06_等概率返回key {
 
 	public static class Pool<K> {
 		private HashMap<K, Integer> keyIndexMap;
@@ -38,10 +38,10 @@ public class Code_06_等待率返回key {
 				int deleteIndex = this.keyIndexMap.get(key);
 				int lastIndex = --this.size;
 				K lastKey = this.indexKeyMap.get(lastIndex);
-				this.keyIndexMap.put(lastKey, deleteIndex);
-				this.indexKeyMap.put(deleteIndex, lastKey);
-				this.keyIndexMap.remove(key);
-				this.indexKeyMap.remove(lastIndex);
+				this.keyIndexMap.put(lastKey, deleteIndex);// 在keyIndex中将原本index最后一个的key的index更新
+				this.indexKeyMap.put(deleteIndex, lastKey);// 在indexKey中将最后一个index移动到删除的deleteIndex位置处
+				this.keyIndexMap.remove(key);// 删除
+				this.indexKeyMap.remove(lastIndex);// 删除indexKey中最后一个index对
 			}
 		}
 
@@ -49,7 +49,7 @@ public class Code_06_等待率返回key {
 			if (this.size == 0) {
 				return null;
 			}
-			int randomIndex = (int) (Math.random() * this.size);
+			int randomIndex = (int) (Math.random() * this.size);// 选择随机的index
 			return this.indexKeyMap.get(randomIndex);
 		}
 

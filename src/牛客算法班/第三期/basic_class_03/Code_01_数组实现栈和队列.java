@@ -7,7 +7,7 @@ public class Code_01_数组实现栈和队列 {
 
 	public static class ArrayStack {
 		private Integer[] arr;
-		private Integer index;
+		private Integer index;//栈顶+1，也表示栈中的数据量
 
 		public ArrayStack(int initSize) {
 			if (initSize < 0) {
@@ -62,7 +62,7 @@ public class Code_01_数组实现栈和队列 {
 			return arr[first];
 		}
 
-		public void push(int obj) {
+		public void add(int obj) {
 			if (size == arr.length) {
 				throw new ArrayIndexOutOfBoundsException("The queue is full");
 			}

@@ -4,8 +4,8 @@ import java.util.Stack;
 
 /**
  * 判断一个链表是否为回文结构
- 【题目】 给定一个链表的头节点head， 请判断该链表是否为回
- 文结构。 例如： 1->2->1， 返回true。 1->2->2->1， 返回true。
+ 【题目】 给定一个链表的头节点head， 请判断该链表是否为回文结构。
+ 例如： 1->2->1， 返回true。 1->2->2->1， 返回true。
  15->6->15， 返回true。 1->2->3， 返回false。
  进阶： 如果链表长度为N， 时间复杂度达到O(N)， 额外空间复杂
  度达到O(1)。
@@ -25,7 +25,9 @@ public class Code_11_判断一个链表是否为回文结构 {
 		}
 	}
 
-	// need n extra space
+	/**
+	 * 使用额外的O(N)的空间
+	 */
 	public static boolean isPalindrome1(Node head) {
 		Stack<Node> stack = new Stack<Node>();
 		Node cur = head;
@@ -67,7 +69,10 @@ public class Code_11_判断一个链表是否为回文结构 {
 		return true;
 	}
 
-	// need O(1) extra space
+	/**
+	 * 使用O(1)的额外空间复杂度
+	 * 反转链表的方法
+	 */
 	public static boolean isPalindrome3(Node head) {
 		if (head == null || head.next == null) {
 			return true;
