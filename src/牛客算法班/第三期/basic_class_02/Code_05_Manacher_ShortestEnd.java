@@ -23,11 +23,11 @@ public class Code_05_Manacher_ShortestEnd {
 		}
 		char[] charArr = manacherString(str);
 		int[] pArr = new int[charArr.length];
-		int index = -1;
-		int pR = -1;
+		int C = -1;
+		int pR = -1;// 最右回文右边界，pR不包括在回文内！！！
 		int maxContainsEnd = -1;
 		for (int i = 0; i != charArr.length; i++) {
-			pArr[i] = pR > i ? Math.min(pArr[2 * index - i], pR - i) : 1;
+			pArr[i] = pR > i ? Math.min(pArr[2 * C - i], pR - i) : 1;
 			while (i + pArr[i] < charArr.length && i - pArr[i] > -1) {
 				if (charArr[i + pArr[i]] == charArr[i - pArr[i]])
 					pArr[i]++;
@@ -37,10 +37,10 @@ public class Code_05_Manacher_ShortestEnd {
 			}
 			if (i + pArr[i] > pR) {
 				pR = i + pArr[i];
-				index = i;
+				C = i;
 			}
-			if (pR == charArr.length) {
-				maxContainsEnd = pArr[i];
+			if (pR == charArr.length) { // charArr[charArr.length-1]即最后一个字符被包含在回文中
+				maxContainsEnd = pArr[i];// 插入虚轴后的回文半径，-1后就是原数组的回文直径
 				break;
 			}
 		}
@@ -48,7 +48,7 @@ public class Code_05_Manacher_ShortestEnd {
 		for (int i = 0; i < res.length; i++) {
 			res[res.length - 1 - i] = charArr[i * 2 + 1];
 		}
-		return String.valueOf(res);
+		return String.valueOf(res);// 需要添加到原字符串后面的字符串
 	}
 
 	public static void main(String[] args) {

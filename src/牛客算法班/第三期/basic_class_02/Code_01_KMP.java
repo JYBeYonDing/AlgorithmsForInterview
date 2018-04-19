@@ -6,12 +6,19 @@ package 牛客算法班.第三期.basic_class_02;
  * 子串和子数组，必须连续
  *
  * 前缀不能包含最后一个字符，后缀不能包含第一个字符，即都不能取整体
- * 前缀和后缀相等的最长长度 ： 前面没有字符串则规定为-1，前面只有一个字符则规定为0.
+ * 前缀和后缀相等的最长长度：前面没有字符串则规定为-1，前面只有一个字符则规定为0.
  *
+ * 时间复杂度为O(m+n)
  *
  */
 public class Code_01_KMP {
 
+	/**
+	 * KMP查找匹配字符串
+	 * @param s 被匹配字符串
+	 * @param m 匹配字符串
+	 * @return 如果s找到m，返回在s中的第一个匹配字符的下标，否则返回-1
+	 */
 	public static int getIndexOf(String s, String m) {
 		if (s == null || m == null || m.length() < 1 || s.length() < m.length()) {
 			return -1;
@@ -52,7 +59,7 @@ public class Code_01_KMP {
 		while (pos < next.length) {
 			if (ms[pos - 1] == ms[cn]) {
 				next[pos++] = ++cn;
-			} else if (cn > 0) {
+			} else if (cn > 0) {// 如果不相等，且cn>0，则往前跳
 				cn = next[cn];// cn往前跳，跳到cn位置处前缀的下一个字符
 			} else {// cn已经跳到0位置
 				next[pos++] = 0;

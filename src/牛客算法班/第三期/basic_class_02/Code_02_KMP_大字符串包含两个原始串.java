@@ -1,7 +1,8 @@
 package 牛客算法班.第三期.basic_class_02;
 
 /**
- * 多求一个 前缀和后缀的最长匹配
+ * 求一个最短大字符串，使它包含两个当前字符子串
+ * 思路：只需要多求一个 前缀和后缀的最长匹配
  */
 public class Code_02_KMP_大字符串包含两个原始串 {
 
@@ -13,15 +14,15 @@ public class Code_02_KMP_大字符串包含两个原始串 {
 		if (chas.length == 1) {
 			return str + str;
 		}
-		if (chas.length == 2) {
+		if (chas.length == 2) {// 如果等于两个字符，若想等只需再加一个相等的字符，若不相等，重复这两个字符
 			return chas[0] == chas[1] ? (str + String.valueOf(chas[0])) : (str + str);
 		}
-		int endNext = endNextLength(chas);
+		int endNext = endNextLength(chas);// 返回当前字符串最长相等前缀的后一个位置
 		return str + str.substring(endNext);
 	}
 
 	public static int endNextLength(char[] chas) {
-		int[] next = new int[chas.length + 1];
+		int[] next = new int[chas.length + 1];// 需要多求一位
 		next[0] = -1;
 		next[1] = 0;
 		int pos = 2;

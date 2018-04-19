@@ -2,10 +2,10 @@ package 牛客算法班.第三期.basic_class_02;
 
 
 /**
- * 在无须数组中找到第k小的数或第k大的数
+ * 在无序数组中找到第k小的数或第k大的数
  * 复杂度O(N)
  *
- * 简单的方法可以用荷兰国旗的partition过程解决，时间复杂度的期望是O(N)
+ * 简单的方法可以用荷兰国旗的partition过程解决，时间复杂度的期望是O(N)，因为只处理划分的一边
  *
  * BFPRT是不基于概率的，严格做到O(N)
  * 选划分值不随机
@@ -23,12 +23,13 @@ package 牛客算法班.第三期.basic_class_02;
 public class Code_06_BFPRT第k小第k大 {
 
 	/**
+	 * 求数组中最小的k个数
 	 * 使用堆来做
+	 * 时间复杂度为O(N*logK)
 	 * @param arr
 	 * @param k
 	 * @return
 	 */
-	// O(N*logK)
 	public static int[] getMinKNumsByHeap(int[] arr, int k) {
 		if (k < 1 || k > arr.length) {
 			return arr;
@@ -83,29 +84,35 @@ public class Code_06_BFPRT第k小第k大 {
 
 	/**
 	 * 使用BFPRT算法
-	 * @param arr
-	 * @param k
-	 * @return
+	 * 时间复杂度为 O(N)
+	 * @param arr 数组
+	 * @param k 第k小
+	 * @return 最小的k个数
 	 */
-	// O(N)
 	public static int[] getMinKNumsByBFPRT(int[] arr, int k) {
 		if (k < 1 || k > arr.length) {
 			return arr;
 		}
-		int minKth = getMinKthByBFPRT(arr, k);
+		int minKth = getMinKthByBFPRT(arr, k);// 数组中第k小的数
 		int[] res = new int[k];
 		int index = 0;
 		for (int i = 0; i != arr.length; i++) {
-			if (arr[i] < minKth) {
+			if (arr[i] < minKth) {// 遍历数组填入小于minKth的数
 				res[index++] = arr[i];
 			}
 		}
-		for (; index != res.length; index++) {
+		for (; index != res.length; index++) {// 如果没有填满，剩下的都是minKth
 			res[index] = minKth;
 		}
 		return res;
 	}
 
+	/**
+	 * 得到第k小的数
+	 * @param arr 数组
+	 * @param K 第k小
+	 * @return 第k小的数
+	 */
 	public static int getMinKthByBFPRT(int[] arr, int K) {
 		int[] copyArr = copyArray(arr);
 		return bfprt(copyArr, 0, copyArr.length - 1, K - 1);
@@ -120,12 +127,7 @@ public class Code_06_BFPRT第k小第k大 {
 	}
 
 	/**
-	 * 在begin到end范围上求第i小的数
-	 * @param arr
-	 * @param begin
-	 * @param end
-	 * @param i
-	 * @return
+	 * 在begin到end范围上求第i+1小的数
 	 */
 	public static int bfprt(int[] arr, int begin, int end, int i) {
 		if (begin == end) {
@@ -133,7 +135,7 @@ public class Code_06_BFPRT第k小第k大 {
 		}
 		int pivot = medianOfMedians(arr, begin, end);// 中位数数组的中位数
 		int[] pivotRange = partition(arr, begin, end, pivot);// 等于区域
-		if (i >= pivotRange[0] && i <= pivotRange[1]) {
+		if (i >= pivotRange[0] && i <= pivotRange[1]) {// 如果找到第i+1小的数就直接返回
 			return arr[i];
 		} else if (i < pivotRange[0]) {
 			return bfprt(arr, begin, pivotRange[0] - 1, i);
@@ -150,21 +152,24 @@ public class Code_06_BFPRT第k小第k大 {
 	 * @return
 	 */
 	public static int medianOfMedians(int[] arr, int begin, int end) {
-		int num = end - begin + 1;
-		int offset = num % 5 == 0 ? 0 : 1;
+		int num = end - begin + 1;// 总共的数据量
+		int offset = num % 5 == 0 ? 0 : 1;// 能够被5整除，不能则需要在建中位数数组时加1
 		int[] mArr = new int[num / 5 + offset];// 中位数数组
 		for (int i = 0; i < mArr.length; i++) {
 			int beginI = begin + i * 5;
 			int endI = beginI + 4;
-			mArr[i] = getMedian(arr, beginI, Math.min(end, endI));
+			mArr[i] = getMedian(arr, beginI, Math.min(end, endI));// 得到中位数
 		}
 		return bfprt(mArr, 0, mArr.length - 1, mArr.length / 2);
 	}
 
+	/**
+	 * 划分数组，并返回等于pivotValue的左边界和右边界
+	 */
 	public static int[] partition(int[] arr, int begin, int end, int pivotValue) {
-		int small = begin - 1;
+		int small = begin - 1;// 小于pivotValue的右边界
 		int cur = begin;
-		int big = end + 1;
+		int big = end + 1;// 大于pivotValue的左边界
 		while (cur != big) {
 			if (arr[cur] < pivotValue) {
 				swap(arr, ++small, cur++);
@@ -180,10 +185,14 @@ public class Code_06_BFPRT第k小第k大 {
 		return range;
 	}
 
+	/**
+	 * 求数组arr从begin到end的中位数
+	 * @return 中位数
+	 */
 	public static int getMedian(int[] arr, int begin, int end) {
 		insertionSort(arr, begin, end);
 		int sum = end + begin;
-		int mid = (sum / 2) + (sum % 2);
+		int mid = (sum / 2) + (sum % 2);// 这里是上中位数，感觉上下其实无所谓
 		return arr[mid];
 	}
 

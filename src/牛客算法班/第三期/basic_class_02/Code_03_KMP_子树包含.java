@@ -1,5 +1,10 @@
 package 牛客算法班.第三期.basic_class_02;
 
+/**
+ * 子树包含问题
+ * 将树序列化，注意：序列化时需要将空子节点也表示出来，节点之间还需要有分隔符
+ * 用KMP字符串匹配问题解决子树包含问题
+ */
 public class Code_03_KMP_子树包含 {
 
 	public static class Node {

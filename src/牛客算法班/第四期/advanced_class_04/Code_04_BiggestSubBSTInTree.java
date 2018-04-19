@@ -1,5 +1,10 @@
 package 牛客算法班.第四期.advanced_class_04;
 
+/**
+ * 求整棵树的最大搜索二叉子树
+ *
+ * 套路：求以每个节点为头的最大搜索二叉子树
+ */
 public class Code_04_BiggestSubBSTInTree {
 
 	public static class Node {
