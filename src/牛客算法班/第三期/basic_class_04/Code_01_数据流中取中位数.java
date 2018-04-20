@@ -6,13 +6,20 @@ import java.util.PriorityQueue;
 
 /**
  * 一个数据流中， 随时可以取得中位数
+ *
+ * 使用两个堆，一个大根堆、一个小根堆
  */
 public class Code_01_数据流中取中位数 {
 
 	public static class MedianHolder {
+		// 大根堆存放较小的数
 		private PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(new MaxHeapComparator());
+		// 小根堆存放较大的数
 		private PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>(new MinHeapComparator());
 
+		/**
+		 * 调整两个堆，使它们数据的差值不超过1
+		 */
 		private void modifyTwoHeapsSize() {
 			if (this.maxHeap.size() == this.minHeap.size() + 2) {
 				this.minHeap.add(this.maxHeap.poll());
@@ -22,6 +29,11 @@ public class Code_01_数据流中取中位数 {
 			}
 		}
 
+		/**
+		 * 添加一个数
+		 *
+		 * @param num
+		 */
 		public void addNumber(int num) {
 			if (this.maxHeap.isEmpty()) {
 				this.maxHeap.add(num);
@@ -34,11 +46,13 @@ public class Code_01_数据流中取中位数 {
 					this.minHeap.add(num);
 					return;
 				}
-				if (this.minHeap.peek() > num) {
-					this.maxHeap.add(num);
-				} else {
-					this.minHeap.add(num);
-				}
+//				if (this.minHeap.peek() > num) {// 如果小根堆最小的数还大于这个数，加入到大根堆中，why？？？
+//					this.maxHeap.add(num);
+//				} else {
+//					this.minHeap.add(num);
+//				}
+				// 我感觉上面注释部分的判断没必要，因为后面反正会调整两个堆，所以就把上面的注释部分改成了下面这句
+				this.minHeap.add(num);
 			}
 			modifyTwoHeapsSize();
 		}
@@ -51,7 +65,7 @@ public class Code_01_数据流中取中位数 {
 			}
 			Integer maxHeapHead = this.maxHeap.peek();
 			Integer minHeapHead = this.minHeap.peek();
-			if (((maxHeapSize + minHeapSize) & 1) == 0) {
+			if (((maxHeapSize + minHeapSize) & 1) == 0) {// 如果数据个数为偶数
 				return (maxHeapHead + minHeapHead) / 2;
 			}
 			return maxHeapSize > minHeapSize ? maxHeapHead : minHeapHead;

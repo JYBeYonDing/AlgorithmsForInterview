@@ -44,14 +44,14 @@ public class Code_04_二叉树的序列化和反序列化 {
 		String[] values = preStr.split("!");
 		Queue<String> queue = new LinkedList<String>();
 		for (int i = 0; i != values.length; i++) {
-			queue.offer(values[i]);
+			queue.offer(values[i]);// 放到一个队列中
 		}
 		return reconPreOrder(queue);
 	}
 
 	public static Node reconPreOrder(Queue<String> queue) {
 		String value = queue.poll();
-		if (value.equals("#")) {
+		if (value.equals("#")) {// 如果是叶子节点直接返回
 			return null;
 		}
 		Node head = new Node(Integer.valueOf(value));

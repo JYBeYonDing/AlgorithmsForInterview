@@ -11,12 +11,12 @@ public class Code_04_折纸问题 {
 			return;
 		}
 		printProcess(i + 1, N, true);
-		System.out.println(down ? "down " : "up ");
+		System.out.print(down ? "down " : "up ");
 		printProcess(i + 1, N, false);
 	}
 
 	public static void main(String[] args) {
-		int N = 4;
+		int N = 3;
 		printAllFolds(N);
 
 	}

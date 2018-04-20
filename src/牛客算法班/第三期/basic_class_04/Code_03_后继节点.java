@@ -28,12 +28,17 @@ public class Code_03_后继节点 {
 		if (node.right != null) {// 如果有右子树，后继一定是右子树上最左的节点
 			return getLeftMost(node.right);
 		} else {// 如果没有右子树，就是找哪一个节点的左子树以该节点结尾
-			Node parent = node.parent;
-			while (parent != null && parent.left != node) {
-				node = parent;
-				parent = node.parent;
+//			Node parent = node.parent;
+//			while (parent != null && parent.left != node) {
+//				node = parent;
+//				parent = node.parent;
+//			}
+//			return parent;
+			// 我认为上面的代码还可以精简成如下形式
+			while (node.parent != null && node.parent.left != node) {
+				node = node.parent;
 			}
-			return parent;
+			return node.parent;
 		}
 	}
 

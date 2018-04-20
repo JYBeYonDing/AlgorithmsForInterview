@@ -1,6 +1,6 @@
 package 牛客算法班.第三期.basic_class_04;
 
-public class Code_02_打印二叉树结构 {
+public class 打印二叉树福利函数 {
 
 	public static class Node {
 		public int value;

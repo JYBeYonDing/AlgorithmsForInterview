@@ -1,10 +1,13 @@
 package 牛客算法班.第三期.basic_class_04;
 
+import java.util.ArrayDeque;
 import java.util.Stack;
 
 /**
+ * 重要！！！特别是只用一个栈的非递归后序遍历
  * 实现二叉树的先序、 中序、 后序遍历， 包括递归方式和非递归方式
  * 如果忽略打印行为，遍历过程中会多次到达一个节点，打印时机放在不同位置就是先序、中序、后序遍历
+ * 《程序员代码面试指南》p88
  */
 public class Code_01_二叉树遍历 {
 
@@ -68,6 +71,34 @@ public class Code_01_二叉树遍历 {
 		System.out.println();
 	}
 
+	/**
+	 * 非递归版 前序遍历 自己写 第二种方法
+	 * @param head
+	 */
+	private static void preOrderUnRecur1(Node head) {
+		System.out.print("pre-order1: ");
+		if (head == null) {
+			return;
+		}
+		ArrayDeque<Node> stack = new ArrayDeque<>();
+		while (!stack.isEmpty() || head != null) {
+			while (head != null) {
+				System.out.print(head.value + " ");
+				stack.push(head);
+				head = head.left;
+			}
+			if (!stack.isEmpty()) {
+				head = stack.pop().right;
+			}
+		}
+		System.out.println();
+	}
+
+	/**
+	 * 中序遍历 非递归
+	 * 这个不太好理解，inOrderUnRecur1理解稍微容易点
+	 * @param head
+	 */
 	public static void inOrderUnRecur(Node head) {
 		System.out.print("in-order: ");
 		if (head != null) {
@@ -86,6 +117,28 @@ public class Code_01_二叉树遍历 {
 		System.out.println();
 	}
 
+	/**
+	 * 中序遍历，自己写
+	 * @param head
+	 */
+	private static void inOrderUnRecur1(Node head) {
+		if (head == null) {
+			return;
+		}
+		ArrayDeque<Node> stack = new ArrayDeque<>();
+		while (!stack.isEmpty() || head != null) {
+			while (head != null) {
+				stack.push(head);
+				head = head.left;
+			}
+			if (!stack.isEmpty()) {
+				Node cur = stack.pop();
+				System.out.print(cur.value+" ");
+				head = cur.right;
+			}
+		}
+		System.out.println();
+	}
 	/**
 	 * 由于在递归的实现中，后序遍历是在第三次访问节点的时候打印，
 	 * 然而在非递归实现中只有两次访问，很难做到三个访问，
@@ -127,11 +180,15 @@ public class Code_01_二叉树遍历 {
 			Node c = null;
 			while (!stack.isEmpty()) {
 				c = stack.peek();
-				if (c.left != null && h != c.left && h != c.right) {
+				if (c.left != null && h != c.left && h != c.right) {// 有左节点，且上一个弹出的节点不是c的左右节点
 					stack.push(c.left);
-				} else if (c.right != null && h != c.right) {
-					stack.push(c.right);
-				} else {
+				} else if (c.right != null && h != c.right) {// 有右子树，且上一个弹出的节点不是c的右节点
+					stack.push(c.right);// 注意这里在压入右节点时的c和上面压入左节点时的c肯定不是同一个
+				} else {// 左右都为空或者左右子树都是遍历过的，
+					// 分析：
+					// 如果第一个分支判断中h == c.left，进入第二个判断分支，如果有右节点则进入第二步push，不会进入这里，
+					// 如果第二个判断分支中c.right == null，那也说明c的左右子树都遍历完了，因为此时只有左子树。
+					// 如果第一个分支判断中h == c.right，说明c的左右子树都比遍历完了，因为是先遍历左子树，再遍历右子树的。
 					System.out.print(stack.pop().value + " ");
 					h = c;
 				}
@@ -168,6 +225,7 @@ public class Code_01_二叉树遍历 {
 		// unrecursive
 		System.out.println("============unrecursive=============");
 		preOrderUnRecur(head);
+		preOrderUnRecur1(head);
 		inOrderUnRecur(head);
 		posOrderUnRecur1(head);
 		posOrderUnRecur2(head);
