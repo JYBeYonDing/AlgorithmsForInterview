@@ -23,6 +23,9 @@ public class Code_06_判断一棵二叉树是否是平衡二叉树 {
 		}
 	}
 
+	/**
+	 * 收集信息的数据结构
+	 */
 	public static class ReturnData {
 		public boolean isB;
 		public int h;
@@ -38,14 +41,14 @@ public class Code_06_判断一棵二叉树是否是平衡二叉树 {
 			return new ReturnData(true, 0);
 		}
 		ReturnData leftData = process(head.left);
-		if (!leftData.isB) {
+		if (!leftData.isB) {// 如果左子树不平衡，直接返回
 			return new ReturnData(false, 0);
 		}
 		ReturnData rightData = process(head.right);
-		if (!rightData.isB) {
+		if (!rightData.isB) {// 如果右子树不平衡，直接返回
 			return new ReturnData(false, 0);
 		}
-		if (Math.abs(leftData.h - rightData.h) > 1) {
+		if (Math.abs(leftData.h - rightData.h) > 1) {// 如果左右子树高度差大于1，直接返回
 			return new ReturnData(false, 0);
 		}
 		return new ReturnData(true, Math.max(leftData.h, rightData.h) + 1);
@@ -55,10 +58,11 @@ public class Code_06_判断一棵二叉树是否是平衡二叉树 {
 		return process(head).isB;
 	}
 
-
-
+	/**
+	 * 另一种方式
+	 */
 	public static boolean isBalance(Node head) {
-		boolean[] res = new boolean[1];
+		boolean[] res = new boolean[1];// 引用变量，记录结果
 		res[0] = true;
 		getHeight(head, 1, res);
 		return res[0];

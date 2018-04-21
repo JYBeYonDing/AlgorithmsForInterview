@@ -21,7 +21,8 @@ public class Code_07_判断是否是搜索二叉树_完全二叉树 {
 
 	/**
 	 * 判断是否是 搜索二叉树
-	 * 用的是 Morris遍历方法
+	 * 用的是 Morris遍历方法，可以在面试的时候展现自己能力
+	 * 思路：搜索二叉树的中序遍历，后一个数总是大于前一个数
 	 * 另外也可以由非递归中序遍历中改，很方便
 	 * @param head
 	 * @return
@@ -30,29 +31,30 @@ public class Code_07_判断是否是搜索二叉树_完全二叉树 {
 		if (head == null) {
 			return true;
 		}
-		boolean res = true;
+		boolean res = true;// 保存结果
 		Node pre = null;
-		Node cur1 = head;
-		Node cur2 = null;
-		while (cur1 != null) {
-			cur2 = cur1.left;
-			if (cur2 != null) {
-				while (cur2.right != null && cur2.right != cur1) {
-					cur2 = cur2.right;
+		Node cur = head;
+		Node mostRight = null;
+		while (cur != null) {
+			mostRight = cur.left;
+			if (mostRight != null) {// 说明左子树不为空
+				while (mostRight.right != null && mostRight.right != cur) {
+					mostRight = mostRight.right;// 找到左子树最右节点
 				}
-				if (cur2.right == null) {
-					cur2.right = cur1;
-					cur1 = cur1.left;
-					continue;
+				if (mostRight.right == null) {
+					// 左子树最右节点的右指针为空，利用这个指针指向cur，即中序遍历过程中mostRight的后继节点
+					mostRight.right = cur;
+					cur = cur.left;
+					continue;// cur向左移动后继续
 				} else {
-					cur2.right = null;
+					mostRight.right = null;// 最右节点右指针不为空，说明已经遍历过，恢复到null状态
 				}
 			}
-			if (pre != null && pre.value > cur1.value) {
-				res = false;
+			if (pre != null && pre.value > cur.value) {
+				res = false;// 如果前驱节点大于当前节点，说明不是搜索二叉树
 			}
-			pre = cur1;
-			cur1 = cur1.right;
+			pre = cur;
+			cur = cur.right;
 		}
 		return res;
 	}
@@ -76,17 +78,17 @@ public class Code_07_判断是否是搜索二叉树_完全二叉树 {
 			head = queue.poll();
 			l = head.left;
 			r = head.right;
-			if ((leaf && (l != null || r != null))// 开启了右节点的阶段，如果左右有一个不为空就返回false
-					|| (l == null && r != null)) {//如果左孩子为空右孩子不为空直接返回false
+			if ( (leaf && (l != null || r != null))// 开启了右节点的阶段，如果左右有一个不为空就返回false
+					|| (l == null && r != null)) {//如果一个节点左孩子为空右孩子不为空直接返回false
 				return false;
 			}
-			if (l != null) {
+			if (l != null) {// 其实运行到这里，如果左节点为空，则右节点一定也为空，所以else中设置leaf=true可以省去
 				queue.offer(l);
 			}
 			if (r != null) {
 				queue.offer(r);
 			} else {
-				leaf = true;
+				leaf = true;// 如果有一个右节点为空，就需要开始判断剩下节点的是不是都是叶节点，即左右节点都为空
 			}
 		}
 		return true;
@@ -128,7 +130,7 @@ public class Code_07_判断是否是搜索二叉树_完全二叉树 {
 		Node head = new Node(4);
 		head.left = new Node(2);
 		head.right = new Node(6);
-		head.left.left = new Node(1);
+//		head.left.left = new Node(1);
 		head.left.right = new Node(3);
 		head.right.left = new Node(5);
 

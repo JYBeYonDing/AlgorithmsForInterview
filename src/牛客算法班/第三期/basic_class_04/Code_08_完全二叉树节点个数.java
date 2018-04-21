@@ -40,8 +40,8 @@ public class Code_08_完全二叉树节点个数 {
 			return 1;
 		}
 		if (mostLeftLevel(node.right, level + 1) == h) {// 右子树的深度是否到达最大深度
-			return (1 << (h - level)) + bs(node.right, level + 1, h);
-		} else {
+			return (1 << (h - level)) + bs(node.right, level + 1, h);// 达到最大深度，说明左子树是满二叉树
+		} else {// 没达到最大深度说明右子树一定是满二叉树
 			return (1 << (h - level - 1)) + bs(node.left, level + 1, h);
 		}
 	}
