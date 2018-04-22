@@ -5,7 +5,8 @@ public class 图生成器 {
 	/**
 	 *
 	 * @param matrix 每一行长度为3
-	 * @return
+	 *               [出发点，目的点，权重]
+	 * @return 生成的图
 	 */
 	public static Graph createGraph(Integer[][] matrix) {
 		Graph graph = new Graph();

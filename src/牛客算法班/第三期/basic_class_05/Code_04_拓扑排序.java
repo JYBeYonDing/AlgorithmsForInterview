@@ -12,9 +12,13 @@ import java.util.Queue;
  */
 public class Code_04_拓扑排序 {
 
-	// directed graph and no loop 一定要是有向无环图
+	/**
+	 * 拓扑排序 一定要是有向无环图
+	 * @param graph 图
+	 * @return 排序后的节点队列
+	 */
 	public static List<Node> sortedTopology(Graph graph) {
-		HashMap<Node, Integer> inMap = new HashMap<>();
+		HashMap<Node, Integer> inMap = new HashMap<>();// node，入度
 		Queue<Node> zeroInQueue = new LinkedList<>();// 入度为0的点
 		// 遍历所有的点，登记所有点的入度，找到入度为0的点
 		for (Node node : graph.nodes.values()) {
@@ -23,7 +27,7 @@ public class Code_04_拓扑排序 {
 				zeroInQueue.add(node);
 			}
 		}
-		List<Node> result = new ArrayList<>();
+		List<Node> result = new ArrayList<>();// 存放结果的队列
 		while (!zeroInQueue.isEmpty()) {
 			Node cur = zeroInQueue.poll();
 			result.add(cur);// 入度为0的点放入队列

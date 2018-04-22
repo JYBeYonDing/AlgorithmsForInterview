@@ -8,29 +8,37 @@ import java.util.Map.Entry;
 public class Code_07_Dijkstra {
 
 	public static HashMap<Node, Integer> dijkstra1(Node head) {
-		HashMap<Node, Integer> distanceMap = new HashMap<>();
+		HashMap<Node, Integer> distanceMap = new HashMap<>();// 记录结果的hashMap
 		distanceMap.put(head, 0);
-		HashSet<Node> selectedNodes = new HashSet<>();
+		HashSet<Node> selectedNodes = new HashSet<>();// 登记节点有没有松弛完毕
 
-		Node minNode = getMinDistanceAndUnselectedNode(distanceMap, selectedNodes);
+		Node minNode = getMinDistanceAndUnselectedNode(distanceMap, selectedNodes);// 从distanceMap中但是没有松弛完毕的点中寻找距离原点最近的点
 		while (minNode != null) {
-			int distance = distanceMap.get(minNode);
-			for (Edge edge : minNode.edges) {
+			int distance = distanceMap.get(minNode);//从原点到该点的距离
+			for (Edge edge : minNode.edges) {// 遍历从该点出来的所有边，进行松弛操作
 				Node toNode = edge.to;
-				if (!distanceMap.containsKey(toNode)) {
+				if (!distanceMap.containsKey(toNode)) {// 将没有访问过的点放入distanceMap中
 					distanceMap.put(toNode, distance + edge.weight);
 				}
+				// 更新到个点的距离，distanceMap.get(toNode)：已知的原点到toNode的距离，distance + edge.weight：通过松弛点绕道到toNode的距离
 				distanceMap.put(edge.to, Math.min(distanceMap.get(toNode), distance + edge.weight));
 			}
-			selectedNodes.add(minNode);
+			selectedNodes.add(minNode);// 这个点松弛完毕，进行登记
 			minNode = getMinDistanceAndUnselectedNode(distanceMap, selectedNodes);
 		}
 		return distanceMap;
 	}
 
+	/**
+	 * 从distanceMap中但是没有松弛完毕的点中寻找距离原点最近的点
+	 * @param distanceMap
+	 * @param touchedNodes 松弛完毕的点
+	 * @return
+	 */
 	public static Node getMinDistanceAndUnselectedNode(HashMap<Node, Integer> distanceMap, HashSet<Node> touchedNodes) {
 		Node minNode = null;
 		int minDistance = Integer.MAX_VALUE;
+		// 遍历distanceMap中的每个点，从没有松弛完毕的点中选择距原点最近的点
 		for (Entry<Node, Integer> entry : distanceMap.entrySet()) {
 			Node node = entry.getKey();
 			int distance = entry.getValue();
@@ -83,6 +91,7 @@ public class Code_07_Dijkstra {
         }
 
         /**
+         * 堆中调整时的交换位置
          * 数组nodes中和heapIndexMap中交换时同步更新
          * @param index1
          * @param index2

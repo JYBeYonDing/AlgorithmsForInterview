@@ -5,7 +5,7 @@ import java.util.Stack;
 
 /**
  * 深度优先遍历
- * 一遍路上都走完才返回
+ * 一条路上都走完才返回
  * 用栈实现
  */
 public class Code_03_深度优先遍历 {
@@ -27,7 +27,7 @@ public class Code_03_深度优先遍历 {
 		System.out.println(node.value);
 		while (!stack.isEmpty()) {
 			Node cur = stack.pop();
-			for (Node next : cur.nexts) {// 遍历弹出节点的后继节点
+			for (Node next : cur.nexts) {// 遍历 弹出节点 的后继节点
 				if (!set.contains(next)) {
 					// 如果有后续节点有一个没有被遍历过，就将当前节点和没有遍历的后序节点放入，break
 					stack.push(cur);
