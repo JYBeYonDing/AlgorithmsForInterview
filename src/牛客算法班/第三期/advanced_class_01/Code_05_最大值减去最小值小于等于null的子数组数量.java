@@ -11,11 +11,12 @@ import java.util.LinkedList;
  【要求】
  如果数组长度为N， 请实现时间复杂度为O(N)的解法。
 
+ 子数组要求连续
 
  思路：
  如果一个子数组达标，内部的所有子数组都达标
  如果一个组数组不达标，往外扩一定不达标
-
+ 滑动窗口的思想
  */
 public class Code_05_最大值减去最小值小于等于null的子数组数量 {
 
@@ -28,7 +29,7 @@ public class Code_05_最大值减去最小值小于等于null的子数组数量 
 		int L = 0;
 		int R = 0;
 		int res = 0;
-		while (L < arr.length) {
+		while (L < arr.length) {// 其实这里R越界的时候就可以停，用等差数列就可以求
 			while (R < arr.length) {// R往右扩到不能再扩停
 				while (!qmin.isEmpty() && arr[qmin.peekLast()] >= arr[R]) {
 					qmin.pollLast();
@@ -49,7 +50,7 @@ public class Code_05_最大值减去最小值小于等于null的子数组数量 
 			if (qmax.peekFirst() == L) {
 				qmax.pollFirst();
 			}
-			res += R - L;
+			res += R - L;// 不达标时R停，则从arr[L]开头的子数组数量为R-L
 			L++;
 		}
 		return res;

@@ -1,5 +1,15 @@
 package 牛客算法班.第三期.advanced_class_02;
 
+/**
+ * 规定1是丑数， 其他的数如果只含有2或3或5的因子， 那么这个
+ 数也是丑数。
+ 比如依次的丑数为： 1,2,3,4,5,6,8,9,10,12,15...
+ 求第n个丑数
+
+ 思路：让你求某个序列的某个位置的数，你就想这个数是从前面的哪个数得到的，通常可以得到一个优良的解。
+
+ 判断num是否是质数：从2试到根号num
+ */
 public class Code_01_Ugly_Number {
 
 	public static int uglyNumber1(int index) {

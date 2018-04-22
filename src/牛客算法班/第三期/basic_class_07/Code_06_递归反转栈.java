@@ -2,13 +2,13 @@ package 牛客算法班.第三期.basic_class_07;
 
 import java.util.Stack;
 
-public class Code_06_ReverseStackUsingRecursive {
+public class Code_06_递归反转栈 {
 
 	public static void reverse(Stack<Integer> stack) {
 		if (stack.isEmpty()) {
 			return;
 		}
-		int i = getAndRemoveLastElement(stack);
+		int i = getAndRemoveLastElement(stack);// 得到并移除栈底元素
 		reverse(stack);
 		stack.push(i);
 	}

@@ -30,6 +30,11 @@ public class Code_01_前缀树 {
 			root = new TrieNode();
 		}
 
+		/**
+		 * 插入单词
+		 * 每次插入单词都是从头结点开始比对字符，注意：字符是用边来表示的
+		 * @param word
+		 */
 		public void insert(String word) {
 			if (word == null) {
 				return;
@@ -43,19 +48,23 @@ public class Code_01_前缀树 {
 					node.nexts[index] = new TrieNode();
 				}
 				node = node.nexts[index];
-				node.pass++;
+				node.pass++;//这条语句放这里感觉root的pass就是一直为0了，我感觉还是放到上一句好，但是对其他部分有影响
 			}
 			node.end++;
 		}
 
+		/**
+		 * 在前缀树中删除单词
+		 * @param word
+		 */
 		public void delete(String word) {
 			if (search(word)!=0) { //只有可以找到这个单词才可以删除
 				char[] chs = word.toCharArray();
 				TrieNode node = root;
-				int index = 0;
+				int index = 0;// 确定是哪一条边
 				for (int i = 0; i < chs.length; i++) {
 					index = chs[i] - 'a';
-					if (node.nexts[index].pass-- == 1) {
+					if (node.nexts[index].pass-- == 1) {// 如果这个边不被其他单词用到，说明就是要删除的这个单词
 						node.nexts[index] = null;
 						return;
 					}

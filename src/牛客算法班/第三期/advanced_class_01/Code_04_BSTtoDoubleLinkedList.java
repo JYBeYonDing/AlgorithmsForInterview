@@ -3,6 +3,9 @@ package 牛客算法班.第三期.advanced_class_01;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 把一棵搜索二叉树， 转化成有序的双向链表。
+ */
 public class Code_04_BSTtoDoubleLinkedList {
 
 	public static class Node {

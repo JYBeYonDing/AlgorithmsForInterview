@@ -5,8 +5,27 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * 如果str1和str2包含的字符种类一样， 并且每种字符的个数也
+ 一样， 那么str1和str2算作变形词。
+ 给定一个字符类型的数组， 请把变形词分组。 比如
+ 输入：
+ ["eat", "tea", "tan", "ate", "nat", "bat"]
+ 输出：
+ [
+ ["ate", "eat","tea"],
+ ["nat","tan"],
+ ["bat"]
+ ]
+ 注意： 所有的字符都是小写。
+ */
 public class Code_04_Group_Anagrams {
 
+	/**
+	 * 方法一需要排序 复杂度大
+	 * @param strs
+	 * @return
+	 */
 	public List<List<String>> groupAnagrams1(String[] strs) {
 		HashMap<String, List<String>> map = new HashMap<String, List<String>>();
 		for (String str : strs) {
@@ -25,6 +44,12 @@ public class Code_04_Group_Anagrams {
 		return res;
 	}
 
+	/**
+	 * 方法2不用排序，复杂度低
+	 * 因为注意到所有的字符都是小写。 可以使用字符穷举。根据数据状况的本身进行代码的优化。
+	 * @param strs
+	 * @return
+	 */
 	public List<List<String>> groupAnagrams2(String[] strs) {
 		HashMap<String, List<String>> map = new HashMap<String, List<String>>();
 		for (String str : strs) {
