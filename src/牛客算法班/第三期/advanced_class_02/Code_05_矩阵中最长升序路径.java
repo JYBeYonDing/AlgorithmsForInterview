@@ -18,7 +18,7 @@ package 牛客算法班.第三期.advanced_class_02;
  * 返回4
  * 最长路径是[1, 2, 6, 9].
  */
-public class Code_05_Longest_Increasing_Path_in_a_Matrix {
+public class Code_05_矩阵中最长升序路径 {
 
     /**
      * 递归版本

@@ -19,7 +19,7 @@ import java.util.List;
  ]
  注意： 所有的字符都是小写。
  */
-public class Code_04_Group_Anagrams {
+public class Code_04_变形词分组 {
 
 	/**
 	 * 方法一需要排序 复杂度大

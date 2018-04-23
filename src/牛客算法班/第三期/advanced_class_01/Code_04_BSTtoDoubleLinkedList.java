@@ -5,6 +5,11 @@ import java.util.Queue;
 
 /**
  * 把一棵搜索二叉树， 转化成有序的双向链表。
+ *
+ * 二叉树题目套路：
+ * 递归收集左子树信息
+ * 递归收集右子树信息
+ * 返回整合收到的信息
  */
 public class Code_04_BSTtoDoubleLinkedList {
 

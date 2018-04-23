@@ -1,5 +1,12 @@
 package 牛客算法班.第三期.advanced_class_03;
 
+/**
+ * 通过有序数组生成平衡搜索二叉树
+ 【题目】
+ 给定一个有序数组sortArr， 已知其中没有重复值， 用这个有序
+ 数组生成一棵平衡搜索二叉树， 并且该搜索二叉树中序遍历的
+ 结果与sortArr一致。
+ */
 public class Code_01_SortedArrayToBalancedBST {
 
 	public static class Node {
@@ -19,6 +26,13 @@ public class Code_01_SortedArrayToBalancedBST {
 		return generate(sortArr, 0, sortArr.length - 1);
 	}
 
+	/**
+	 * 这个范围上生成一棵树，返回根
+	 * @param sortArr
+	 * @param start
+	 * @param end
+	 * @return
+	 */
 	public static Node generate(int[] sortArr, int start, int end) {
 		if (start > end) {
 			return null;
@@ -29,6 +43,8 @@ public class Code_01_SortedArrayToBalancedBST {
 		head.right = generate(sortArr, mid + 1, end);
 		return head;
 	}
+
+
 
 	// for test -- print tree
 	public static void printTree(Node head) {

@@ -1,12 +1,22 @@
 package 牛客算法班.第三期.advanced_class_04;
 
+/**
+ * 题目一
+ 只用位运算不用算术运算实现整数的加减乘除运算
+ 【题目】
+ 给定两个32位整数a和b， 可正、 可负、 可0。 不能使用算术运算
+ 符， 分别实现a和b的加减乘除运算。
+ 【要求】
+ 如果给定的a和b执行加减乘除的某些结果本来就会导致数据的
+ 溢出， 那么你实现的函数不必对那些结果负责
+ */
 public class Code_01_AddMinusMultiDivideByBit {
 
 	public static int add(int a, int b) {
 		int sum = a;
 		while (b != 0) {
 			sum = a ^ b;
-			b = (a & b) << 1;
+			b = (a & b) << 1;//进位信息左移一位
 			a = sum;
 		}
 		return sum;
@@ -23,11 +33,11 @@ public class Code_01_AddMinusMultiDivideByBit {
 	public static int multi(int a, int b) {
 		int res = 0;
 		while (b != 0) {
-			if ((b & 1) != 0) {
+			if ((b & 1) != 0) {//b的最低位为1
 				res = add(res, a);
 			}
-			a <<= 1;
-			b >>>= 1;
+			a <<= 1;// a左移一位
+			b >>>= 1;// 无符号右移
 		}
 		return res;
 	}

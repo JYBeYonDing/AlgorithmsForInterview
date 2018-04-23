@@ -1,5 +1,13 @@
 package 牛客算法班.第三期.advanced_class_04;
 
+/**
+ * 根据后序数组重建搜索二叉树
+ 【题目】
+ 给定一个整型数组arr， 已知其中没有重复值， 判断arr是否可能是节
+ 点值类型为整型的搜索二叉树后序遍历的结果。
+ 进阶： 如果整型数组arr中没有重复值， 且已知是一棵搜索二叉树的后
+ 序遍历结果， 通过数组arr重构二叉树。
+ */
 public class Code_03_PosArrayToBST {
 
 	public static boolean isPostArray(int[] arr) {
@@ -13,19 +21,19 @@ public class Code_03_PosArrayToBST {
 		if (start == end) {
 			return true;
 		}
-		int less = -1;
-		int more = end;
+		int less = -1;// 小于区域中最右的下标
+		int more = end;// 大于区域中最左的下标
 		for (int i = start; i < end; i++) {
 			if (arr[end] > arr[i]) {
 				less = i;
-			} else {
-				more = more == end ? i : more;
+			} else {// 当前值大于arr[end]
+				more = more == end ? i : more;//如果more==end说明没有被设置过，如果设置过就不再改变
 			}
 		}
 		if (less == -1 || more == end) {
 			return isPost(arr, start, end - 1);
 		}
-		if (less != more - 1) {
+		if (less != more - 1) {// 这部分为什么不能提前
 			return false;
 		}
 		return isPost(arr, start, less) && isPost(arr, more, end - 1);

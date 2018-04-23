@@ -23,7 +23,7 @@ public class Code_00_冒泡排序 {
 	}
 
 	public static void swap(int[] arr, int i, int j) {
-		//注意！！！如果i和j相等，异或就出错了。
+		//注意！！！如果i和j相等，异或就出错了，因为在同一个位置。
 		arr[i] = arr[i] ^ arr[j];
 		arr[j] = arr[i] ^ arr[j];
 		arr[i] = arr[i] ^ arr[j];

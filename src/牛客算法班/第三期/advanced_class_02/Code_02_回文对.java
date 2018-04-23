@@ -17,7 +17,7 @@ import java.util.List;
  三步走
 
  */
-public class Code_02_Palindrome_Pairs {
+public class Code_02_回文对 {
 
 	public static List<List<Integer>> palindromePairs(String[] words) {
 		HashMap<String, Integer> wordset = new HashMap<>();

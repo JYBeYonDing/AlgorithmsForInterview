@@ -10,7 +10,7 @@ package 牛客算法班.第三期.advanced_class_02;
 
  判断num是否是质数：从2试到根号num
  */
-public class Code_01_Ugly_Number {
+public class Code_01_丑数 {
 
 	public static int uglyNumber1(int index) {
 		int number = 0;

@@ -1,5 +1,18 @@
 package 牛客算法班.第三期.advanced_class_04;
 
+/**
+ * 边界都是1的最大正方形大小
+ 【题目】
+ 给定一个NN的矩阵matrix， 在这个矩阵中， 只有0和1两种值， 返回边框全是1的最大正方
+ 形的边长长度。
+ 例如：
+ 0 1 1 1 1
+ 0 1 0 0 1
+ 0 1 0 0 1
+ 0 1 1 1 1
+ 0 1 0 1 1
+ 其中， 边框全是1的最大正方形的大小为4*4， 所以返回4。
+ */
 public class Code_05_MaxOneBorderSize {
 
 	public static void setBorderMap(int[][] m, int[][] right, int[][] down) {
