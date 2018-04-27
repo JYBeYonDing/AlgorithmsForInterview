@@ -115,7 +115,7 @@ public class Code_06_BFPRT第k小第k大 {
 	 */
 	public static int getMinKthByBFPRT(int[] arr, int K) {
 		int[] copyArr = copyArray(arr);
-		return bfprt(copyArr, 0, copyArr.length - 1, K - 1);
+		return bfprt(copyArr, 0, copyArr.length - 1, K - 1);// 从0开始
 	}
 
 	public static int[] copyArray(int[] arr) {
@@ -127,7 +127,7 @@ public class Code_06_BFPRT第k小第k大 {
 	}
 
 	/**
-	 * 在begin到end范围上求第i+1小的数
+	 * 在begin到end范围上求第i+1小的数，即假设排好序后在位置begin+i上的数
 	 */
 	public static int bfprt(int[] arr, int begin, int end, int i) {
 		if (begin == end) {

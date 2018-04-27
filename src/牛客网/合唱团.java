@@ -21,6 +21,9 @@ import java.util.Scanner;
  2 50
 
  49
+
+
+ 没做出来
  */
 public class 合唱团 {
     public static void main(String[] args) {

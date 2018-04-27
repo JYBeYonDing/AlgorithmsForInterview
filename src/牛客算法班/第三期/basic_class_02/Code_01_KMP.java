@@ -32,7 +32,7 @@ public class Code_01_KMP {
 			if (ss[si] == ms[mi]) {
 				si++;
 				mi++;
-			} else if (next[mi] == -1) {//如果 匹配字符串 跳到了第一个字符都没有匹配，只能被匹配字符串下标向后移
+			} else if (next[mi] == -1) {//如果 匹配字符串 跳到了第一个字符即mi=0都没有匹配，只能被匹配字符串下标向后移
 				si++;
 			} else {
 				mi = next[mi];// 匹配字符串往前跳

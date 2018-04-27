@@ -49,7 +49,7 @@ public class Code_04_Manacher马拉车 {
         }
         char[] charArr = manacherString(str);
         int[] pArr = new int[charArr.length];// 回文半径数组
-        int pR = -1;// 最右回文右边界，pR不包括在回文内！！！
+        int pR = 0;// 最右回文右边界，pR不包括在回文内！！！
         int C = -1;// 最右回文边界的最早中心
         int max = Integer.MIN_VALUE;
         for (int i = 0; i != charArr.length; i++) {
