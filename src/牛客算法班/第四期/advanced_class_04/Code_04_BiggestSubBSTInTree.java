@@ -2,8 +2,24 @@ package 牛客算法班.第四期.advanced_class_04;
 
 /**
  * 求整棵树的最大搜索二叉子树
+ * 给定一棵二叉树的头节点head， 已知所有节点的值都不一样， 求最大的搜索二叉子树的节点数量。
  *
- * 套路：求以每个节点为头的最大搜索二叉子树
+ * 套路：求每个节点的最大搜索二叉子树
+ *
+ * 本题思路：
+ * 每个节点有三种可能性：
+ * 整个树的最大搜索二叉子树来自于左子树
+ * 整个树的最大搜索二叉子树来自于右子树
+ * 整个树的最大搜索二叉子树为左子树+右子树+本节点
+ *
+ * 本题需要搜集6个信息：
+ * 信息1：左树中最大搜索二叉树的大小
+ * 信息2：右树中最大搜索二叉树的大小
+ * 信息3：左树中最大搜索二叉树的头
+ * 信息4：右树中最大搜索二叉树的头
+ * 信息5：左树中最大搜索二叉树中的最大值
+ * 信息6：右树中最大搜索二叉树中的最小值
+ *
  */
 public class Code_04_BiggestSubBSTInTree {
 
@@ -21,7 +37,10 @@ public class Code_04_BiggestSubBSTInTree {
 		int[] record = new int[3]; // 0->size, 1->min, 2->max
 		return posOrder(head, record);
 	}
-	
+
+	/**
+	 * 搜索的消息结构
+	 */
 	public static class ReturnType{
 		public int size;
 		public Node head;
@@ -50,12 +69,12 @@ public class Code_04_BiggestSubBSTInTree {
 				&&rightSubTressInfo.head == right
 				&& head.value > leftSubTressInfo.max
 				&& head.value < rightSubTressInfo.min
-				) {
+				) {// 该节点可以和左右子树连在一起
 			includeItSelf = leftSubTressInfo.size + 1 + rightSubTressInfo.size;
 		}
 		int p1 = leftSubTressInfo.size;
 		int p2 = rightSubTressInfo.size;
-		int maxSize = Math.max(Math.max(p1, p2), includeItSelf);
+		int maxSize = Math.max(Math.max(p1, p2), includeItSelf);// 当前节点的最大搜索树的大小
 		
 		Node maxHead = p1 > p2 ? leftSubTressInfo.head : rightSubTressInfo.head;
 		if(maxSize == includeItSelf) {
@@ -63,9 +82,11 @@ public class Code_04_BiggestSubBSTInTree {
 		}
 		
 		return new ReturnType(maxSize,
-				maxHead, 
+				maxHead,
+				// 感觉这里处理的不对，当前节点可能不包含在搜索树中，左右子树也不能一起考虑吧
 				Math.min(Math.min(leftSubTressInfo.min,rightSubTressInfo.min),head.value),
-				Math.max(Math.max(leftSubTressInfo.max,rightSubTressInfo.max),head.value));	
+				// 感觉这里处理的不对，当前节点可能不包含在搜索树中，左右子树也不能一起考虑吧
+				Math.max(Math.max(leftSubTressInfo.max,rightSubTressInfo.max),head.value));
 	}
 	
 	

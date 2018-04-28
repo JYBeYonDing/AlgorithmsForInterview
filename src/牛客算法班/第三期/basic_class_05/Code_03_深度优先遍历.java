@@ -34,7 +34,7 @@ public class Code_03_深度优先遍历 {
 					stack.push(next);
 					set.add(next);// 注册
 					System.out.println(next.value);
-					break;
+					break;// 跳出对cur后继节点的遍历，因为这里只加入一个后继节点
 				}
 			}
 		}

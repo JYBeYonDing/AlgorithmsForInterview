@@ -27,7 +27,7 @@ public class Code_01_前缀树 {
 		private TrieNode root;// 一定有一个头结点
 
 		public Trie() {
-			root = new TrieNode();
+			root = new TrieNode();// 主要用到的是头结点引伸出来的边
 		}
 
 		/**

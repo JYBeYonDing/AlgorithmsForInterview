@@ -1,5 +1,8 @@
 package 牛客算法班.第四期.advanced_class_05;
 
+/**
+ * 判断一棵树是否是平衡二叉树
+ */
 public class Code_02_IsBalancedTree {
 
 	public static class Node {
