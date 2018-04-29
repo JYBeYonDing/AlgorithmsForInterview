@@ -78,7 +78,7 @@ public class Code_07_判断是否是搜索二叉树_完全二叉树 {
 			head = queue.poll();
 			l = head.left;
 			r = head.right;
-			if ( (leaf && (l != null || r != null))// 开启了右节点的阶段，如果左右有一个不为空就返回false
+			if ( (leaf && (l != null || r != null))// 开启了叶节点的阶段，如果左右有一个不为空就返回false
 					|| (l == null && r != null)) {//如果一个节点左孩子为空右孩子不为空直接返回false
 				return false;
 			}

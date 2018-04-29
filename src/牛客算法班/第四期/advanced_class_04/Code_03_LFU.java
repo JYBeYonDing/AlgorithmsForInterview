@@ -2,8 +2,21 @@ package 牛客算法班.第四期.advanced_class_04;
 
 import java.util.HashMap;
 
+/**
+ * (Least Frequently Used)
+ * 上一题实现了LRU缓存算法， LFU也是一个著名的缓存算法
+ 自行了解之后实现LFU中的set 和 get
+ 要求： 两个方法的时间复杂度都为O(1)
+
+ 算法写完之后怎么测？
+ 在写程序的过程中把注意到的所有边界点记录下来。
+ 再使用对数器。（加分项）
+ */
 public class Code_03_LFU {
 
+	/**
+	 * 数据节点
+	 */
 	public static class Node {
 		public Integer key;
 		public Integer value;
@@ -20,6 +33,9 @@ public class Code_03_LFU {
 
 	public static class LFUCache {
 
+		/**
+		 * 头链表节点
+		 */
 		public static class NodeList {
 			public Node head;
 			public Node tail;
@@ -31,6 +47,10 @@ public class Code_03_LFU {
 				tail = node;
 			}
 
+			/**
+			 * 将新节点加到头部
+			 * @param newHead
+			 */
 			public void addNodeFromHead(Node newHead) {
 				newHead.down = head;
 				head.up = newHead;
@@ -41,6 +61,10 @@ public class Code_03_LFU {
 				return head == null;
 			}
 
+			/**
+			 * 删除node节点
+			 * @param node
+			 */
 			public void deleteNode(Node node) {
 				if (head == tail) {
 					head = null;
@@ -62,11 +86,11 @@ public class Code_03_LFU {
 			}
 		}
 
-		private int capacity;
+		private int capacity;// 缓存容量
 		private int size;
-		private HashMap<Integer, Node> records;
-		private HashMap<Node, NodeList> heads;
-		private NodeList headList;
+		private HashMap<Integer, Node> records;// key（这里LFU的key是Integer类型）--->Node
+		private HashMap<Node, NodeList> heads;// 通过node查看该node属于哪个NodeList
+		private NodeList headList;// 头链表
 
 		public LFUCache(int capacity) {
 			this.capacity = capacity;
@@ -77,14 +101,14 @@ public class Code_03_LFU {
 		}
 
 		public void set(int key, int value) {
-			if (records.containsKey(key)) {
+			if (records.containsKey(key)) {// 如果缓存中有，records中一定有记录
 				Node node = records.get(key);
 				node.value = value;
 				node.times++;
 				NodeList curNodeList = heads.get(node);
-				move(node, curNodeList);
+				move(node, curNodeList);// 词频变化，所以要改变node所在的NodeList
 			} else {
-				if (size == capacity) {
+				if (size == capacity) {// 如果缓存已满，需要删除一个node
 					Node node = headList.tail;
 					headList.deleteNode(node);
 					modifyHeadList(headList);
@@ -96,7 +120,7 @@ public class Code_03_LFU {
 				if (headList == null) {
 					headList = new NodeList(node);
 				} else {
-					if (headList.head.times.equals(node.times)) {
+					if (headList.head.times.equals(node.times)) {// 是否还存在词频为1的链表
 						headList.addNodeFromHead(node);
 					} else {
 						NodeList newList = new NodeList(node);
@@ -111,6 +135,11 @@ public class Code_03_LFU {
 			}
 		}
 
+		/**
+		 * node从老的nodelist中移除，加到词频+1的链表中
+		 * @param node
+		 * @param oldNodeList
+		 */
 		private void move(Node node, NodeList oldNodeList) {
 			oldNodeList.deleteNode(node);
 			NodeList preList = modifyHeadList(oldNodeList) ? oldNodeList.last
@@ -147,6 +176,11 @@ public class Code_03_LFU {
 		}
 
 		// return whether delete this head
+		/**
+		 * 删除节点后判断NodeList是否需要删除
+		 * @param nodeList
+		 * @return
+		 */
 		private boolean modifyHeadList(NodeList nodeList) {
 			if (nodeList.isEmpty()) {
 				if (headList == nodeList) {
@@ -154,7 +188,7 @@ public class Code_03_LFU {
 					if (headList != null) {
 						headList.last = null;
 					}
-				} else {
+				} else {//大链表之间调整
 					nodeList.last.next = nodeList.next;
 					if (nodeList.next != null) {
 						nodeList.next.last = nodeList.last;
@@ -167,7 +201,7 @@ public class Code_03_LFU {
 
 		public int get(int key) {
 			if (!records.containsKey(key)) {
-				return -1;
+				return -1;// 不存在
 			}
 			Node node = records.get(key);
 			node.times++;
