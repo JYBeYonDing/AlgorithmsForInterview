@@ -80,7 +80,7 @@ public class Code_02_跳表 {
 				SkipListNode newNode = new SkipListNode(newValue);
 				SkipListNode current = head;// 从头开始找
 				int levelAll = maxLevel;
-				do {// 原来这里代码有问题，不能从第level开始找，应该从最高层开始找，现在改了不知道对不对
+				do {// 原本这里代码有问题，不能从第level开始找，应该从最高层开始找，现在改了不知道对不对
 					current = findNext(newValue, current, levelAll);// 找到level层上小于newValue的最大的节点
 					if (level >= levelAll) {
 						// 在current和current的next中间插入newNode

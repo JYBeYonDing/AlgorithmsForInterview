@@ -6,16 +6,22 @@ package 牛客算法班.第四期.advanced_class_05;
  */
 public class Code_05_Max_EOR {
 
+	/**
+	 * 前缀树节点
+	 */
 	public static class Node {
-		public Node[] nexts = new Node[2];
+		public Node[] nexts = new Node[2];// 前缀树，只有两条路，0或1
 	}
 
 	public static class NumTrie {
 		public Node head = new Node();
 
+		/**
+		 * 将num加入到前缀树中
+		 */
 		public void add(int num) {
 			Node cur = head;
-			for (int move = 31; move >= 0; move--) {
+			for (int move = 31; move >= 0; move--) {// 从最高位开始提取每一位的数字
 				int path = ((num >> move) & 1);
 				cur.nexts[path] = cur.nexts[path] == null ? new Node() : cur.nexts[path];
 				cur = cur.nexts[path];
@@ -27,10 +33,10 @@ public class Code_05_Max_EOR {
 			int res = 0;
 			for (int move = 31; move >= 0; move--) {
 				int path = (num >> move) & 1;
-				int best = move == 31 ? path : (path ^ 1);
-				best = cur.nexts[best] != null ? best : (best ^ 1);
-				res |= (path ^ best) << move;
-				cur = cur.nexts[best];
+				int best = move == 31 ? path : (path ^ 1);// 如果是符号位，希望选的值和符号位一样这样可以得到正数，否则选不一样可以得到1
+				best = cur.nexts[best] != null ? best : (best ^ 1);// 如果有则选择这条边，如果没有则只能选择另外的边
+				res |= (path ^ best) << move;// 设置答案的每一位
+				cur = cur.nexts[best];// 继续往下走
 			}
 			return res;
 		}
