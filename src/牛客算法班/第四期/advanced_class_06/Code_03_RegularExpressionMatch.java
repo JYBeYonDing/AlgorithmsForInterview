@@ -1,5 +1,25 @@
 package 牛客算法班.第四期.advanced_class_06;
 
+/**
+ * 字符串KMP算法匹扩配展问题题目二
+ 【题目】
+ 给定字符串str， 其中绝对不含有字符'.'和'*'。 再给定字符串exp，
+ 其中可以含有'.'或'*'， '*'字符不能是exp的首字符， 并且任意两个
+ '*'字符不相邻。 exp中的'.'代表任何一个字符， exp中的'*'表示'*'
+ 的前一个字符可以有0个或者多个。 请写一个函数， 判断str是否能被
+ exp匹配。
+ 【举例】
+ str="abc"， exp="abc"， 返回true。
+ str="abc"， exp="a.c"， exp中单个'.'可以代表任意字符， 所以返回
+ true。
+ str="abcd"， exp=".*"。 exp中'*'的前一个字符是'.'， 所以可表示任
+ 意数量的'.'字符， 当exp是"...."时与"abcd"匹配， 返回true。
+ str=""， exp="..*"。 exp中'*'的前一个字符是'.'， 可表示任意数量
+ 的'.'字符， 但是".*"之前还有一个'.'字符， 该字符不受'*'的影响，
+ 所以str起码有一个字符才能被exp匹配。 所以返回false。
+
+
+ */
 public class Code_03_RegularExpressionMatch {
 
 	public static boolean isValid(char[] s, char[] e) {
@@ -16,6 +36,7 @@ public class Code_03_RegularExpressionMatch {
 		return true;
 	}
 
+	// 递归版本
 	public static boolean isMatch(String str, String exp) {
 		if (str == null || exp == null) {
 			return false;
@@ -25,22 +46,31 @@ public class Code_03_RegularExpressionMatch {
 		return isValid(s, e) ? process(s, e, 0, 0) : false;
 	}
 
-	public static boolean process(char[] s, char[] e, int si, int ei) {
-		if (ei == e.length) {
-			return si == s.length;
+	// str[i..一直到最后]这个字符串 能不能被exp[j..一直到最后]的字符串 匹配出来
+	public static boolean process(char[] str, char[] exp, int i, int j) {
+		if (j == exp.length) {// 当exp耗尽了，str必须也耗尽才会返回true
+			return i == str.length;
 		}
-		if (ei + 1 == e.length || e[ei + 1] != '*') {
-			return si != s.length && (e[ei] == s[si] || e[ei] == '.')
-					&& process(s, e, si + 1, ei + 1);
+		// 如果j上还有字符，考查j+1的情况
+		if (j + 1 == exp.length || exp[j + 1] != '*') {
+			return i != str.length && (exp[j] == str[i] || exp[j] == '.')
+					&& process(str, exp, i + 1, j + 1);
 		}
-		while (si != s.length && (e[ei] == s[si] || e[ei] == '.')) {
-			if (process(s, e, si, ei + 2)) {
+		// exp的j+1位置，不仅有字符而且字符是'*'
+		while (i != str.length && (exp[j] == str[i] || exp[j] == '.')) {
+			if (process(str, exp, i, j + 2)) {
 				return true;
 			}
-			si++;
+			i++;
 		}
-		return process(s, e, si, ei + 2);
+		return process(str, exp, i, j + 2);
 	}
+
+	/************************************
+	 * 可以通过依赖关系推测出需要先知道的baseCase
+	 * 推出普遍位置发现baseCase不够，得结合原题意，把缺的位置填上
+	 *
+	 *************************************/
 
 	public static boolean isMatchDP(String str, String exp) {
 		if (str == null || exp == null) {
@@ -51,7 +81,7 @@ public class Code_03_RegularExpressionMatch {
 		if (!isValid(s, e)) {
 			return false;
 		}
-		boolean[][] dp = initDPMap(s, e);
+		boolean[][] dp = initDPMap(s, e);// 填写dp表中的最后一行和倒数两列
 		for (int i = s.length - 1; i > -1; i--) {
 			for (int j = e.length - 2; j > -1; j--) {
 				if (e[j + 1] != '*') {

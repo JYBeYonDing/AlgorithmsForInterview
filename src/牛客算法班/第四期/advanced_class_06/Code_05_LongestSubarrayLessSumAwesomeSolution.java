@@ -2,36 +2,54 @@ package 牛客算法班.第四期.advanced_class_06;
 
 import java.util.HashMap;
 
+/**
+ * 给定一个数组arr， 值可正， 可负， 可0； 一个整数aim， 求累加和小于等于aim的， 最长子数组， 要求时间复杂度O(N)
+ *
+ * 书上这个没有做到最优解
+ *
+ * 第4期 第8个视频
+ */
 public class Code_05_LongestSubarrayLessSumAwesomeSolution {
 
-	public static int maxLengthAwesome(int[] arr, int k) {
+	/**
+	 * 最优解，复杂度O(N)
+	 * @param arr
+	 * @param aim
+	 * @return
+	 */
+	public static int maxLengthAwesome(int[] arr, int aim) {
 		if (arr == null || arr.length == 0) {
 			return 0;
 		}
 		int[] sums = new int[arr.length];
-		HashMap<Integer, Integer> ends = new HashMap<Integer, Integer>();
+		int[] ends = new int[arr.length];
+//		HashMap<Integer, Integer> ends = new HashMap<Integer, Integer>();
 		sums[arr.length - 1] = arr[arr.length - 1];
-		ends.put(arr.length - 1, arr.length - 1);
+		ends[arr.length - 1] = arr.length - 1;
+//		ends.put(arr.length - 1, arr.length - 1);
 		for (int i = arr.length - 2; i >= 0; i--) {
 			if (sums[i + 1] < 0) {
 				sums[i] = arr[i] + sums[i + 1];
-				ends.put(i, ends.get(i + 1));
+//				ends.put(i, ends.get(i + 1));
+				ends[i] = ends[i + 1];
 			} else {
 				sums[i] = arr[i];
-				ends.put(i, i);
+//				ends.put(i, i);
+				ends[i] = i;
 			}
 		}
-		int end = 0;
+		int R = 0;// 下一个要算入的开头
 		int sum = 0;
 		int res = 0;
-		for (int i = 0; i < arr.length; i++) {
-			while (end < arr.length && sum + sums[end] <= k) {
-				sum += sums[end];
-				end = ends.get(end) + 1;
+		for (int start = 0; start < arr.length; start++) {
+			while (R < arr.length && sum + sums[R] <= aim) {
+				sum += sums[R];
+//				end = ends.get(end) + 1;
+				R = ends[R] + 1;
 			}
-			sum -= end > i ? arr[i] : 0;
-			res = Math.max(res, end - i);
-			end = Math.max(end, i + 1);
+			sum -= R > start ? arr[start] : 0;
+			res = Math.max(res, R - start);
+			R = Math.max(R, start + 1);
 		}
 		return res;
 	}
