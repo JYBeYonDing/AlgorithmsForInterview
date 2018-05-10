@@ -22,6 +22,11 @@ package 牛客算法班.第四期.advanced_class_06;
  */
 public class Code_03_RegularExpressionMatch {
 
+	/**
+	 * 线检查有效性
+	 * s不能包含.或*
+	 * e'*'字符不能是exp的首字符， 并且任意两个'*'字符不相邻。
+	 */
 	public static boolean isValid(char[] s, char[] e) {
 		for (int i = 0; i < s.length; i++) {
 			if (s[i] == '*' || s[i] == '.') {
@@ -43,7 +48,7 @@ public class Code_03_RegularExpressionMatch {
 		}
 		char[] s = str.toCharArray();
 		char[] e = exp.toCharArray();
-		return isValid(s, e) ? process(s, e, 0, 0) : false;
+		return isValid(s, e) && process(s, e, 0, 0);
 	}
 
 	// str[i..一直到最后]这个字符串 能不能被exp[j..一直到最后]的字符串 匹配出来
