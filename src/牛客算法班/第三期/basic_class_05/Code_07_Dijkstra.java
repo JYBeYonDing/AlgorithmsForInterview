@@ -4,16 +4,22 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
 
-// no negative weight 非负权重
+/**
+ * 解决带权重的有向图上的单源最短路径问题
+ * 要求所有边非负权重
+ *
+ * 维持的关键信息是一组节点集合，从源节点s到该集合中每个节点之间的最短路径都已经被找到。
+  */
 public class Code_07_Dijkstra {
 
 	public static HashMap<Node, Integer> dijkstra1(Node head) {
 		HashMap<Node, Integer> distanceMap = new HashMap<>();// 记录结果的hashMap
 		distanceMap.put(head, 0);
-		HashSet<Node> selectedNodes = new HashSet<>();// 登记节点有没有松弛完毕
+		HashSet<Node> selectedNodes = new HashSet<>();// 包含在这个集合中的点说明从原点到该点的最短距离已经确定了
 
 		Node minNode = getMinDistanceAndUnselectedNode(distanceMap, selectedNodes);// 从distanceMap中但是没有松弛完毕的点中寻找距离原点最近的点
 		while (minNode != null) {
+			selectedNodes.add(minNode);// 进行登记，说明确定了从原点到该节点的最短距离
 			int distance = distanceMap.get(minNode);//从原点到该点的距离
 			for (Edge edge : minNode.edges) {// 遍历从该点出来的所有边，进行松弛操作
 				Node toNode = edge.to;
@@ -23,22 +29,21 @@ public class Code_07_Dijkstra {
 				// 更新到个点的距离，distanceMap.get(toNode)：已知的原点到toNode的距离，distance + edge.weight：通过松弛点绕道到toNode的距离
 				distanceMap.put(edge.to, Math.min(distanceMap.get(toNode), distance + edge.weight));
 			}
-			selectedNodes.add(minNode);// 这个点松弛完毕，进行登记
 			minNode = getMinDistanceAndUnselectedNode(distanceMap, selectedNodes);
 		}
 		return distanceMap;
 	}
 
 	/**
-	 * 从distanceMap中但是没有松弛完毕的点中寻找距离原点最近的点
-	 * @param distanceMap
-	 * @param touchedNodes 松弛完毕的点
+	 * 从distanceMap这些已经有了从原点到这些点的距离估计值但是还没有确定最短距离的点中寻找距离原点最近的点
+	 * @param distanceMap 存放原点到这些点距离的键值对
+	 * @param touchedNodes 松弛完毕的点，即也是已经确定了从原点到该点最短距离的点
 	 * @return
 	 */
 	public static Node getMinDistanceAndUnselectedNode(HashMap<Node, Integer> distanceMap, HashSet<Node> touchedNodes) {
 		Node minNode = null;
 		int minDistance = Integer.MAX_VALUE;
-		// 遍历distanceMap中的每个点，从没有松弛完毕的点中选择距原点最近的点
+		// 遍历distanceMap中的每个点，从没有确定最短距离的点中选择距原点最近的点
 		for (Entry<Node, Integer> entry : distanceMap.entrySet()) {
 			Node node = entry.getKey();
 			int distance = entry.getValue();
@@ -67,7 +72,7 @@ public class Code_07_Dijkstra {
 
 	public static class NodeHeap {
 		private Node[] nodes;// 一个堆，从index查node
-		private HashMap<Node, Integer> heapIndexMap;// 记录节点在堆中的下标，从node查index，后面的节点是-1表示曾经进过堆，已处理过
+		private HashMap<Node, Integer> heapIndexMap;// 记录节点在堆数组中的下标，从node查index，后面的节点是-1表示曾经进过堆，已处理过
 		private HashMap<Node, Integer> distanceMap;// 记录node到源节点的距离
 		private int heapSize;//堆的大小
 
@@ -129,8 +134,8 @@ public class Code_07_Dijkstra {
 
         /**
          * 插入节点 调整堆
-         * @param node
-         * @param index
+         * @param node 节点
+         * @param index 在堆数组中的索引
          */
 		private void insertHeapify(Node node, int index) {
 		    // 以节点到原节点的距离作为标准进行调整
@@ -162,15 +167,18 @@ public class Code_07_Dijkstra {
 
 	}
 
+	/**
+	 * 用堆来进行选择节点的 dijkstra
+	 */
 	public static HashMap<Node, Integer> dijkstra2(Node head, int size) {
 		NodeHeap nodeHeap = new NodeHeap(size);//节点小根堆
-		nodeHeap.addOrUpdateOrIgnore(head, 0);
-		HashMap<Node, Integer> result = new HashMap<>();
+		nodeHeap.addOrUpdateOrIgnore(head, 0);// 在小根堆中首先加入原节点
+		HashMap<Node, Integer> result = new HashMap<>();// 记录最短距离
 		while (!nodeHeap.isEmpty()) {
-			NodeRecord record = nodeHeap.popMinDistance();
+			NodeRecord record = nodeHeap.popMinDistance();//取出距离原节点最近的点，此时这个距离估计值变成了确定值
 			Node cur = record.node;
 			int distance = record.distance;
-			for (Edge edge : cur.edges) {
+			for (Edge edge : cur.edges) {// 对这个确定最短距离的点的出边进行松弛
 				nodeHeap.addOrUpdateOrIgnore(edge.to, edge.weight + distance);
 			}
 			result.put(cur, distance);
