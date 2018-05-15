@@ -81,6 +81,7 @@ public class Code_03_打印全部子序列 {
 //		printAllSubsquence(test);
 		// 传入的res不能是引用，因为引用的话只是传入地址，指的都是同一个对象
 		printAllSub(test.toCharArray(), 0, "");
+//		printAllSubsquence(test);
 	}
 
 }

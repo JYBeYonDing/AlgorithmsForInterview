@@ -17,6 +17,11 @@ public class 输入输出 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        // 注意！！！：例如输入为2时，如果不使用nextLine()时，
+        // 在前面读完nextInt()后，后面的Enter键还没有读入，不注意会出错！！！
+        sc.nextInt();
+        sc.nextLine();
+
         //一行
         String s = sc.nextLine();
 

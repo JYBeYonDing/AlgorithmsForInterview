@@ -38,8 +38,7 @@ public class Code_02_汉诺塔问题 {
 		} else {
 			func(n - 1, from, to, mid);
 			System.out.println("move "+ n+ " from " + from + " to " + to);// 把最下面的一个从from移到to
-//			func(n - 1, mid, from, to);
-			func(n - 1, mid, to, from);
+			func(n - 1, mid, from, to);
 		}
 	}
 
@@ -87,7 +86,7 @@ public class Code_02_汉诺塔问题 {
 
 
 	public static void main(String[] args) {
-		int n = 3;
+		int n = 2;
 		hanoi(n);
 	}
 
