@@ -1,5 +1,9 @@
 package 牛客算法班.第三期.basic_class_08;
 
+/**
+ * 判断两个字符串是否互为旋转词
+ *
+ */
 public class Code_04_IsRotation {
 
 	public static boolean isRotation(String a, String b) {

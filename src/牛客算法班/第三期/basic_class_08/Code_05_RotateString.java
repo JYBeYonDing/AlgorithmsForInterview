@@ -1,5 +1,9 @@
 package 牛客算法班.第三期.basic_class_08;
 
+/**
+ * 翻转字符串，单词顺序逆序
+ * 给定一个字符类型的数组chas，请在单词间做逆序调整。只要做到单词顺序逆序即可，对空格的位置没有特别要求。
+ */
 public class Code_05_RotateString {
 
 	public static void rotateWord(char[] chas) {
@@ -11,12 +15,12 @@ public class Code_05_RotateString {
 		int r = -1;
 		for (int i = 0; i < chas.length; i++) {
 			if (chas[i] != ' ') {
-				l = i == 0 || chas[i - 1] == ' ' ? i : l;
-				r = i == chas.length - 1 || chas[i + 1] == ' ' ? i : r;
+				l = i == 0 || chas[i - 1] == ' ' ? i : l;// 单词的头
+				r = i == chas.length - 1 || chas[i + 1] == ' ' ? i : r;// 单词的尾
 			}
 			if (l != -1 && r != -1) {
-				reverse(chas, l, r);
-				l = -1;
+				reverse(chas, l, r);// 翻转单词
+				l = -1;// 变回-1，作为没有确定新单词的标识
 				r = -1;
 			}
 		}
@@ -33,10 +37,16 @@ public class Code_05_RotateString {
 		}
 	}
 
+	/**
+	 * 给定一个字符类型的数组chas和一个整数size，请把大小为size的左半区整体移动到右半区，右半区整体移动到左边。
+	 * @param chas
+	 * @param size
+	 */
 	public static void rotate1(char[] chas, int size) {
 		if (chas == null || size <= 0 || size >= chas.length) {
 			return;
 		}
+		// 先整体翻转再局部翻转
 		reverse(chas, 0, size - 1);
 		reverse(chas, size, chas.length - 1);
 		reverse(chas, 0, chas.length - 1);

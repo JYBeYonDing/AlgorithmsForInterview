@@ -3,64 +3,70 @@ package 牛客算法班.第三期.basic_class_08;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+/**
+ * 接雨水 leetcode
+ * 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+ *
+ */
 public class Code_01_WaterProblem {
 
-	public static int getWater1(int[] arr) {
-		if (arr == null || arr.length < 3) {
+	public static int getWater1(int[] height) {
+		if (height == null || height.length < 3) {
 			return 0;
 		}
 		int value = 0;
-		for (int i = 1; i < arr.length - 1; i++) {
+		// 找中间的每一个数 左边的最大值 和 右边的最大值
+		for (int i = 1; i < height.length - 1; i++) {
 			int leftMax = 0;
 			int rightMax = 0;
 			for (int l = 0; l < i; l++) {
-				leftMax = Math.max(arr[l], leftMax);
+				leftMax = Math.max(height[l], leftMax);
 			}
-			for (int r = i + 1; r < arr.length; r++) {
-				rightMax = Math.max(arr[r], rightMax);
+			for (int r = i + 1; r < height.length; r++) {
+				rightMax = Math.max(height[r], rightMax);
 			}
-			value += Math.max(0, Math.min(leftMax, rightMax) - arr[i]);
+			value += Math.max(0, Math.min(leftMax, rightMax) - height[i]);
 		}
 		return value;
 	}
 
-	public static int getWater2(int[] arr) {
-		if (arr == null || arr.length < 3) {
+	public static int getWater2(int[] height) {
+		if (height == null || height.length < 3) {
 			return 0;
 		}
-		int n = arr.length - 2;
+		int n = height.length - 2;
 		int[] leftMaxs = new int[n];
-		leftMaxs[0] = arr[0];
+		leftMaxs[0] = height[0];
 		for (int i = 1; i < n; i++) {
-			leftMaxs[i] = Math.max(leftMaxs[i - 1], arr[i]);
+			leftMaxs[i] = Math.max(leftMaxs[i - 1], height[i]);
 		}
 		int[] rightMaxs = new int[n];
-		rightMaxs[n - 1] = arr[n + 1];
+		rightMaxs[n - 1] = height[n + 1];
 		for (int i = n - 2; i >= 0; i--) {
-			rightMaxs[i] = Math.max(rightMaxs[i + 1], arr[i + 2]);
+			rightMaxs[i] = Math.max(rightMaxs[i + 1], height[i + 2]);
 		}
 		int value = 0;
 		for (int i = 1; i <= n; i++) {
-			value += Math.max(0, Math.min(leftMaxs[i - 1], rightMaxs[i - 1]) - arr[i]);
+			value += Math.max(0, Math.min(leftMaxs[i - 1], rightMaxs[i - 1]) - height[i]);
 		}
 		return value;
 	}
 
-	public static int getWater3(int[] arr) {
-		if (arr == null || arr.length < 3) {
+	public static int getWater3(int[] height) {
+		if (height == null || height.length < 3) {
 			return 0;
 		}
-		int n = arr.length - 2;
+		int n = height.length - 2;
 		int[] rightMaxs = new int[n];
-		rightMaxs[n - 1] = arr[n + 1];
+		rightMaxs[n - 1] = height[n + 1];
 		for (int i = n - 2; i >= 0; i--) {
-			rightMaxs[i] = Math.max(rightMaxs[i + 1], arr[i + 2]);
+			rightMaxs[i] = Math.max(rightMaxs[i + 1], height[i + 2]);
 		}
-		int leftMax = arr[0];
+		int leftMax = height[0];
 		int value = 0;
 		for (int i = 1; i <= n; i++) {
-			value += Math.max(0, Math.min(leftMax, rightMaxs[i - 1]) - arr[i]);
-			leftMax = Math.max(leftMax, arr[i]);
+			value += Math.max(0, Math.min(leftMax, rightMaxs[i - 1]) - height[i]);
+			leftMax = Math.max(leftMax, height[i]);
 		}
 		return value;
 	}
