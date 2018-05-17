@@ -1,4 +1,4 @@
-package 练习.快排;
+package 练习;
 
 /**
  * Created by 杨杰 on 2018/4/10 11:01.

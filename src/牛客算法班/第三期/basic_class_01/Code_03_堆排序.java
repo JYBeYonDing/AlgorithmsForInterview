@@ -10,25 +10,24 @@ import java.util.Arrays;
  */
 public class Code_03_堆排序 {
 
-	public static void heapSort(int[] arr) {
+	private static void heapSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
 		}
-		//建大根堆 log(1)+log(2)+log(3)+...+log(N) -> N 网上有证明，但是没看懂
+		//建大根堆 时间复杂度为O(N)《算法导论》p87，88 log(1)+log(2)+log(3)+...+log(N) -> N 网上有证明，但是没看懂
 		for (int i = 0; i < arr.length; i++) {
 			heapInsert(arr, i);//[0,i]变成大根堆
 		}
 		//每次取堆顶元素
-		int size = arr.length;
-		swap(arr, 0, --size);
+		int size = arr.length;//有效的大根堆的大小
 		while (size > 0) {
+			swap(arr, 0, --size);// 把最大的数交换到最后，移除大根堆，进行升序排序
 			heapify(arr, 0, size);
-			swap(arr, 0, --size);
 		}
 	}
 
 	/**
-	 * 插入arr[index]，建立大根堆
+	 * 插入arr[index]，维持[0,index]为大根堆
 	 */
 	public static void heapInsert(int[] arr, int index) {
 		// -1/2 = 0/2 = 1/2 = 0 所以不会越界 2/2 = 3/2 = 1

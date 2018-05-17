@@ -1,4 +1,4 @@
-package 练习.快排;
+package 练习;
 
 import java.util.ArrayDeque;
 

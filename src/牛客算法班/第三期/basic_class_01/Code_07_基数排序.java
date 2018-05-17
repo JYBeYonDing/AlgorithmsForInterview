@@ -7,11 +7,10 @@ import java.util.Arrays;
  * 然后，从最低位开始，依次进行一次排序。
  * 这样从最低位排序一直到最高位排序完成以后, 数列就变成一个有序序列。
  *
+ * 相当于是多次计数排序，即对每一位上的数字进行计数排序，这里计数排序的“稳定性”很重要！！！
+ *
  */
 public class Code_07_基数排序 {
-
-	// only for no-negative value
-
 	/**
 	 * 只能用于非负数的排序
 	 * @param arr
@@ -41,15 +40,24 @@ public class Code_07_基数排序 {
 		return res;
 	}
 
+	/**
+	 * 基数排序
+	 * @param arr 要排序的数组
+	 * @param begin 要排序部分的开始索引
+	 * @param end 要排序部分的末索引
+	 * @param digit 位数
+	 */
 	public static void radixSort(int[] arr, int begin, int end, int digit) {
 		final int radix = 10;// 10进制
 		int i = 0, j = 0;
-		int[] count = new int[radix];
-		int[] bucket = new int[end - begin + 1];// 桶，这里其实相当于把所有桶合成了一个桶
-		for (int d = 1; d <= digit; d++) {// 根据各个位进行排序，个、十、百、千、万
+		int[] count = new int[radix];// 根据进制产生需要的桶
+		int[] help = new int[end - begin + 1];// 存放每次排序后的数组
+		for (int d = 1; d <= digit; d++) {// 根据各个位进行排序，个、十、百、千、万 注意！！！这里是从1开始
 			for (i = 0; i < radix; i++) {// 初始化计数
 				count[i] = 0;
 			}
+
+			// 下面用到了“计数排序”
 			for (i = begin; i <= end; i++) {
 				j = getDigit(arr[i], d);// 第d位上的数
 				count[j]++;
@@ -59,11 +67,10 @@ public class Code_07_基数排序 {
 			}
 			for (i = end; i >= begin; i--) {// 从后往遍历数，根据count[j]找到对应桶的位置，放置数
 				j = getDigit(arr[i], d);
-				bucket[count[j] - 1] = arr[i];
-				count[j]--;
+				help[--count[j]] = arr[i];
 			}
 			for (i = begin, j = 0; i <= end; i++, j++) {// 拷贝数据
-				arr[i] = bucket[j];
+				arr[i] = help[j];
 			}
 		}
 	}
@@ -77,6 +84,12 @@ public class Code_07_基数排序 {
 	public static int getDigit(int x, int d) {
 		return ((x / ((int) Math.pow(10, d - 1))) % 10);
 	}
+
+
+
+
+	//***********************************************************************************************
+
 
 	// for test
 	public static void comparator(int[] arr) {

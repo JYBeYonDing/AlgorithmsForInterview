@@ -20,6 +20,7 @@ public class Code_05_归并排序 {
 		if (l == r) {
 			return;
 		}
+		// 注意！！！移位运算符的优先级比加减法还低
 		int mid = l + ((r - l) >> 1);//可以防止数值溢出，位运算更快
 		sortProcess(arr, l, mid); // T(N/2)
 		sortProcess(arr, mid + 1, r);// T(N/2)

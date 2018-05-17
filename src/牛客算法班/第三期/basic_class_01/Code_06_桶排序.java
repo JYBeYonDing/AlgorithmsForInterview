@@ -25,18 +25,21 @@ public class Code_06_桶排序 {
 			max = Math.max(max, arr[i]);
 		}
 		// 新键max+1个桶，把数放入对应的桶中，这里桶只是计数用，因为有0，所以桶的大小要加1
-		int[] bucket = new int[max + 1];
+		// count[i]记录值为i的个数
+		int[] count = new int[max + 1];
 		for (int i = 0; i < arr.length; i++) {
-			bucket[arr[i]]++;
+			count[arr[i]]++;
 		}
 		// 将 桶中的数 依次倒出就是排序好的数组
 		int i = 0;
-		for (int j = 0; j < bucket.length; j++) {
-			while (bucket[j]-- > 0) {
+		for (int j = 0; j < count.length; j++) {
+			while (count[j]-- > 0) {
 				arr[i++] = j;
 			}
 		}
 	}
+
+	//********************************************************************************************
 
 	// for test
 	public static void comparator(int[] arr) {
