@@ -20,7 +20,7 @@ package 牛客算法班.第四期.advanced_class_06;
 
 
  */
-public class Code_03_RegularExpressionMatch {
+public class Code_03_RegularExpressionMatch字符串匹配 {
 
 	/**
 	 * 线检查有效性

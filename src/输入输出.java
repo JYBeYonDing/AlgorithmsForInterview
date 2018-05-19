@@ -16,6 +16,10 @@ import java.util.Scanner;
 public class 输入输出 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // 应该是每次读入一行效率来的高，所以可以每次读入一行字符串，之后对字符串处理
+        String[] ss = sc.nextLine().split(" ");
+        int n = Integer.parseInt(ss[0]);
+
 
         // 注意！！！：例如输入为2时，如果不使用nextLine()时，
         // 在前面读完nextInt()后，后面的Enter键还没有读入，不注意会出错！！！
