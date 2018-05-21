@@ -1,6 +1,6 @@
 package 程序员面试指南.书本源码.chapter_4_recursionanddp;
 
-public class Problem_03_CoinsMin {
+public class Problem_03_CoinsMin换钱的最少货币数 {
 
 	public static int minCoins1(int[] arr, int aim) {
 		if (arr == null || arr.length == 0 || aim < 0) {
@@ -28,6 +28,9 @@ public class Problem_03_CoinsMin {
 		return dp[n - 1][aim] != max ? dp[n - 1][aim] : -1;
 	}
 
+	/**
+	 * 动态规划，空间压缩
+	 */
 	public static int minCoins2(int[] arr, int aim) {
 		if (arr == null || arr.length == 0 || aim < 0) {
 			return -1;
@@ -67,7 +70,7 @@ public class Problem_03_CoinsMin {
 		if (arr[0] <= aim) {
 			dp[0][arr[0]] = 1;
 		}
-		int leftup = 0; // ���Ͻ�ĳ��λ�õ�ֵ
+		int leftup = 0; //左上角某个位置的值
 		for (int i = 1; i < n; i++) {
 			for (int j = 1; j <= aim; j++) {
 				leftup = max;

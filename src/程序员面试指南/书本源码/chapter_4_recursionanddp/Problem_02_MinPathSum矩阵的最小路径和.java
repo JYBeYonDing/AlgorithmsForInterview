@@ -1,6 +1,6 @@
 package 程序员面试指南.书本源码.chapter_4_recursionanddp;
 
-public class Problem_02_MinPathSum {
+public class Problem_02_MinPathSum矩阵的最小路径和 {
 
 	public static int minPathSum1(int[][] m) {
 		if (m == null || m.length == 0 || m[0] == null || m[0].length == 0) {
@@ -28,10 +28,10 @@ public class Problem_02_MinPathSum {
 		if (m == null || m.length == 0 || m[0] == null || m[0].length == 0) {
 			return 0;
 		}
-		int more = Math.max(m.length, m[0].length); // �����������ϴ���Ǹ�Ϊmore
-		int less = Math.min(m.length, m[0].length); // ������������С���Ǹ�Ϊless
-		boolean rowmore = more == m.length; // �����ǲ��Ǵ��ڵ�������
-		int[] arr = new int[less]; // ��������ĳ��Ƚ�Ϊ�����������е���Сֵ
+		int more = Math.max(m.length, m[0].length); //行数与列数较大的那个为more
+		int less = Math.min(m.length, m[0].length); //行数与列数较大的那个为less
+		boolean rowmore = more == m.length; //行数是不是大于等于列数
+		int[] arr = new int[less]; //取较小的作为辅助空间大小
 		arr[0] = m[0][0];
 		for (int i = 1; i < less; i++) {
 			arr[i] = arr[i - 1] + (rowmore ? m[0][i] : m[i][0]);

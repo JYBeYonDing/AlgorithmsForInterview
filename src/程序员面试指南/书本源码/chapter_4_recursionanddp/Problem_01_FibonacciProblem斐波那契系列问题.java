@@ -1,6 +1,6 @@
 package 程序员面试指南.书本源码.chapter_4_recursionanddp;
 
-public class Problem_01_FibonacciProblem {
+public class Problem_01_FibonacciProblem斐波那契系列问题 {
 
 	public static int f1(int n) {
 		if (n < 1) {
@@ -30,6 +30,11 @@ public class Problem_01_FibonacciProblem {
 		return res;
 	}
 
+	/**
+	 * 矩阵乘法求斐波那契数列，复杂度O(logN)
+	 * @param n
+	 * @return
+	 */
 	public static int f3(int n) {
 		if (n < 1) {
 			return 0;
@@ -42,22 +47,34 @@ public class Problem_01_FibonacciProblem {
 		return res[0][0] + res[1][0];
 	}
 
+	/**
+	 * 矩阵m的p次方
+	 * @param m 矩阵
+	 * @param p 次方
+	 * @return 结果
+	 */
 	public static int[][] matrixPower(int[][] m, int p) {
 		int[][] res = new int[m.length][m[0].length];
-		// �Ȱ�res��Ϊ��λ��������������е�1��
+		// 先把res设为单位矩阵，相当于整数中的1
 		for (int i = 0; i < res.length; i++) {
 			res[i][i] = 1;
 		}
 		int[][] tmp = m;
 		for (; p != 0; p >>= 1) {
-			if ((p & 1) != 0) {
+			if ((p & 1) != 0) {// 如果该位是1，就乘上对应的次方
 				res = muliMatrix(res, tmp);
 			}
-			tmp = muliMatrix(tmp, tmp);
+			tmp = muliMatrix(tmp, tmp);// 2次方，4次方，8次方，16次方......
 		}
 		return res;
 	}
 
+	/**
+	 * 矩阵m1和矩阵m2相乘
+	 * @param m1 矩阵1
+	 * @param m2 矩阵2
+	 * @return 矩阵相乘结果
+	 */
 	public static int[][] muliMatrix(int[][] m1, int[][] m2) {
 		int[][] res = new int[m1.length][m2[0].length];
 		for (int i = 0; i < m1.length; i++) {
@@ -70,6 +87,11 @@ public class Problem_01_FibonacciProblem {
 		return res;
 	}
 
+	/**
+	 * 跳台阶问题
+	 * @param n
+	 * @return
+	 */
 	public static int s1(int n) {
 		if (n < 1) {
 			return 0;
@@ -110,6 +132,11 @@ public class Problem_01_FibonacciProblem {
 		return 2 * res[0][0] + res[1][0];
 	}
 
+	/**
+	 * 母牛生小牛问题
+	 * @param n
+	 * @return
+	 */
 	public static int c1(int n) {
 		if (n < 1) {
 			return 0;
