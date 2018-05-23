@@ -1,6 +1,9 @@
 package 程序员面试指南.书本源码.chapter_4_recursionanddp;
 
-public class Problem_05_LIS {
+/**
+ * 书本讲解没看懂
+ */
+public class Problem_05_LIS最长递增子序列 {
 
 	public static int[] lis1(int[] arr) {
 		if (arr == null || arr.length == 0) {
