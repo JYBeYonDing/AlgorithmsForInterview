@@ -26,6 +26,20 @@ public class 独立的牛牛 {
         int d = sc.nextInt();//已经有d元
         int p = sc.nextInt();//每个水果售价
         System.out.println(solution(x,f,d,p));
+        System.out.println(solutionNiuKe(x,f,d,p));
+    }
+
+    /**
+     * 牛客网参考答案
+     * 首先计算能保证的房屋能租多少天,如果有剩余再考虑购买水果。
+     */
+    private static int solutionNiuKe(int x, int f, int d, int p) {
+        int tmp1 = d / x;
+        if (tmp1 <= f) {
+            return tmp1;
+        }
+        d -= f * x;
+        return f + d / (x + p);
     }
 
     private static int solution(int x, int f, int d, int p) {

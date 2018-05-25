@@ -28,8 +28,6 @@ import java.util.Scanner;
  * Yes
  * No
  * Yes
- *
- * 没有AC
  */
 public class 牛牛吃雪糕 {
     public static void main(String[] args) {
@@ -42,39 +40,83 @@ public class 牛牛吃雪糕 {
             int A = Integer.parseInt(ss[1]);
             int B = Integer.parseInt(ss[2]);
             int C = Integer.parseInt(ss[3]);
-            resout[i] = solution(N, A, B, C);
+            resout[i] = solutionNiuKe(N, A, B, C);
         }
         for (String s : resout) {
             System.out.println(s);
         }
     }
 
+    /**
+     * 作者：NotDeep
+     * 链接：https://www.nowcoder.com/discuss/82301
+     * 来源：牛客网
+     * <p>
+     * 我们要按照一定的策略来安排这些雪糕来让能撑过的天数最大。
+     * 首先我们考虑只吃一盒两份或者一盒三份的雪糕，那么每天我们吃3盒每盒两份的雪糕或者2盒每盒三份的雪糕。
+     * 接下来用一盒一份的雪糕来填补空隙。
+     * 空隙从小到大依次是：
+     * 1盒两份+1盒三份的组合缺1盒一份，
+     * 2盒两份的组合缺2盒一份，
+     * 1盒三份的组合缺3盒一份，
+     * 1盒两份的组合缺4盒一份。
+     * 按照这个顺序依次填补存在的空隙，剩下来的每盒一份的雪糕，每6盒撑过一天。
+     * 最后答案取决于能撑过的天数和高温天数的大小比较。
+     */
+    private static String solutionNiuKe(int n, int a, int b, int c) {
+        n -= c / 2;
+        c = c % 2;
+        n -= b / 3;
+        b = b % 3;
+        if (a >= 1 && b >= 1 && c >= 1) {
+            a--;
+            b--;
+            c--;
+            n--;
+        }
+        if (b == 2 && a >= 2) {
+            b -= 2;
+            a -= 2;
+            n--;
+        }
+        if (c == 1 && a >= 3) {
+//            c -= 1;
+            a -= 3;
+            n--;
+        }
+        if (b == 1 && a >= 4) {
+//            b -= 1;
+            a -= 4;
+            n--;
+        }
+        n -= a / 6;
+        if (n > 0) {
+            return "No";
+        } else {
+            return "Yes";
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 这种策略不对，会导致剩下一盒三份或一盒两份的雪糕
+     */
     private static String solution(int n, int a, int b, int c) {
         int day = a / 6 + b / 3 + c / 2;
         int ra = a % 6;
         int rb = b % 3;
         int rc = c % 2;
         int add = solve(ra, rb, rc);
-
-//        if ((rc == 1) && (rb >= 1) && ra >= 1) {
-//            day++;
-//            rb--;
-//            ra--;
-//            rc--;
-//        }
-//        if ((rb == 2) && (ra >= 2)) {
-//            day++;
-//            ra = ra - 2;
-//        }
-//        if ((rc == 1)&&(ra>=3) ) {
-//            day++;
-//            ra = ra - 3;
-//        }
-//        if ((rb == 1) && (ra >= 4)) {
-//            day++;
-//            ra = ra - 4;
-//        }
-
         day += add;
         if (day >= n) {
             return "Yes";
@@ -121,57 +163,4 @@ public class 牛牛吃雪糕 {
     }
 
 
-    //*****************************************************************************
-    //作者：Pluto_love
-    // 链接：https://www.nowcoder.com/discuss/82233
-    //来源：牛客网
-    public static void foo(int[][] arr) {
-        System.out.println(arr.length);
-        for (int i = 0; i < arr.length; i++) {
-            while (true) {
-                if (arr[i][0] == 0) {
-                    System.out.println("Yes");
-                    break;
-                } else if (arr[i][0] == -1) {
-                    System.out.println("No");
-                    break;
-                }
-                arr[i] = cal(arr[i]);
-            }
-        }
-    }
-
-    public static int[] cal(int[] ar) {
-
-        if (ar[3] >= 2) {
-            ar[3] -= 2;
-            ar[0] -= 1;
-        } else if (ar[3] == 1 && ar[2] >= 1 && ar[1] >= 1) {
-            ar[3] -= 1;
-            ar[2] -= 1;
-            ar[1] -= 1;
-            ar[0] -= 1;
-        } else if (ar[3] == 1 && ar[2] == 0 && ar[1] >= 3) {
-            ar[3] -= 1;
-            ar[1] -= 3;
-            ar[0] -= 1;
-        } else if (ar[3] == 0 && ar[2] >= 3) {
-            ar[2] -= 3;
-            ar[0] -= 1;
-        } else if (ar[3] == 0 && ar[2] == 2 && ar[1] >= 2) {
-            ar[2] -= 2;
-            ar[1] -= 2;
-            ar[0] -= 1;
-        } else if (ar[3] == 0 && ar[2] == 1 && ar[1] >= 4) {
-            ar[2] -= 1;
-            ar[1] -= 4;
-            ar[0] -= 1;
-        } else if (ar[3] == 0 && ar[2] == 0 && ar[1] >= 6) {
-            ar[1] -= 6;
-            ar[0] -= 1;
-        } else {
-            ar[0] = -1;
-        }
-        return ar;
-    }
 }

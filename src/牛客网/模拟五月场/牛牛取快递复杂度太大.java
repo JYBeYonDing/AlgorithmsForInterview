@@ -1,7 +1,5 @@
 package 牛客网.模拟五月场;
 
-import edu.princeton.cs.algs4.In;
-
 import java.util.*;
 
 /**
@@ -32,7 +30,7 @@ import java.util.*;
 
  没有AC 复杂度太大
  */
-public class 牛牛取快递 {
+public class 牛牛取快递复杂度太大 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String[] ss = sc.nextLine().split(" ");
