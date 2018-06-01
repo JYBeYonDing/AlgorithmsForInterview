@@ -17,15 +17,16 @@ public class 连续子数组的最大和 {
     }
 
     private static int solution(int[] arr) {
-        int max = 0;
+        int max = Integer.MIN_VALUE;
         int sum = 0;
         for (int i : arr) {
-            sum += i;
+            if (sum < 0) {
+                sum = i;
+            } else {
+                sum += i;
+            }
             if (sum > max) {
                 max = sum;
-            }
-            if (sum < 0) {
-                sum = 0;
             }
         }
         return max;

@@ -52,23 +52,25 @@ public class Code_03_RegularExpressionMatch字符串匹配正则匹配 {
 	}
 
 	// str[i..一直到最后]这个字符串 能不能被exp[j..一直到最后]的字符串 匹配出来
-	public static boolean process(char[] str, char[] exp, int i, int j) {
-		if (j == exp.length) {// 当exp耗尽了，str必须也耗尽才会返回true
-			return i == str.length;
+	public static boolean process(char[] str, char[] exp, int si, int ej) {
+		if (ej == exp.length) {// 当exp耗尽了，str必须也耗尽才会返回true
+			return si == str.length;
 		}
-		// 如果j上还有字符，考查j+1的情况
-		if (j + 1 == exp.length || exp[j + 1] != '*') {
-			return i != str.length && (exp[j] == str[i] || exp[j] == '.')
-					&& process(str, exp, i + 1, j + 1);
+		// 如果j上还有字符，考查j+1的情况，后面的位置不是*
+		if (ej + 1 == exp.length || exp[ej + 1] != '*') {
+			return si != str.length //如果i==str.length,说明正则表达式没有匹配完，而字符串已经没了，则一定没有匹配成功
+					&& (exp[ej] == str[si] || exp[ej] == '.')
+					&& process(str, exp, si + 1, ej + 1);
 		}
+		// 下面部分都是j+1的位置都为'*'的情况
 		// exp的j+1位置，不仅有字符而且字符是'*'
-		while (i != str.length && (exp[j] == str[i] || exp[j] == '.')) {
-			if (process(str, exp, i, j + 2)) {
+		while (si != str.length && (exp[ej] == str[si] || exp[ej] == '.')) {
+			if (process(str, exp, si, ej + 2)) {
 				return true;
 			}
-			i++;
+			si++;
 		}
-		return process(str, exp, i, j + 2);
+		return process(str, exp, si, ej + 2);// 匹配不上时，将*和前一个字符看成0个字符
 	}
 
 	/************************************
