@@ -9,6 +9,12 @@ package 牛客算法班.第三期.basic_class_06;
  * 所有的平衡树只是在常数级别的调整，时间复杂度都是一样的。
  * 红黑树慢慢不受欢迎了，开始使用sb树
  *
+ * 恢复红黑树的属性需要少量(O(log n))的颜色变更(实际是非常快速的)和不超过三次树旋转(对于插入操作是两次)。
+ *
+ * 红黑是用非严格的平衡来换取增删节点时候旋转次数的降低，任何不平衡都会在三次旋转之内解决，而AVL是严格平衡树，
+ * 因此在增加或者删除节点的时候，根据不同情况，旋转的次数比红黑树要多。所以红黑树的插入效率更高！！！
+ * 平衡因子 = 右子树的高度 - 左子树的高度
+ *
  * Not implemented by zuochengyun
  * 
  * Red-Black tree implementation. From Introduction to Algorithms 3rd edition.
@@ -17,7 +23,7 @@ package 牛客算法班.第三期.basic_class_06;
  * @created May 6, 2011
  * 
  */
-public class RedBlackTree extends AbstractSelfBalancingBinarySearchTree {
+public class RedBlackTree红黑树 extends AbstractSelfBalancingBinarySearchTree {
 
     protected enum ColorEnum {
         RED,

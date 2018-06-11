@@ -4,6 +4,10 @@ package 其他算法收集.图;
  * Created by 杨杰 on 2018/5/24 19:57.
  * 用于多源最短路径的求解，算出来的是所有的节点到其余各节点之间的最短距离。
  * 时间复杂度O(N^3)
+ * Floyed求每对不同顶点对的算法中 允许弧上的权为负,但不能有权和为负的回路。
+ * 回路权和为负，那么一直绕这个回路转，最短路径就是负无穷。
+ *
+ * 使用的是动态规划的思想
  */
 public class Floyd佛洛伊德算法_邻接矩阵 {
     private static final int INF = Integer.MAX_VALUE;
@@ -54,7 +58,7 @@ public class Floyd佛洛伊德算法_邻接矩阵 {
             }
         }
 
-        //循环更新矩阵的值
+        //循环更新矩阵的值，从i到j的过程中考虑通过k中转后能否距离变近。
         for(int k=0; k<nodes.length; k++){
             for(int i=0; i<nodes.length; i++){
                 for(int j=0; j<nodes.length; j++){
