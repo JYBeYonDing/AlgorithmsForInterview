@@ -34,6 +34,8 @@ import java.util.Scanner;
  4
  2
  2
+
+ 测试用例通过50%，不知道错在哪？？？
  */
 public class 牛牛数星星 {
     public static void main(String[] args) {

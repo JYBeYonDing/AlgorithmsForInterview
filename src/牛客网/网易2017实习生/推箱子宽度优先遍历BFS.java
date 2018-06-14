@@ -43,17 +43,18 @@ import java.util.Scanner;
 
  牛客网上别人的源码
  */
-public class 推箱子 {
+public class 推箱子宽度优先遍历BFS {
     private static class State{
         int px, py, bx, by;
         State pre;
 
+        //状态
         public State(int px, int py, int bx, int by, State pre) {
-            this.px = px;
+            this.px = px;//人的位置
             this.py = py;
-            this.bx = bx;
+            this.bx = bx;//箱子的位置
             this.by = by;
-            this.pre = pre;
+            this.pre = pre;//前一个状态
         }
     }
 
@@ -63,10 +64,8 @@ public class 推箱子 {
             String s = in.nextLine();
             int n = Integer.parseInt(s.split(" ")[0]);
             int m = Integer.parseInt(s.split(" ")[1]);
-            //int n = in.nextInt();
-            //int m = in.nextInt();
             int px = -1, py = -1, bx = -1, by = -1;
-            char[][] maze = new char[n][];
+            char[][] maze = new char[n][];//地图
             for(int i = 0; i < n; i++){
                 maze[i] = in.nextLine().toCharArray();
                 for(int j = 0; j < m; j++){
@@ -80,7 +79,7 @@ public class 推箱子 {
                 }
             }
             State start = new State(px, py, bx, by, null);  //起始状态
-            List<State> list = bfs(maze,start);
+            List<State> list = bfs(maze,start);// 宽度优先遍历
             System.out.println(list.size() - 1);
         }
     }
@@ -88,17 +87,17 @@ public class 推箱子 {
     private static List<State> bfs(char[][] maze, State start){
         int n = maze.length;
         int m = maze[0].length;
-        boolean[][][][] added = new boolean[n][m][n][m];   //记录人与箱子的位置
-        Queue<State> queue = new LinkedList<>();
-        LinkedList<State> list = new LinkedList<>();
+        boolean[][][][] added = new boolean[n][m][n][m];   //记录人与箱子的位置，表示这个状态是不是已经遍历过
+        Queue<State> queue = new LinkedList<>();// 宽度优先遍历用队列
+        LinkedList<State> list = new LinkedList<>();//记录路径
         queue.add(start);
-        added[start.px][start.py][start.bx][start.by] = true;
+        added[start.px][start.py][start.bx][start.by] = true;// 标记节点已经经过
         int[][] move = {{-1,0}, {1,0}, {0,-1}, {0,1}};
         State end = null;
         while(!queue.isEmpty()){
             State cur = queue.poll();
             if(maze[cur.bx][cur.by] == '@'){    //判断是否到达终点
-                end = cur;
+                end = cur;// 是终点，找到终点
                 break;
             }
             for(int[] a : move){

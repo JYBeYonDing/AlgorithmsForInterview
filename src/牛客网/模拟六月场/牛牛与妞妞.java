@@ -20,6 +20,8 @@ import java.util.Scanner;
 2 6 8
  输出
  0.3905
+
+ 暴力做出来连样例算出来都不正确，一开始没想到暴力，其实不会的题可以先用暴力做
  */
 public class 牛牛与妞妞 {
     public static void solution(int[] ns, int[] ms) {
