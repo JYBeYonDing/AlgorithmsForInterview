@@ -58,7 +58,6 @@ public class 推箱子 {
     }
 
     public static void main(String[] args) {
-        @SuppressWarnings("resource")
         Scanner in = new Scanner(System.in);
         while(in.hasNext()){
             String s = in.nextLine();
