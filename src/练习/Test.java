@@ -5,6 +5,6 @@ package 练习;
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println(Integer.parseInt("a4",16));
+        System.out.println(-2%3);
     }
 }

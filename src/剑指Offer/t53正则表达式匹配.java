@@ -18,20 +18,31 @@ public class t53正则表达式匹配 {
         return matchRec(str, pattern, 0, 0);
     }
 
+    /**
+     * str从si开始的字符串和exp从ej开始的字符串能否匹配
+     */
     private static boolean matchRec(char[] str, char[] exp, int si, int ej) {
         if (ej == exp.length) {// 当exp耗尽了，str必须也耗尽才会返回true
             return si == str.length;
         }
-        // 如果j上还有字符，考查j+1的情况，后面的位置不是*
+        // 如果j上还有字符，考查j+1的情况，，如果j+1位置已经结束了 或 j+1的位置不是*
         if (ej + 1 == exp.length || exp[ej + 1] != '*') {
-            return si != str.length //如果i==str.length,说明正则表达式没有匹配完，而字符串已经没了，则一定没有匹配成功
-                    && (exp[ej] == str[si] || exp[ej] == '.')
-                    && matchRec(str, exp, si + 1, ej + 1);
+            /**
+             * 这个用&&连接的return语句，其实包括了很多的
+             * if(){
+             *     if(){
+             *
+             *     }
+             * }
+             */
+            return si != str.length //如果si==str.length,说明正则表达式没有匹配完，而字符串已经没了，则一定没有匹配成功
+                    && (exp[ej] == str[si] || exp[ej] == '.')// 如果这个字符匹配
+                    && matchRec(str, exp, si + 1, ej + 1);// 则匹配下一个字符
         }
         // 下面部分都是j+1的位置都为'*'的情况
         // exp的j+1位置，不仅有字符而且字符是'*'
         while (si != str.length && (exp[ej] == str[si] || exp[ej] == '.')) {
-            if (matchRec(str, exp, si, ej + 2)) {
+            if (matchRec(str, exp, si, ej + 2)) {// 只要有一种情况匹配，就可以返回true
                 return true;
             }
             si++;

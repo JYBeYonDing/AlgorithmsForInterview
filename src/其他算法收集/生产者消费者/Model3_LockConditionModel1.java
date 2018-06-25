@@ -17,13 +17,16 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * 那么思路就简单了：需要两个锁 CONSUME_LOCK与PRODUCE_LOCK，CONSUME_LOCK控制消费者线程并发出队，
  * PRODUCE_LOCK控制生产者线程并发入队；
- * 相应需要两个条件变量NOT_EMPTY与NOT_FULL，NOT_EMPTY负责控制消费者线程的状态（阻塞、运行），
+ * 相应需要两个条件变量NOT_EMPTY与NOT_FULL，
+ * NOT_EMPTY负责控制消费者线程的状态（阻塞、运行），
  * NOT_FULL负责控制生产者线程的状态（阻塞、运行）。
  * 以此让优化消费者与消费者（或生产者与生产者）之间是串行的；消费者与生产者之间是并行的。
  */
 public class Model3_LockConditionModel1 implements Model {
     private final Lock BUFFER_LOCK = new ReentrantLock();// 可重入锁
-    private final Condition BUFFER_COND = BUFFER_LOCK.newCondition();
+    //    private final Condition BUFFER_COND = BUFFER_LOCK.newCondition();
+    private final Condition p = BUFFER_LOCK.newCondition();
+    private final Condition c = BUFFER_LOCK.newCondition();
     private final Queue<Task> buffer = new LinkedList<>();
     private final int cap;
     private final AtomicInteger increTaskNo = new AtomicInteger(0);
@@ -55,12 +58,12 @@ public class Model3_LockConditionModel1 implements Model {
             BUFFER_LOCK.lockInterruptibly();
             try {
                 while (buffer.size() == cap) {
-                    BUFFER_COND.await();
+                    p.await();
                 }
                 Task task = new Task(increTaskNo.getAndIncrement());
                 buffer.offer(task);
                 System.out.println("produce:" + task.no);
-                BUFFER_COND.signalAll();
+                c.signalAll();
             }finally {
                 BUFFER_LOCK.unlock();
             }
@@ -76,14 +79,14 @@ public class Model3_LockConditionModel1 implements Model {
             BUFFER_LOCK.lockInterruptibly();
             try {
                 while (buffer.size() == 0) {
-                    BUFFER_COND.await();
+                    c.await();
                 }
                 Task task = buffer.poll();
                 assert task != null;
                 //固定时间范围的消费，模拟相对稳定的服务器处理过程
                 Thread.sleep(500 + (long) Math.random() * 500);
                 System.out.println("consume:" + task.no);
-                BUFFER_COND.signalAll();
+                p.signalAll();
             }finally {
                 BUFFER_LOCK.unlock();
             }

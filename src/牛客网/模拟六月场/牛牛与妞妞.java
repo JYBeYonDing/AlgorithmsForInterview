@@ -22,47 +22,40 @@ import java.util.Scanner;
  0.3905
 
  暴力做出来连样例算出来都不正确，一开始没想到暴力，其实不会的题可以先用暴力做
+
+ 参考答案也是用暴力做的！！！
+
  */
 public class 牛牛与妞妞 {
     public static void solution(int[] ns, int[] ms) {
+        int[] vis = new int[14];
         int sumN = 0;
         for (int i : ns) {
             sumN += i;
+            vis[i]++;
         }
         int sumM = 0;
         for (int i : ms) {
             sumM += i;
+            vis[i]++;
         }
-        ArrayList<Integer> nums = new ArrayList<>();
-        for(int i = 1;i<=13;i++) {
-            nums.add(i);
-            nums.add(i);
-            nums.add(i);
-            nums.add(i);
-        }
-        for (Integer i : ns) {
-            nums.remove(i);
-        }
-        for (Integer i : ms) {
-            nums.remove(i);
+        int sumNum=0;
+        int winNum=0;
+        for(int i=1;i<=13;i++) {
+            if (vis[i] < 4) {
+                vis[i]++;
+                for(int j=1;j<=13;j++) {
+                    if (vis[j] < 4) {
+                        sumNum++;
+                        if (i + sumN > j + sumM) {
+                            winNum++;
+                        }
+                    }
+                }
+                vis[i]--;
+            }
         }
 
-        Integer tempN = null;
-        Integer tempM = null;
-        int winNum = 0;
-        int sumNum = 0;
-        for(int i=0;i< nums.size();i++) {
-            tempN = nums.remove(i);
-            for(int j = 0;j<nums.size();j++) {
-                tempM = nums.remove(j);
-                if (tempN + sumN > sumM + tempM) {
-                    winNum++;
-                }
-                sumNum++;
-                nums.add(j,tempM);
-            }
-            nums.add(i, tempN);
-        }
 
         System.out.printf("%.4f",winNum / (double) sumNum);
 

@@ -1,4 +1,4 @@
-package 牛客网.计蒜客0519;
+package 计蒜客.计蒜客0519;
 
 import java.util.ArrayList;
 import java.util.Scanner;

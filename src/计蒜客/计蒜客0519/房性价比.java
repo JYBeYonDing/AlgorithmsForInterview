@@ -1,4 +1,4 @@
-package 牛客网.计蒜客0519;
+package 计蒜客.计蒜客0519;
 
 import java.util.*;
 
@@ -52,7 +52,7 @@ public class 房性价比 {
         }
     }
 
-    static class House {
+    private static class House {
         int s;
         int p;
         double ps;

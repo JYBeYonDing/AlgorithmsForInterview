@@ -1,7 +1,7 @@
 package 牛客网.模拟六月场;
 
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Created by 杨杰 on 2018/6/14 19:34.
@@ -36,41 +36,33 @@ import java.util.Scanner;
  2
 
  测试用例通过50%，不知道错在哪？？？
+
+ 读取数据量大的时候不要用Scanner
+ 用BufferedReader
  */
 public class 牛牛数星星 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = Integer.parseInt(sc.nextLine());
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(reader.readLine());
         int[][] stars = new int[1001][1001];
         String[] strs = null;
-        int x = 0;
-        int y = 0;
         for (int i = 0; i < n; i++) {
-            strs = sc.nextLine().split(" ");
-            x = Integer.parseInt(strs[0]);
-            y = Integer.parseInt(strs[1]);
-            stars[x][y] = 1;
-        }
-
-        int[][] temp = new int[1001][1001];
-        for(int i=0;i<1001;i++) {
-            for(int j=0;j<1001;j++) {
-                temp[i][j] = stars[i][j];
-            }
+            strs = reader.readLine().split(" ");
+            stars[Integer.parseInt(strs[0])][Integer.parseInt(strs[1])] = 1;
         }
         for(int i=1;i<=1000;i++) {
             for(int j=1;j<=1000;j++) {
                 stars[i][j] += (stars[i - 1][j] + stars[i][j - 1]-stars[i-1][j-1]);
             }
         }
-        int m = Integer.parseInt(sc.nextLine());
+        int m = Integer.parseInt(reader.readLine());
         ArrayList<Integer> result = new ArrayList<>();
         int a1 = 0;
         int b1 = 0;
         int a2 = 0;
         int b2 = 0;
         for(int i=0;i<m;i++) {
-            strs = sc.nextLine().split(" ");
+            strs = reader.readLine().split(" ");
             a1 = Integer.parseInt(strs[0]);
             b1 = Integer.parseInt(strs[1]);
             a2 = Integer.parseInt(strs[2]);
@@ -80,20 +72,5 @@ public class 牛牛数星星 {
         for (Integer i : result) {
             System.out.println(i);
         }
-
     }
-
-//    private static Integer solution(ArrayList<Star> stars, int a1, int b1, int a2, int b2) {
-//        return 0;
-//    }
-
-//    private static class Star {
-//        int x;
-//        int y;
-//
-//        public Star(int x, int y) {
-//            this.x = x;
-//            this.y = y;
-//        }
-//    }
 }

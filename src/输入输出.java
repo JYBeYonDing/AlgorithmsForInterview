@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
@@ -14,7 +17,13 @@ import java.util.Scanner;
  *
  */
 public class 输入输出 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        /**
+         * 读取用BufferedReader！！！效率高
+         */
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String str = reader.readLine();
+
         Scanner sc = new Scanner(System.in);
         // 应该是每次读入一行效率来的高，所以可以每次读入一行字符串，之后对字符串处理
         String[] ss = sc.nextLine().split(" ");
