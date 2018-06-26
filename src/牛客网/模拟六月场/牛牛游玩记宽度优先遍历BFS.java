@@ -36,14 +36,14 @@ import java.util.*;
 
  感觉自己这种图的搜索算法太差
 
- 考完试后参考推箱子代码写完，没有测试能否通过
+ 考完试后参考推箱子代码写完
  */
 public class 牛牛游玩记宽度优先遍历BFS {
     private static class Position {
         int x;
         int y;
         Position pre;
-        public Position(int x, int y,Position pre) {
+        Position(int x, int y, Position pre) {
             this.x = x;
             this.y = y;
             this.pre = pre;
@@ -55,17 +55,13 @@ public class 牛牛游玩记宽度优先遍历BFS {
                 return false;
             } else {
                 Position p = (Position) obj;
-                if (p.x == this.x && p.y == this.y) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return Objects.equals(this.x, p.x) && Objects.equals(this.y, p.y);
             }
         }
 
         @Override
         public int hashCode() {
-            return x * 31 + y;
+            return Objects.hash(x, y);
         }
     }
     public static void main(String[] args) {
@@ -90,15 +86,14 @@ public class 牛牛游玩记宽度优先遍历BFS {
 
     private static ArrayList<Position> bfs(char[][] map, Position exit, Set<Position> enters) {
         ArrayList<Position> path = new ArrayList<>();// 存放路径结果
-        boolean[][] visited = new boolean[map.length][map[0].length];
-        Queue<Position> queue = new LinkedList<>();
+        boolean[][] visited = new boolean[map.length][map[0].length];// 标记是否遍历过
+        Queue<Position> queue = new LinkedList<>();// 宽度优先遍历用队列
         queue.offer(exit);
-        Position end = null;//终点
+        Position end = null;//记录终点，也就是找到的一个路口，因为是从出口开始找起
         int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-        Position cur = null;
         while (!queue.isEmpty()) {
-            cur = queue.poll();
-            if (enters.contains(cur)) {
+            Position cur = queue.poll();
+            if (enters.contains(cur)) {// 如果是入口中的一个，则说明找到
                 end = cur;
                 break;
             } else {
@@ -119,8 +114,5 @@ public class 牛牛游玩记宽度优先遍历BFS {
             end = end.pre;
         }
         return path;
-
     }
-
-
 }

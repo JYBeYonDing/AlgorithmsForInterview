@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * Created by 杨杰 on 2018/4/21 17:37.
- * 复杂度太大
+ *
  *
  * 牛牛以前在老师那里得到了一个正整数数对(x, y), 牛牛忘记他们具体是多少了。
  但是牛牛记得老师告诉过他x和y均不大于n, 并且x除以y的余数大于等于k。
@@ -30,9 +30,38 @@ public class 数对 {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int k = sc.nextInt();
-        System.out.println(solution(n, k));
+//        System.out.println(solution(n, k));
+        System.out.println(solution2(n, k));
     }
 
+    private static long solution2(int n, int k) {
+        if (k == 0) {// 如果k为0，说明任意组合都可以
+            return n*(long)n;
+        }
+        // 因为x%y>=k,所以y>k
+        // 以y为标准进行考虑
+        long count = 0;
+        for(int y = k+1; y<=n;y++) {
+            count += (n / y) * (y - k);
+            int temp = n%y;
+            if (temp >= k) {
+                count += temp - k + 1;
+            }
+        }
+        return count;
+    }
+
+
+
+
+
+
+
+
+
+    /**
+     * 复杂度太大
+     */
     private static int solution(int n, int k) {
         int res = ((n-k)+1)*(n-k)/2;
         for (int i = 1; i <=n ; i++) {
