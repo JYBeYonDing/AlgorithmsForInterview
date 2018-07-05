@@ -21,6 +21,20 @@ public class Code_01_插入排序 {
 		}
 	}
 
+	/**
+	 * 减少交换次数，提高性能。
+	 */
+	public static void sort(Comparable[] arr){
+		int n = arr.length;
+		for (int i = 1; i < n; i++) {
+			Comparable e = arr[i];// 寻找元素arr[i]合适的插入位置
+			int j = i;
+			for( ; j > 0 && arr[j-1].compareTo(e) > 0 ; j--)
+				arr[j] = arr[j-1];
+			arr[j] = e;
+		}
+	}
+
 	public static void swap(int[] arr, int i, int j) {
 		//注意！！！如果arr[i]和arr[j]相等，异或会出错。
 		arr[i] = arr[i] ^ arr[j];

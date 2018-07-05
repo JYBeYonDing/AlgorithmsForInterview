@@ -15,7 +15,7 @@ public class 快排左程云 {
     }
 
     private static void quickSortRec(int[] arr, int start, int end) {
-        if (start > end) {
+        if (start >= end) {
             return;
         }
         int[] p = partition(arr, start, end);

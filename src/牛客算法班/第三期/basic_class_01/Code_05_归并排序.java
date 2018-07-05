@@ -17,6 +17,7 @@ public class Code_05_归并排序 {
 	}
 
 	public static void sortProcess(int[] arr, int l, int r) {
+		// 优化2: 对于小规模数组, 可以使用插入排序
 		if (l == r) {
 			return;
 		}
@@ -24,6 +25,8 @@ public class Code_05_归并排序 {
 		int mid = l + ((r - l) >> 1);//可以防止数值溢出，位运算更快
 		sortProcess(arr, l, mid); // T(N/2)
 		sortProcess(arr, mid + 1, r);// T(N/2)
+		// 优化1: 对于arr[mid] <= arr[mid+1]的情况,可以不进行merge
+		// 对于近乎有序的数组非常有效,但是对于一般情况,有一定的性能损失
 		merge(arr, l, mid, r);// O(N)
         // T(N) = 2T(N/2) + O(N)
 	}

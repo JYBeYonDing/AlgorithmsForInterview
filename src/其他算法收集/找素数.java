@@ -4,14 +4,43 @@ package 其他算法收集;
  * Created by 杨杰 on 2018/5/17 20:57.
  */
 public class 找素数 {
+    //****************************************************************************************
+    // 素数打表
+    /**
+     * n以内的素数，效率最高
+     * 2；是素数，则2*2, 2*3，2*4，………这些都不是素数，
+       3；是素数，则3*3, 3*4，3*5，………这些都不是素数，
+       5；是素数，则5*5, 5*6，5*7，………这些都不是素数，
+     * @param n
+     */
+    private static void printPrime3(int n) {
+        int[] arr = new int[n+1];
+        double m = Math.sqrt(n + 0.5);
+        for(int i=2;i<=m;i++) {
+            if (arr[i] == 0) {//如果i是素数
+                for(int j = i*i;j<=n;j+=i) {
+                    arr[j] = 1;//j不是素数
+                }
+            }
+        }
+        for(int i=2;i<=n;i++) {// 遍历，为0的即是素数
+            if (arr[i] == 0) {
+                System.out.print(i+" ");
+            }
+        }
+    }
+
+
     // 方法一
     public static void main(String[] args) {
         printPrime(100);
+        System.out.println();
+        printPrime3(100);
     }
 
     /**
      * 暴力查找
-     * @param n
+     * 查找n以内的素数
      */
     private static void printPrime(int n) {
         for (int i = 2; i < n; i++) {

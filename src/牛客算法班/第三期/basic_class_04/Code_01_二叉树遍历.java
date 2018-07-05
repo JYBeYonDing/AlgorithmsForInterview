@@ -119,6 +119,8 @@ public class Code_01_二叉树遍历 {
 
 	/**
 	 * 中序遍历，自己写
+	 * 让代码跟着思维走。
+	 * 先找到左子树的最下边的节点。
 	 * @param head
 	 */
 	private static void inOrderUnRecur1(Node head) {
@@ -127,14 +129,14 @@ public class Code_01_二叉树遍历 {
 		}
 		ArrayDeque<Node> stack = new ArrayDeque<>();
 		while (!stack.isEmpty() || head != null) {
-			while (head != null) {
+			while (head != null) {// 左边节点都压入栈
 				stack.push(head);
 				head = head.left;
 			}
 			if (!stack.isEmpty()) {
 				Node cur = stack.pop();
-				System.out.print(cur.value+" ");
-				head = cur.right;
+				System.out.print(cur.value+" ");// 弹出一个打印
+				head = cur.right;//右子树的最左边开始
 			}
 		}
 		System.out.println();
@@ -177,7 +179,7 @@ public class Code_01_二叉树遍历 {
 		if (h != null) {
 			Stack<Node> stack = new Stack<Node>();
 			stack.push(h);
-			Node c = null;
+			Node c = null; //c表示stack的栈顶节点
 			while (!stack.isEmpty()) {
 				c = stack.peek();
 				if (c.left != null && h != c.left && h != c.right) {// 有左节点，且上一个弹出的节点不是c的左右节点

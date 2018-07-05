@@ -26,6 +26,8 @@ public class Code_04_快排 {
      * 随机快排的代码简单，常数项很小，所以快排使用率很高
      * 随机是为了防止出现最差的情况
      * 绕开数据原始的状况，处理方式有：使用随机或hash处理
+     *
+     * 这里使用的是三路快排，即分成小于部分，等于部分，大于部分。
      */
 	public static void quickSort(int[] arr, int l, int r) {
 		if (l < r) {

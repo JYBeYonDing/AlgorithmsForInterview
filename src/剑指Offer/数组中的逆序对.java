@@ -52,7 +52,7 @@ public class 数组中的逆序对 {
         while (left <= mid && right <= end) {
             if (array[left] < array[right]) {
                 help[index++] = array[left++];
-            } else {
+            } else {// 右边的数比左边的大，形成逆序对
                 inverseNum+=mid-left+1;
                 if (inverseNum >= 1000000007) {//里面在增长的过程中也可能越界
                     inverseNum %= 1000000007;

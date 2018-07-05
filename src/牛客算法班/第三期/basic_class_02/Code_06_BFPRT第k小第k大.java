@@ -26,9 +26,6 @@ public class Code_06_BFPRT第k小第k大 {
 	 * 求数组中最小的k个数
 	 * 使用堆来做
 	 * 时间复杂度为O(N*logK)
-	 * @param arr
-	 * @param k
-	 * @return
 	 */
 	public static int[] getMinKNumsByHeap(int[] arr, int k) {
 		if (k < 1 || k > arr.length) {
