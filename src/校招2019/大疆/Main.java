@@ -9,15 +9,16 @@ class Test {
 }
 public class Main
 {
-    public static void main(String args[])
-    {
-        Scanner cin = new Scanner(System.in);
-        int a, b;
-        while(cin.hasNextInt())
-        {
-            a = cin.nextInt();
-            b = cin.nextInt();
-            System.out.println(a + b);
-        }
+    public static void main(String[] args) {
+        new Main().convert();
+    }
+    public void convert() {
+        int i = 10;
+        char a = 'a';
+//        char a = "a".charAt(0);
+//        int a = 97;
+        System.out.println(false ? i : a);
+        System.out.println(false ? 65 : a);
+        System.out.println(false ? 65.0 : a);
     }
 }

@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Created by 杨杰 on 2018/7/3 21:07.
  */
 public class 输入 {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
         /**
          * 整型数组

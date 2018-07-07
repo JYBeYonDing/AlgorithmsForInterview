@@ -31,11 +31,41 @@ public class 找素数 {
     }
 
 
+    /**
+     * 2开始的n个素数
+     * @param n
+     */
+    private static void printNPrime(int n) {
+        int[] arr = new int[n];
+        arr[0] = 2;
+        int len = 1;
+        boolean isPrime=true;//一开始都假设是素数
+        for (int num=3;len<n;num++) {
+            for(int i=0;i<len;i++) {
+                if (num % arr[i] == 0) {// 能整除，说明不是素数
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                arr[len++] = num;
+            } else {
+                isPrime = true;
+            }
+        }
+        //打印
+        for (int i : arr) {
+            System.out.print(i+" ");
+        }
+        System.out.println();
+    }
+
     // 方法一
     public static void main(String[] args) {
-        printPrime(100);
-        System.out.println();
-        printPrime3(100);
+//        printPrime(100);
+//        System.out.println();
+//        printPrime3(100);
+        printNPrime(26);
     }
 
     /**
