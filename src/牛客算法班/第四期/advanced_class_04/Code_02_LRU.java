@@ -3,7 +3,7 @@ package 牛客算法班.第四期.advanced_class_04;
 import java.util.HashMap;
 
 /**
- * 设计可以变更的缓存结构（LRU）
+ * 设计可以变更的缓存结构（LRU）Least Recently Used的缩写，即最近最少使用
  【题目】
  设计一种缓存结构， 该结构在构造时确定大小， 假设大小为K， 并有两个功能：
  set(key,value)： 将记录(key,value)插入该结构。
@@ -25,6 +25,8 @@ import java.util.HashMap;
  数据结构的设计题，基础结构都是比较简单的，但是怎么配合使用是考查的重点。
  思路：哈希表+双向链表
  难点：coding处理边界
+
+ ！！！Java里面实现LRU缓存通常有两种选择，一种是使用LinkedHashMap，一种是自己设计数据结构，使用链表+HashMap
 
  面试套路：
  面试过程中一道题的时间一般不会超过30分钟。

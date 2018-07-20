@@ -9,7 +9,7 @@ package 牛客算法班.第三期.basic_class_03;
  的长度为N， 链表2的长度为M， 时间复杂度请达到 O(N+M)， 额外
  空间复杂度请达到O(1)。
 
- 问题1：怎么判断单链表又换还是无环（返回第一个入环的节点）
+ 问题1：怎么判断单链表有环还是无环（返回第一个入环的节点）
  问题2：无环单链表第一个相交的节点
  问题3：有环单链表第一个相交的节点
  */
@@ -24,6 +24,9 @@ public class Code_14_两个单链表相交的一系列问题 {
 		}
 	}
 
+	/**
+	 * 返回链表相交的节点
+	 */
 	public static Node getIntersectNode(Node head1, Node head2) {
 		if (head1 == null || head2 == null) {
 			return null;
@@ -103,10 +106,19 @@ public class Code_14_两个单链表相交的一系列问题 {
 		return cur1;
 	}
 
+	/**
+	 *
+	 * @param head1
+	 * @param loop1 第一个链表的入环点
+	 * @param head2
+	 * @param loop2 第二个链表的入环点
+	 * @return 返回相交的第一个点 或者 null
+	 */
 	public static Node bothLoop(Node head1, Node loop1, Node head2, Node loop2) {
 		Node cur1 = null;
 		Node cur2 = null;
-		if (loop1 == loop2) {// 如果第一个入环点相同
+		if (loop1 == loop2) {
+			// 如果第一个入环点相同，则可能在这个点之前就相交了，则以这个入环点为链表的结尾找第一个相交的点
 			cur1 = head1;
 			cur2 = head2;
 			int n = 0;

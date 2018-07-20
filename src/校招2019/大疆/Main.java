@@ -9,16 +9,41 @@ class Test {
 }
 public class Main
 {
-    public static void main(String[] args) {
-        new Main().convert();
+//    public static void main(String args[])
+//    {
+//        Scanner cin = new Scanner(System.in);
+//        int a, b;
+//        while(cin.hasNextInt())
+//        {
+//            a = cin.nextInt();
+//            b = cin.nextInt();
+//            System.out.println(a + b);
+//        }
+//    }
+
+    public static void main(String[] args){
+        int[] num = {2,3,1,1,4};
+        int  n = solution(num);
+        System.out.println(n);
     }
-    public void convert() {
-        int i = 10;
-        char a = 'a';
-//        char a = "a".charAt(0);
-//        int a = 97;
-        System.out.println(false ? i : a);
-        System.out.println(false ? 65 : a);
-        System.out.println(false ? 65.0 : a);
+
+    private static int solution(int[] num) {
+        int index= 0;
+        int step= 0;
+        int len = num.length;
+        int p= 0;
+        while(p<len){
+            if(p+num[p]>=len-1){return step+1;}
+            int max=-1;
+            for(int i = p+1;i<=p+num[p];i++){
+                if(max<i+num[i]){
+                    max = i+num[i];
+                    index = i;
+                }
+            }
+            step++;
+            p=index;
+        }
+        return step;
     }
 }

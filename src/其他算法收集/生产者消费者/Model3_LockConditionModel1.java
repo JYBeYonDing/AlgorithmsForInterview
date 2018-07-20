@@ -9,18 +9,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by 杨杰 on 2018/6/11 21:00.
- * 如果做一些实验，你会发现，实现一的并发性能高于实现二、三。
- * 暂且不关心BlockingQueue的具体实现，来分析看如何优化实现三（与实现二的思路相同，性能相当）的性能。
- *
- * 实际上，如果缓冲区是一个队列的话，“生产者将产品入队”与“消费者将产品出队”两个操作之间没有同步关系，
- * 可以在队首出队的同时，在队尾入队。理想性能可提升至实现三的两倍。
- *
- * 那么思路就简单了：需要两个锁 CONSUME_LOCK与PRODUCE_LOCK，CONSUME_LOCK控制消费者线程并发出队，
- * PRODUCE_LOCK控制生产者线程并发入队；
- * 相应需要两个条件变量NOT_EMPTY与NOT_FULL，
- * NOT_EMPTY负责控制消费者线程的状态（阻塞、运行），
- * NOT_FULL负责控制生产者线程的状态（阻塞、运行）。
- * 以此让优化消费者与消费者（或生产者与生产者）之间是串行的；消费者与生产者之间是并行的。
  */
 public class Model3_LockConditionModel1 implements Model {
     private final Lock BUFFER_LOCK = new ReentrantLock();// 可重入锁

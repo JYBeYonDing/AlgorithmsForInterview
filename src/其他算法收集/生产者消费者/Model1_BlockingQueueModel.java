@@ -1,7 +1,7 @@
 package 其他算法收集.生产者消费者;
 
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -15,7 +15,7 @@ public class Model1_BlockingQueueModel implements Model {
 
     public Model1_BlockingQueueModel(int cap) {
         // LinkedBlockingQueue 的队列是 lazy-init 的，但 ArrayBlockingQueue 在创建时就已经 init
-        this.queue = new LinkedBlockingDeque<>(cap);
+        this.queue = new LinkedBlockingQueue<>(cap);
     }
 
     @Override
