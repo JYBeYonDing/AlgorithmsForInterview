@@ -2,6 +2,7 @@ package 练习;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -13,7 +14,7 @@ public class 生产者消费者 {
 
     public 生产者消费者(int cap) {
         // LinkedBlockingQueue 的队列是 lazy-init 的，但 ArrayBlockingQueue 在创建时就已经 init
-        this.queue = new LinkedBlockingDeque<>(cap);
+        this.queue = new LinkedBlockingQueue<>(cap);
     }
 
     public Runnable newRunnableConsumer() {

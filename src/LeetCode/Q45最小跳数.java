@@ -39,4 +39,30 @@ public class Q45最小跳数 {
         }
         return step;
     }
+
+    public int jump2(int[] nums) {
+        if(nums.length<=1){
+            return 0;
+        }
+        int step = 0;//跳数
+        int p = 0;//当前位置
+        int len = nums.length;//数组长度
+        while(p<len){
+            if(p+nums[p]>=len-1){
+                return step+1;//说明再一跳就能到达，直接返回
+            }
+            //从p跳一跳后再跳一跳所能到达的最远距离
+            int max = -1;
+            int index = p;//记录这个下一跳
+            for(int i=p;i<=p+nums[p];i++){
+                if (i + nums[i] > max) {
+                    max = i + nums[i];
+                    index = i;
+                }
+            }
+            p = index;
+            step++;
+        }
+        return step;
+    }
 }

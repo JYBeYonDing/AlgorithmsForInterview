@@ -20,6 +20,7 @@ public class 输入 {
 
         System.out.println(solution(arr));
 
+        throw new RuntimeException("fa");
     }
 
     private static int solution(int[] arr) {

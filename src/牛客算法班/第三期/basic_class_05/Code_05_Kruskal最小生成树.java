@@ -16,6 +16,8 @@ import java.util.Set;
  * 只能是无向图
  * 依次考察小权重的边，如果没有形成回路就要，否则不要
  * 使用 并查集
+ *
+ * 时间复杂度：O(ElgV)
  */
 public class Code_05_Kruskal最小生成树 {
 
