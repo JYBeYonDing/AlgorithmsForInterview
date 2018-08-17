@@ -25,7 +25,7 @@ public class 二叉树的宽度和二叉树的深度 {
             return 0;
 
         int nLastLevelWidth = 0;//记录上一层的宽度
-        int nCurLevelWidth = 0;//记录当前层的宽度
+//        int nCurLevelWidth = 0;//记录当前层的宽度
 
         Queue<BinaryTreeNode> myQueue = new ArrayDeque<>();
         myQueue.offer(root);//将根节点入队列
@@ -46,9 +46,12 @@ public class 二叉树的宽度和二叉树的深度 {
                 nLastLevelWidth--;
             }
 
-            nCurLevelWidth = myQueue.size();// 当前层的宽度就是队列中的节点数
-            nWidth = nCurLevelWidth > nWidth ? nCurLevelWidth : nWidth;// 更新
-            nLastLevelWidth = nCurLevelWidth;
+//            nCurLevelWidth = myQueue.size();// 当前层的宽度就是队列中的节点数
+//            nWidth = nCurLevelWidth > nWidth ? nCurLevelWidth : nWidth;// 更新
+//            nLastLevelWidth = nCurLevelWidth;
+
+            nLastLevelWidth = myQueue.size();// 当前层的宽度就是队列中的节点数
+            nWidth = nLastLevelWidth > nWidth ? nLastLevelWidth : nWidth;// 更新
         }
         return nWidth;
     }

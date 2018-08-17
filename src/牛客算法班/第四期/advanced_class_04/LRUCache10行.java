@@ -13,11 +13,11 @@ public class LRUCache10行<K, V> extends LinkedHashMap<K, V>{
 
     public LRUCache10行(int cacheSize) {
         //当参数accessOrder为true时，即会按照访问顺序排序，最近访问的放在最前，最早访问的放在后面
-        super(16, (float) 0.75, true);
+        super(16, 0.75f, true);
         this.cacheSize = cacheSize;
     }
 
     protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-        return size() >= cacheSize;
+        return size() > cacheSize;
     }
 }

@@ -33,7 +33,7 @@ import java.util.HashMap;
  面试中碰到见过的题一定也要演的没做过，和面试官积极讨论。憋了半天找到了思路。但是一定要演的像！！！
 
  */
-public class Code_02_LRU {
+public class Code_02_LRUCache {
 
 	/**
 	 * 节点，用于双向链表
