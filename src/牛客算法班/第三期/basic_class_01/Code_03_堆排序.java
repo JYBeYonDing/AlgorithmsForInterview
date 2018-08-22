@@ -85,6 +85,12 @@ public class Code_03_堆排序 {
 		arr[j] = tmp;
 	}
 
+
+
+
+
+	//*********测试***********************************************************************************************
+
 	// for test
 	public static void comparator(int[] arr) {
 		Arrays.sort(arr);

@@ -12,13 +12,14 @@ package 剑指Offer;
  */
 public class 连续子数组的最大和 {
     public static void main(String[] args) {
-        int[] arr = {6, -3, -2, 7, -15, 1, 2, 2};
-        System.out.println(solution(arr));
+        int[] arr = {1,-2,3,10,-4,7,2,-5};
+        System.out.println(solution2(arr));
     }
+
 
     private static int solution(int[] arr) {
         int max = Integer.MIN_VALUE;
-        int sum = 0;
+        int sum = 0;// 以arr[i]结尾的连续子数组的最大和
         for (int i : arr) {
             if (sum < 0) {
                 sum = i;
@@ -27,6 +28,28 @@ public class 连续子数组的最大和 {
             }
             if (sum > max) {
                 max = sum;
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 动态规划的思想
+     *
+     * @param array
+     * @return
+     */
+    private static int solution2(int[] array) {
+        int max = Integer.MIN_VALUE;
+        int[] sum = new int[array.length+1];// 以arr[i+1]结尾的连续子数组的最大和
+        for (int i=0 ;i<array.length;i++) {
+            if (sum[i]<0) {
+                sum[i+1] = array[i];
+            } else {
+                sum[i+1] = sum[i]+array[i];
+            }
+            if (sum[i+1] > max) {
+                max = sum[i+1];
             }
         }
         return max;
