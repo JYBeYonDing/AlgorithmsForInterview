@@ -5,8 +5,8 @@ package 练习;
  */
 public class Main {
     public static void main(String[] args) {
-        char res = solution(2, 2);
-        System.out.println(res);
+
+        System.out.println("faefad".replace("ae","kk"));
     }
 
     private static char solution(int x, int y) {

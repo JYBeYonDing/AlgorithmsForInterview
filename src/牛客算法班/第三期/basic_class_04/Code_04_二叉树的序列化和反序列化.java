@@ -91,11 +91,16 @@ public class Code_04_二叉树的序列化和反序列化 {
 		return res;
 	}
 
+	/**
+	 * 按层遍历反序列化
+	 * @param levelStr
+	 * @return
+	 */
 	public static Node reconByLevelString(String levelStr) {
 		String[] values = levelStr.split("!");
 		int index = 0;
 		Node head = generateNodeByString(values[index++]);
-		Queue<Node> queue = new LinkedList<Node>();
+		Queue<Node> queue = new LinkedList<>();
 		if (head != null) {
 			queue.offer(head);
 		}
@@ -121,6 +126,7 @@ public class Code_04_二叉树的序列化和反序列化 {
 		return new Node(Integer.valueOf(val));
 	}
 
+	//**************************************************************************************************************
 	// for test -- print tree
 	public static void printTree(Node head) {
 		System.out.println("Binary Tree:");

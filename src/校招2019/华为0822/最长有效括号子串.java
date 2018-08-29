@@ -36,6 +36,11 @@ public class 最长有效括号子串 {
     }
 
 
+    /**
+     * 自己写的用栈实现
+     * @param s
+     * @return
+     */
     private static int  solution2(String s) {
         int[] dp = new int[s.length()];//dp[i]表示以s[i]结尾的有效括号子串长度
         ArrayDeque<Integer> stack = new ArrayDeque<>();

@@ -11,8 +11,10 @@ package 剑指Offer;
  * a d e e
  * 矩阵中包含一条字符串"bcced"的路径，但是矩阵中不包含"abcb"路径，
  * 因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。
+ *
+ * 回溯法
  */
-public class t66矩阵中的路径 {
+public class t66矩阵中的路径_回溯法 {
     public static boolean hasPath(char[] matrix, int rows, int cols, char[] str) {
         for(int i=0;i<rows;i++) {
             for(int j=0;j<cols;j++) {
@@ -34,7 +36,7 @@ public class t66矩阵中的路径 {
                 return (hasPath(matrix, rows, cols, str, i + 1, j, index + 1)
                         || hasPath(matrix, rows, cols, str, i - 1, j, index + 1)
                         || hasPath(matrix, rows, cols, str, i, j - 1, index + 1)
-                        || hasPath(matrix, rows, cols, str, i, j + 1, index + 1));
+                        || hasPath(matrix, rows, cols, str, i, j + 1, index + 1));// 回溯法，使用短路或，一个不行就回退判断另一个
             } else {
                 return true;
             }

@@ -9,7 +9,7 @@ package 剑指Offer;
  * 但是，它不能进入方格（35,38），因为3+5+3+8 = 19。
  * 请问该机器人能够达到多少个格子？
  */
-public class t67机器人的运动范围 {
+public class t67机器人的运动范围_回溯法 {
     public static int movingCount(int threshold, int rows, int cols) {
         boolean[][] hasGet = new boolean[rows][cols];
         return movingCountRec(threshold, rows, cols, 0, 0,hasGet);
@@ -23,7 +23,7 @@ public class t67机器人的运动范围 {
             return 1 + movingCountRec(threshold, rows, cols, i - 1, j,hasGet)
                     + movingCountRec(threshold, rows, cols, i + 1, j,hasGet)
                     + movingCountRec(threshold, rows, cols, i, j - 1,hasGet)
-                    + movingCountRec(threshold, rows, cols, i, j + 1,hasGet);
+                    + movingCountRec(threshold, rows, cols, i, j + 1,hasGet);// 回溯法，递归统计
         }
     }
 
