@@ -38,6 +38,7 @@ public class 最长重复子串 {
                 }
                 if (k > max) {
                     max = k;
+
                     first = j - k + 1;
                 }
 
