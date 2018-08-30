@@ -48,9 +48,9 @@ public class Code_04_打印字符串全排列 {
 		if (i == chs.length) {
 			System.out.println(String.valueOf(chs));
 		}
-		HashSet<Character> set = new HashSet<>();
+		HashSet<Character> set = new HashSet<>();// 用来记录后面的数字是否有重复
 		for (int j = i; j < chs.length; j++) {
-			if (!set.contains(chs[j])) {
+			if (!set.contains(chs[j])) {// 只与后面非重复的数字交换。如果重复则不必交换。
 				set.add(chs[j]);
 				swap(chs, i, j);
 				process2(chs, i + 1);

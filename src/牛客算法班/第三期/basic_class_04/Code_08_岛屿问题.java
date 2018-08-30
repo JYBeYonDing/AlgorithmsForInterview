@@ -17,7 +17,7 @@ package 牛客算法班.第三期.basic_class_04;
  当图很大的时候可以分块，进行并行计算，然后收集边界的信息进行合并，合并的时候需要使用并查集思想
  第4期基础7 1h处
  */
-public class Code_08_岛问题 {
+public class Code_08_岛屿问题 {
 
 	public static int countIslands(int[][] m) {
 		if (m == null || m[0] == null) {
