@@ -1,4 +1,4 @@
-package LeetCode.Q155最小栈;
+package LeetCode;
 
 import edu.princeton.cs.algs4.In;
 
@@ -14,14 +14,14 @@ import java.util.ArrayDeque;
  * top() -- 获取栈顶元素。
  * getMin() -- 检索栈中的最小元素。
  */
-public class MinStack {
+public class Q155最小栈 {
     /**
      * initialize your data structure here.
      */
     private ArrayDeque<Integer> data = new ArrayDeque<>();
     private ArrayDeque<Integer> min = new ArrayDeque<>();
 
-    public MinStack() {
+    public Q155最小栈() {
     }
 
     public void push(int x) {

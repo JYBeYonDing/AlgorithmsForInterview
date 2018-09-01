@@ -1,9 +1,9 @@
-package LeetCode.Q198;
+package LeetCode;
 
 /**
  * Created by 杨杰 on 2018/4/9 20:43.
  */
-class Solution {
+class Q198 {
     public static int[] res;
 
     public int solve(int idx, int[] nums) {

@@ -1,9 +1,9 @@
-package LeetCode.Q53;
+package LeetCode;
 
 /**
  * Created by 杨杰 on 2018/4/9 22:29.
  */
-public class Solution {
+public class Q53 {
     public int maxSubArray1(int[] nums) {
         int n = nums.length;
         int ans = -100000;

@@ -1,4 +1,4 @@
-package LeetCode.Q322;
+package LeetCode;
 
 import edu.princeton.cs.algs4.In;
 
@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by 杨杰 on 2018/4/9 18:03.
  */
-class Solution {
+class Q322 {
     public static int maxValue = 10000000;
     public static int[][] f;
 

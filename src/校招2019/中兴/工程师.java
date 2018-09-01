@@ -8,11 +8,11 @@ import java.util.Queue;
 /**
  * Created by James on 2018/8/28 10:42.
  *
- * 没做出来
+ *
  */
 public class 工程师 {
     public static void main(String[] args) {
-        String  network = "111110000010000";// 输出324334
+        String  network = "111111010010000";
         String[] strings = network.split("");
 
         int[] pathLeft = new int[strings.length];
@@ -74,6 +74,7 @@ public class 工程师 {
 
     //*****************************************************************************************************
 
+    //建二叉树的方法，没做出来
 
     private static List<Integer> minStrength(String network) {
         List<Integer> res = new ArrayList<>();

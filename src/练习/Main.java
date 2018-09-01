@@ -6,7 +6,7 @@ package 练习;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("faefad".replace("ae","kk"));
+        System.out.println(Integer.MAX_VALUE);
     }
 
     private static char solution(int x, int y) {

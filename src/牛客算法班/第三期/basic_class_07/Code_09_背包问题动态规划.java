@@ -20,6 +20,7 @@ public class Code_09_背包问题动态规划 {
      * 动态规划
      * 背包问题九讲
      * 完全背包问题
+     * 每个物品可以无限使用
      */
     public static int maxValue4(int[] c, int[] p, int bag) {
         int[] dp = new int[bag + 1];// 0...bag
