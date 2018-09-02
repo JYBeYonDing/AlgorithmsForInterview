@@ -40,6 +40,8 @@ public class Q45最小跳数 {
         return step;
     }
 
+
+
     public int jump2(int[] nums) {
         if(nums.length<=1){
             return 0;

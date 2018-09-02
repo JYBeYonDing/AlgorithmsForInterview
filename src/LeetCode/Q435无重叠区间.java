@@ -17,12 +17,22 @@ Created by James on 2018/8/18 23:49.
  贪心！！！
  用贪心的思想，根据结尾处end，从小到大进行排序，这样后面留给其他线段的空间是最大的。
  然后依次放置，重叠就舍去，不重叠就增加，统计出所有能放置的条数，总数一减就是需要移除的数量。
+
+
+
+ 贪心算法的证明思路：
+ 数学归纳法
+ 反证法
+
+ 贪心算法为A；最优算法为O；发现A完全能替代O，且不影响求出最优解。
  */
 public class Q435无重叠区间 {
 
     public static void main(String[] args) {
     }
 
+
+    // 纯贪心  O（N）
     public static int eraseOverlapIntervals(Interval[] intervals) {
         if (intervals == null || intervals.length <= 1) {
             return 0;
@@ -56,6 +66,20 @@ public class Q435无重叠区间 {
         int end;
         Interval() { start = 0; end = 0; }
         Interval(int s, int e) { start = s; end = e; }
+    }
+
+
+
+
+    //  动态规划 复杂度O（n^2）
+    public static int eraseOverlapIntervals2(Interval[] intervals) {
+        if (intervals == null || intervals.length <= 1) {
+            return 0;
+        }
+        int max = 0;
+
+
+        return intervals.length-max;
     }
 }
 
