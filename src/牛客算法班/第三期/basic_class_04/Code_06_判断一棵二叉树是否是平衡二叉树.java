@@ -58,6 +58,10 @@ public class Code_06_判断一棵二叉树是否是平衡二叉树 {
 		return process(head).isB;
 	}
 
+
+
+
+
 	/**
 	 * 另一种方式
 	 */
