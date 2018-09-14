@@ -1,5 +1,6 @@
 package 牛客算法班.第三期.basic_class_05;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Stack;
 
@@ -9,6 +10,25 @@ import java.util.Stack;
  * 用栈实现
  */
 public class Code_03_深度优先遍历 {
+
+
+	private class Node {
+		public int value;
+		public int in;// 入度
+		public int out;// 出度
+		public ArrayList<Node> nexts;// 从我出发能到达的所有节点
+		public ArrayList<Edge> edges;// 从我出发的所有边
+
+		public Node(int value) {
+			this.value = value;
+			in = 0;
+			out = 0;
+			nexts = new ArrayList<>();
+			edges = new ArrayList<>();
+		}
+	}
+
+
 
 	/**
 	 * 深度优先遍历
@@ -30,8 +50,8 @@ public class Code_03_深度优先遍历 {
 			for (Node next : cur.nexts) {// 遍历 弹出节点 的后继节点
 				if (!set.contains(next)) {
 					// 如果有后续节点有一个没有被遍历过，就将当前节点和没有遍历的后序节点放入，break
-					stack.push(cur);
-					stack.push(next);
+					stack.push(cur);//当前节点再放入
+					stack.push(next);// 下一个接待放入
 					set.add(next);// 注册
 					System.out.println(next.value);
 					break;// 跳出对cur后继节点的遍历，因为这里只加入一个后继节点

@@ -28,6 +28,8 @@ public class Q3无重复字符的最长子串 {
         return maxLength;
     }
 
+
+    //************************************************************************************
     public int lengthOfLongestSubstring2(String s) {
         int n = s.length(), ans = 0;
         Map<Character, Integer> map = new HashMap<>(); // current index of character
@@ -38,6 +40,22 @@ public class Q3无重复字符的最长子串 {
             }
             ans = Math.max(ans, j - i + 1);
             map.put(s.charAt(j), j + 1);
+        }
+        return ans;
+    }
+
+
+    //************************************************************************************
+    public int lengthOfLongestSubstring3(String s) {
+        int n = s.length(), ans = 0;
+        Map<Character, Integer> map = new HashMap<>(); // current index of character
+        // try to extend the range [i, j]
+        for (int j = 0, i = 0; j < n; j++) {
+            if (map.containsKey(s.charAt(j))) {
+                i = Math.max(map.get(s.charAt(j))+1, i);
+            }
+            ans = Math.max(ans, j - i + 1);
+            map.put(s.charAt(j), j);
         }
         return ans;
     }
