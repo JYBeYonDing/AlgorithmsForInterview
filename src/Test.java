@@ -6,9 +6,11 @@ import java.util.HashSet;
 public class Test {
 
     public static void main(String[] args) {
+        Integer c=null;
+        System.out.println(c==1);
 
-        String string = "BAACAACCBAAA";
-        System.out.println(isPure(string));
+//        String string = "BAACAACCBAAA";
+//        System.out.println(isPure(string));
     }
 
     public static boolean isPure(String string) {
