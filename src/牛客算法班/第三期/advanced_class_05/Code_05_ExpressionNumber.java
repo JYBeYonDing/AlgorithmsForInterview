@@ -1,8 +1,5 @@
 package 牛客算法班.第三期.advanced_class_05;
 
-import com.sun.org.apache.bcel.internal.generic.RET;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import com.sun.org.apache.regexp.internal.RE;
 
 /**
  * 表达式得到期望结果的组成种数
