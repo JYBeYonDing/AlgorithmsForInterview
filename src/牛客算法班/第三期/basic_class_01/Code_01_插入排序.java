@@ -8,7 +8,7 @@ import java.util.Arrays;
  * 插入和数据状况有关，如果数据排好序，复杂度是O(N)，如果每次都要交换是O(N^2)
  * 可以做到 稳定的
  */
-public class Code_01_插入排序 {
+public class  Code_01_插入排序 {
 
 	public static void insertionSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
