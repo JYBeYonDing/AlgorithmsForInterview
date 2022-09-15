@@ -21,3 +21,6 @@ build
 **/target/
 **/src/main/webapp
 /swagger
+/out
+/src/校招2019
+/src/校招2020
