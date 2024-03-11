@@ -1,0 +1,64 @@
+> Problem: [1306. 跳跃游戏 III](https://leetcode.cn/problems/jump-game-iii/description/)
+
+[TOC]
+
+# Code1 - DFS（220 ~ 240ms，击败7.20% ~ 10.03%）
+
+* []
+
+```C++
+class Solution {
+public:
+    int n;
+    vector<int> vec;
+    vector<bool> visited;
+
+    bool canReach(vector<int>& arr, int start) {
+        this->n = arr.size();
+        this->vec = arr;
+        this->visited = vector<bool>(n, false);
+        return DFS(start);
+    }
+
+    bool DFS(int currIndex) {
+        if (currIndex < 0 || currIndex >= n || visited[currIndex]) {
+            return false;
+        }
+        if (vec[currIndex] == 0) return true;
+        visited[currIndex] = true;
+        return DFS(currIndex + vec[currIndex]) || DFS(currIndex - vec[currIndex]);
+    }
+};
+```
+
+# Code2 - BFS（27 ~ 32ms，击败80.21 ~ 91.00%）
+
+* []
+
+```C++
+class Solution {
+public:
+    bool canReach(vector<int>& arr, int start) {
+        int n = arr.size();
+        vector<bool> visited(n, false);
+        queue<int> q;
+        q.push(start);
+        visited[start] = true;
+        while (!q.empty()) {
+            int index = q.front();
+            q.pop();
+            if (arr[index] == 0) return true;
+            if (index + arr[index] < n && !visited[index + arr[index]]) {
+                q.push(index + arr[index]);
+                visited[index + arr[index]] = true;
+            }
+            if (index - arr[index] >= 0 && !visited[index - arr[index]]) {
+                q.push(index - arr[index]);
+                visited[index - arr[index]] = true;
+            }
+        }
+        return false;
+    }
+};
+```
+

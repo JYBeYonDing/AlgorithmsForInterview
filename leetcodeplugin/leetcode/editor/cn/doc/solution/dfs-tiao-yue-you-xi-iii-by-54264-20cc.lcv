@@ -1,0 +1,45 @@
+> Problem: [1306. 跳跃游戏 III](https://leetcode.cn/problems/jump-game-iii/description/)
+
+[TOC]
+
+## 思路
+
+> 从start开始，判断该步是否越界
+> 若不越界，标记该下标，用于下次判断是否有环
+> 递归下一步，即arr[i] + start 或 arr[i] - start
+
+递归结束原因：
+1. 该点为0
+2. 该步越界
+3. 访问多次（说明有环且环不经过0）
+
+## 复杂度
+
+时间复杂度:$O(n)$
+
+空间复杂度:$O(n)$
+
+## Code
+
+* []
+
+```C++
+class Solution {
+public:
+    bool dfs(vector<int>& arr, int start, vector<int>& used)
+    {
+        if (start < 0 || start >= arr.size()) return false;
+        else if (arr[start] == 0) return true;
+        else if (used[start] > 1) return false;
+        ++used[start];
+        return dfs(arr, start + arr[start], used) || dfs(arr, start - arr[start], used);
+    }
+
+    bool canReach(vector<int>& arr, int start) 
+    {
+        vector<int> used(arr.size(), 0);
+        return dfs(arr, start, used);
+    }
+};
+```
+

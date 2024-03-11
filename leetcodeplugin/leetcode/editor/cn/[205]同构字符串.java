@@ -1,23 +1,10 @@
-package temp;
-
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author 杨杰(yangjie7 @ corp.netease.com)
- * @date 2021/11/28 22:12
- */
-public class Test {
-    public static void main(String[] args) {
-        Test test = new Test();
-        boolean isomorphic = test.isIsomorphic("badc", "baba");
-        System.out.println(isomorphic);
-    }
+import com.netease.backend.db.common.schema.Hash;
 
-    public void method() {
-
-    }
-
+//leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public boolean isIsomorphic(String s, String t) {
         Map<Character, Character> hash = new HashMap<>();
         Map<Character, Character> hashRev = new HashMap<>();
@@ -33,3 +20,4 @@ public class Test {
         return true;
     }
 }
+//leetcode submit region end(Prohibit modification and deletion)

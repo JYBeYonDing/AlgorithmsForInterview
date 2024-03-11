@@ -22,7 +22,7 @@ public class  Code_01_插入排序 {
 	}
 
 	/**
-	 * 减少交换次数，提高性能。
+	 * 减少交换次数，提高性能。额外用到一个变量e
 	 */
 	public static void sort(Comparable[] arr){
 		int n = arr.length;
