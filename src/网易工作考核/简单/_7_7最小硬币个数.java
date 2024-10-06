@@ -1,8 +1,8 @@
-package 网易工作考核;
+package 网易工作考核.简单;
 
 import java.util.Scanner;
 
-public class _7_9最小硬币个数 {
+public class _7_7最小硬币个数 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (in.hasNextLong()) {

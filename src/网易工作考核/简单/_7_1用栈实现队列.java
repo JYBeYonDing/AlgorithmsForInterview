@@ -1,4 +1,4 @@
-package 网易工作考核;
+package 网易工作考核.简单;
 
 import java.util.Scanner;
 import java.util.Stack;
