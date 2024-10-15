@@ -1,6 +1,7 @@
 package 网易工作考核.简单;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * 给你一个字符串 s ，请你去除字符串中重复的字符，使得每个字符只出现一次。需保证返回结果的字典序最小（要求不能打乱其他字符的相对位置）。
@@ -25,34 +26,34 @@ public class _7_21_去除重复字母 {
         Scanner in = new Scanner(System.in);
         String s = in.nextLine();
         char[] charArray = s.toCharArray();
-        int[] count = new int[128];
+        int[] count = new int[256];
         for (int i = 0; i < charArray.length; i++) {
             char c = charArray[i];
             count[c]++;
         }
-        boolean[] removed = new boolean[charArray.length];
-        StringBuilder sb = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
+        boolean[] inStack = new boolean[256];
         for (int i = 0; i < charArray.length; i++) {
-            if(removed[i]){
+            char c = charArray[i];
+            if (inStack[c]) {
+                count[c]--;
                 continue;
             }
-            char next = Character.MAX_VALUE;
-            for (int j = i + 1; j < charArray.length; j++) {
-                if (!removed[j]) {
-                    next = charArray[j];
-                    break;
-                }
+            while (!stack.isEmpty() && count[stack.peek()] > 0 && stack.peek() > c) {
+                Character pop = stack.pop();
+                inStack[pop] = false;
             }
-            char c = charArray[i];
-            if (c > next && count[c] > 1) {
-                removed[i] = true;
-                count[c]--;
-            }else{
-                sb.append(c);
-                count[c] = 0;
-            }
+            stack.push(c);
+            count[c]--;
+            inStack[c] = true;
         }
-        System.out.println(sb);
+
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+
+        System.out.println(sb.reverse());
     }
 
 
