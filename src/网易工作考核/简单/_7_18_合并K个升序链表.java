@@ -67,5 +67,26 @@ public class _7_18_合并K个升序链表 {
         System.out.print(Arrays.stream(str.replace("[", "").replace("]", "").split(",")).filter(s -> !"".equals(s)).map(Integer::parseInt).sorted().collect(Collectors.toList()));
     }
 
+    public static void main2(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        String[] split = s.replace("[", "").replace("]", "").split(",");
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < split.length; i++) {
+            String tmp = split[i].trim();
+            if(tmp==""){
+                continue;
+            }
+            list.add(Integer.parseInt(tmp));
+        }
+        Integer[] arr = new Integer[list.size()];
+        arr = list.toArray(arr);
+        Arrays.sort(arr);
+        ArrayList<Integer> res = new ArrayList<>();
+        for (int num : arr) {
+            res.add(num);
+        }
 
+        System.out.println(res);
+    }
 }
