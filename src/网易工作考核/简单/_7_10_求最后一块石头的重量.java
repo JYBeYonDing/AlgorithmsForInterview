@@ -29,4 +29,21 @@ public class _7_10_求最后一块石头的重量 {
         }
 
     }
+
+    public static void main2(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String[] split = in.nextLine().split(",");
+        int[] nums = new int[split.length];
+        PriorityQueue<Integer> queue = new PriorityQueue<>((o1,o2)-> o2 - o1);
+        for(int i=0;i<nums.length;i++){
+            queue.add(Integer.parseInt(split[i]));
+        }
+        while(queue.size()>1){
+            int a = queue.poll();
+            int b = queue.poll();
+            queue.add(Math.abs(a-b));
+        }
+        System.out.println(queue.poll());
+
+    }
 }
